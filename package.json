@@ -1,6 +1,7 @@
 {
-  "name": "Weckel Site v.2.0.0",
+  "name": "Weckel-Site",
   "author": "Matt Weckel",
+  "version": "2.0.0",
   "devDependencies": {
     "browser-sync": "^2.7.5",
     "gulp": "^3.9.0",
