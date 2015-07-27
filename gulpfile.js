@@ -1,4 +1,4 @@
-'use strict';
+  'use strict';
 
 var gulp = require('gulp'),
     browserSync = require('browser-sync'),
@@ -19,7 +19,7 @@ var gulp = require('gulp'),
 //Compile html
 gulp.task('compile-html', function(){
   console.log('...getting you that sweet sweet HTML');
-  return gulp.src('./dev/*.html')
+  return gulp.src('dev/*.html')
   .pipe(gulp.dest('staging/'));
 });
 
