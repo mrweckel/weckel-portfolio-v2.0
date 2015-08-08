@@ -11,69 +11,155 @@
   to{transform: translateX(0)}
 }
 
+@keyframes bgColorFlash {
+  0%{opacity: 0}
+  5%{opacity: 1}
+  60%{opacity: 1}
+  100%{opacity: 0}
+}
+
 #stage{
 	height: 100%;
 	width: 100%;
+  position: absolute;
   font-family: 'Source Sans Pro', sans-serif;
 	// position: relative;
-}
-#under_construction{
-  text-transform: uppercase;
-  color: black;
-  font-size: 16px;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  text-align: center;
-  animation: bounce 1s ease infinite alternate;
-}
-#logo_container{
-  height: 170px;
-  width: 120px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  top: 50%;
-  transform: translateY(-60%);
-  #logo{
-    height: 125px;
-    width: 25px;
-    background-color: $color-pink;
+  &:before{
+    content: '';
     position: absolute;
-    transform-origin: center;
-    top: 37.5px;
+    height: 100%;
+    width: 100%;
+    background-color: $color-pink;
+    opacity: 0;
+  }
+  #logo_container{
+    height: 170px;
+    width: 120px;
+    position: absolute;
     left: 0;
     right: 0;
     margin: 0 auto;
-    &:after{
-    	content: '';
-    	position: absolute;
-    	height: 100%;
-    	width: 100%;
-    	top: -30px;
-    	left: 40px;
-    	background-color: $color-pink;
+    top: 50%;
+    transform: translateY(-60%);
+    .transition{
+      transition: all .1s ease;
     }
-    &:before{
-    	content: '';
-    	position: absolute;
-    	height: 100%;
-    	width: 100%;
-    	top: -30px;
-    	left: -40px;
-    	background-color: $color-pink;
+    .logos{
+      height: 125px;
+      width: 25px;
+      position: absolute;
+      transform-origin: center;
+      top: 37.5px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      &:after{
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: -30px;
+        left: 40px;
+        background-color: $color-pink;
+      }
+      &:before{
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: -30px;
+        left: -40px;
+        background-color: $color-pink;
+      }
+    }
+    #logo{
+      background-color: $color-pink;
+      &:after{
+      	background-color: $color-pink;
+      }
+      &:before{
+      	background-color: $color-pink;
+      }
+    }
+    #logo_clone{
+      background-color: white;
+      opacity: 0;
+      &:after{
+        background-color: white;
+      }
+      &:before{
+        background-color: white;
+      }
+    }
+    #circle{
+      height: 150px;
+      width: 150px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      left: -15px;
+      transform: scale(0);
+      overflow: hidden;
+      &:after{
+        content: '';
+        position: absolute;
+        background: radial-gradient(ellipse at center, rgba(255, 255, 255, .4)0%, rgba(255, 255, 255, 0) 100%);
+        height: 30%;
+        width: 30%;
+        left: 16px;
+        top: 15px;
+        border-radius: 50%;
+      }
+    }
+    &.morph-circle{
+      #logo{
+        opacity: 0;
+        transform: scale(0);
+      }
+      #circle{
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    &.morph-up{
+      #logo{
+        transform: translate3d(0%,-200%,0);
+      }
+    }
+    &.morph-right{
+      #logo{
+        transform: translate3d(1000%,0%,0);
+      }
+    }
+    &.morph-left{
+      #logo{
+        transform: translate3d(1000%,0%,0);
+      }
+    }
+    &.morph-down{
+      #logo{
+        transform: translate3d(0%,200%,0);
+      }
     }
   }
-}
-#contact{
-  font-size: 14px;
-  color: black;
-  position: absolute;
-  bottom: 50px;
-  right: 100px;
-  animation: slide 1s ease 1;
-  animation-delay: 5s;
+  #contact{
+    font-size: 14px;
+    color: black;
+    position: absolute;
+    bottom: 50px;
+    right: 100px;
+    animation: slide 1s ease 1;
+    animation-delay: 5s;
+  }
+  &.flash_animation{
+    &:before{
+      animation: bgColorFlash .25s ease 1;
+    }
+    #logo_container{
+      #logo_clone{
+        opacity: 1;
+      }
+    }
+  }
 }
