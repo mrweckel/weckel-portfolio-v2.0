@@ -1,0 +1,6 @@
+#OS Specific
+.DS_Store
+.DS_Store?
+
+#Dist folders
+staging/
