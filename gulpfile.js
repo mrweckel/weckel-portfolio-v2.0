@@ -1,6 +1,7 @@
   'use strict';
 
 var gulp = require('gulp'),
+    fs = require('fs'),
     browserSync = require('browser-sync'),
     del = require('del'),
     jshint = require('gulp-jshint'),
@@ -11,7 +12,10 @@ var gulp = require('gulp'),
     mochaPhantomjs = require('gulp-mocha-phantomjs'),
     runSequence = require('run-sequence'),
     minifyCss = require('gulp-minify-css'),
-    glob = require("glob");
+    glob = require('glob'),
+    gutil = require('gulp-util'),
+    s3 = require('gulp-s3'),
+    aws = JSON.parse(fs.readFileSync('aws.json'));
 
 
 //====COMPILING====//
@@ -50,9 +54,9 @@ gulp.task('prefix-styles', function(){
 //Minify CSS
 gulp.task('minify-css', function() {
   console.log('...minifying css');
-  return gulp.src('staging/stylesheets/*.css')
-    .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(gulp.dest('dist/css'));
+  gulp.src('staging/stylesheets/*.css')
+  .pipe(minifyCss())
+  .pipe(gulp.dest('dist/stylesheets/'));
 });
 
 //JS hinting
@@ -123,10 +127,11 @@ gulp.task('browser-sync', function(){
 });
 
 //build staging
-gulp.task('build-staging', ['clean-staging'], function() {
+gulp.task('build-staging', ['clean-staging'], function(cb) {
   runSequence(
     'render-styles',
-    'render-scripts'
+    'render-scripts',
+    cb
   );
 });
 
@@ -134,8 +139,8 @@ gulp.task('build-staging', ['clean-staging'], function() {
 gulp.task('build-dist', ['clean-dist'], function(cb) {
   runSequence(
     'copy-html',
-    'minify-css',
     'uglify',
+    'minify-css',
      cb
   );
 });
@@ -144,7 +149,6 @@ gulp.task('build-dist', ['clean-dist'], function(cb) {
 gulp.task('init', function(cb) {
   runSequence(
     'build-staging',
-    // 'build-dist',
     'browser-sync',
     'watch',
     cb
@@ -158,11 +162,21 @@ gulp.task('watch', function() {
   gulp.watch('dev/*.html', ['compile-html',browserSync.reload]);
 });
 
+// ---- DEPLOYMENT ---- //
+
+
+gulp.task('deploy', ['build-dist'], function() {
+  var options = { headers: {'Cache-Control': 'max-age=315360000, no-transform, public'} }
+  console.log(aws.key);
+  gulp.src('./dist/**', {read: false})
+      .pipe(s3(aws, options))
+});
+
 // ---- SET DEFAULT ---- //
-gulp.task('default', function(callback) {
+gulp.task('default', function(cb) {
   runSequence(
     'init',
-    callback
+    cb
     )
 });
 

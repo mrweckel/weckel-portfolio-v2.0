@@ -4,3 +4,7 @@
 
 #Dist folders
 staging/
+dist/
+
+#AWS
+aws.json

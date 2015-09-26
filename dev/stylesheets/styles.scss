@@ -1,14 +1,15 @@
 @import 'partials/colors';
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
+
 @keyframes bounce {
   from{transform: translateY(-700%) scale(1)}
   to{transform: translateY(-700%) scale(1.1)}
 }
 
 @keyframes slide {
-  from{transform: translateX(-100%)}
-  to{transform: translateX(0)}
+  from{transform: translateX(-500%); opacity: 0;}
+  to{transform: translateX(0); opacity: 1;}
 }
 
 @keyframes bgColorFlash {
@@ -23,6 +24,7 @@
 	width: 100%;
   position: absolute;
   font-family: 'Source Sans Pro', sans-serif;
+  overflow: hidden;
 	// position: relative;
   &:before{
     content: '';
@@ -129,12 +131,12 @@
     }
     &.morph-right{
       #logo{
-        transform: translate3d(1000%,0%,0);
+        transform: translate3d(-700%,0%,0);
       }
     }
     &.morph-left{
       #logo{
-        transform: translate3d(1000%,0%,0);
+        transform: translate3d(700%,0%,0);
       }
     }
     &.morph-down{
@@ -148,9 +150,14 @@
     color: black;
     position: absolute;
     bottom: 50px;
-    right: 100px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 145px;
+    opacity: 0;
     animation: slide 1s ease 1;
     animation-delay: 5s;
+    animation-fill-mode: forwards;
   }
   &.flash_animation{
     &:before{
