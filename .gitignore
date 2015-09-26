@@ -1,0 +1,13 @@
+#OS Specific
+.DS_Store
+.DS_Store?
+
+NPM
+node_modules/
+
+#Dist folders
+staging/
+dist/
+
+#AWS
+aws.json
