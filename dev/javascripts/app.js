@@ -5,30 +5,33 @@ document.addEventListener('DOMContentLoaded', function() {
     var doc = document,
         win = window,
         body = document.body,
-        stage = doc.getElementById('stage'),
-        logo = doc.getElementById('logo_container'),
+        stage = doc.querySelector('#stage'),
+        logo = doc.querySelector('#logo_container'),
+        button = doc.querySelector('#button'),
         logoSize = logo.getBoundingClientRect(),
         xPos = 0,
         yPos = 0;
 
+    //Sets the different class names for the transforms and caches a random value
     var classes = ['circle', 'up', 'right', 'left', 'down'],
         rand = classes[Math.floor(Math.random() * classes.length)];
-
 
     win.addEventListener('resize', function() {
         logoSize = logo.getBoundingClientRect();
         console.log(logo.getBoundingClientRect());
     });
 
+
     doc.addEventListener('mousemove', function(e) {
-
        addMorph(e.clientX, e.clientY);
-
     }, false);
 
+
     doc.addEventListener('mousedown', function(e) {
-        console.log(e);
-        if (e.srcElement != logo) {
+        console.log(e.srcElement.id);
+        if (e.srcElement === button) {
+            button.classList.add("button_down");
+        } else {
             stage.className = 'flash_animation';
             setTimeout(function() {
                 stage.className = '';
@@ -36,12 +39,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, false);
 
+    doc.addEventListener('mouseup', function(e) {
+        if (e.srcElement === button){
+            button.classList.remove("button_down");
+            stage.className = "page_active-2";
+        }
+    }, false);
+
 
     stage.addEventListener('touchstart',handleStart, false);
     stage.addEventListener('touchend', handleEnd, false);
     stage.addEventListener('touchmove', handleMove, false);
-    // stage.addEventListener('touchcancel', handleCancel, false);
-    // stage.addEventListener('touchleave', handleEnd, false);
 
     function handleStart (e) {
     	e.preventDefault();
@@ -50,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleEnd (e) {
     	e.preventDefault();
     	console.log(e);
-    	logo.className = '';
+        logo.className = 'ground_zero';
     }
 
     function handleMove (e) {
@@ -59,11 +67,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addMorph (xPos, yPos) {
-    	if (xPos <= logoSize.right && xPos >= logoSize.left && yPos >= logoSize.top && yPos <= logoSize.bottom) {
+    	if (xPos <= logoSize.right &&
+            xPos >= logoSize.left &&
+            yPos >= logoSize.top &&
+            yPos <= logoSize.bottom) {
     				xPos = 0;
             logo.className = 'morph-' + rand;
       } else {
-          logo.className = '';
+          logo.className = 'ground_zero_delay';
           rand = classes[Math.floor(Math.random() * classes.length)];
       }
     }
