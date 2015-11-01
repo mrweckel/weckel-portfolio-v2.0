@@ -13,14 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
         yPos = 0;
 
     //Sets the different class names for the transforms and caches a random value
-    var classes = ['circle', 'up', 'right', 'left', 'down'],
-        rand = classes[Math.floor(Math.random() * classes.length)];
 
     win.addEventListener('resize', function() {
         logoSize = logo.getBoundingClientRect();
-        console.log(logo.getBoundingClientRect());
     });
-
 
     doc.addEventListener('mousemove', function(e) {
        addMorph(e.clientX, e.clientY);
@@ -29,13 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     doc.addEventListener('mousedown', function(e) {
         console.log(e.srcElement.id);
-        if (e.srcElement === button) {
+        if(e.srcElement === button) {
             button.classList.add("button_down");
-        } else {
-            stage.className = 'flash_animation';
+            }
+        if(e.srcElement.id === ('page-1')){
+            stage.classList.add('flash_animation');
             setTimeout(function() {
-                stage.className = '';
+                stage.classList.remove('flash_animation');
             }, 250);
+        }
+
+        if(e.srcElement.id === 'menu_icon'){
+            stage.classList.toggle('menu_active')
         }
     }, false);
 
@@ -62,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleMove (e) {
-    	console.log(e.touches[0].clientX, e.touches[0].clientY);
     	addMorph(e.touches[0].clientX, e.touches[0].clientY);
     }
 
@@ -72,12 +72,10 @@ document.addEventListener('DOMContentLoaded', function() {
             yPos >= logoSize.top &&
             yPos <= logoSize.bottom) {
     				xPos = 0;
-            logo.className = 'morph-' + rand;
+            logo.className = 'morph-circle';
       } else {
           logo.className = 'ground_zero_delay';
-          rand = classes[Math.floor(Math.random() * classes.length)];
       }
     }
-
 
 }, false);

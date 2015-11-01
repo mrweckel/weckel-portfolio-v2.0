@@ -42,7 +42,38 @@
   position: absolute;
   font-family: 'Source Sans Pro', sans-serif;
   overflow: hidden;
-	// position: relative;
+}
+  #menu_icon{
+    height: 40px;
+    width:  50px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 9999;
+    overflow: visible;
+    .menu_bar{
+      width: 100%;
+      fill: $light-blue;
+      pointer-events: none;
+    }
+    #menu_bar-1{
+      transform-origin: center;
+      transition: all .3s ease;
+    }
+    #menu_bar-3{
+      transform-origin: center;
+      transition: all .3s ease;
+    }
+  }
+  #menu_container{
+    position: absolute;
+    height: 100%;
+    width: 300px;
+    left: 0;
+    background-color: $light-blue;
+    transform: translate3d(-100%,0,0);
+    transition: all .3s ease;
+  }
   #page-1{
     height: 100%;
     width: 100%;
@@ -55,6 +86,7 @@
       background-color: $color-pink;
       opacity: 0;
     }
+  }
     #logo_container{
       height: 170px;
       width: 120px;
@@ -64,8 +96,9 @@
       margin: 0 auto;
       top: 50%;
       transform: translateY(-60%);
+    }
       .transition{
-        transition: all .1s ease;
+        transition: all .2s ease;
       }
       #logo_mover{
         height: 100%;
@@ -202,27 +235,7 @@
 
         }
       }
-      &.morph-up{
-        #logo_mover{
-          transform: translate3d(0%,-200%,0);
-        }
-      }
-      &.morph-right{
-        #logo_mover{
-          transform: translate3d(-400%,0%,0);
-        }
-      }
-      &.morph-left{
-        #logo_mover{
-          transform: translate3d(400%,0%,0);
-        }
-      }
-      &.morph-down{
-        #logo_mover{
-          transform: translate3d(0%,200%,0);
-        }
-      }
-    }
+
     #contact{
       font-size: 14px;
       color: black;
@@ -237,15 +250,33 @@
       animation-delay: 5s;
       animation-fill-mode: forwards;
     }
-    &.flash_animation{
-      &:before{
-        animation: bgColorFlash .25s ease 1;
+  #stage.flash_animation{
+    #page-1::before{
+      animation: bgColorFlash .25s ease 1;
+    }
+    #page-1 #logo_container{
+      #logo_clone{
+        opacity: 1;
       }
-      #logo_container{
-        #logo_clone{
-          opacity: 1;
-        }
+    }
+  }
+  #stage.menu_active{
+    #menu_icon{
+      .menu_bar{
+        fill: #fff;
       }
+      #menu_bar-1{
+        transform: rotate(45deg) translate3d(38px,45px,0);
+      }
+      #menu_bar-2{
+        opacity: 0;
+      }
+      #menu_bar-3{
+        transform: rotate(-45deg) translate3d(29px, -45px, 0);
+      }
+    }
+    #menu_container{
+      transform: translate3d(0,0,0);
     }
   }
   &.page_active-1{
@@ -262,4 +293,3 @@
 
     }
   }
-}
