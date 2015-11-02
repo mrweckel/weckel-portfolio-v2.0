@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     del = require('del'),
     jshint = require('gulp-jshint'),
+    jade = require('gulp-jade'),
     sass = require('gulp-sass'),
     uglify = require('gulp-uglify'),
     minimist = require('minimist'),
@@ -23,8 +24,9 @@ var gulp = require('gulp'),
 //Compile html
 gulp.task('compile-html', function(){
   console.log('...getting you that sweet sweet HTML');
-  return gulp.src('dev/*.html')
-  .pipe(gulp.dest('staging/'));
+    return gulp.src('dev/*.jade')
+   .pipe(jade({}))
+   .pipe(gulp.dest('staging/'));
 });
 
 gulp.task('copy-html', function(){

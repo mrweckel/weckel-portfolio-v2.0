@@ -1,5 +1,6 @@
 @import 'partials/colors';
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@import 'partials/fonts.scss';
+
 
 
 @keyframes bounce {
@@ -40,8 +41,8 @@
 	height: 100%;
 	width: 100%;
   position: absolute;
-  font-family: 'Source Sans Pro', sans-serif;
   overflow: hidden;
+  font-family: $font-primary;
 }
   #menu_icon{
     height: 40px;
