@@ -38,6 +38,12 @@
   100%{transform: scale(1.7);}
 }
 
+body{
+  font-family: $font-primary;
+  color: #fff;
+  font-size: 20px;
+}
+
 #stage{
 	height: 100%;
 	width: 100%;
@@ -75,6 +81,13 @@
     background-color: $light-blue;
     transform: translate3d(-100%,0,0);
     transition: all .3s ease;
+    #menu_heading{
+      font-size: 1.2em;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      text-align: center;
+    }
   }
   #page-1{
     height: 100%;
@@ -237,21 +250,6 @@
 
         }
       }
-
-    #contact{
-      font-size: 14px;
-      color: black;
-      position: absolute;
-      bottom: 50px;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      width: 145px;
-      opacity: 0;
-      animation: slide 1s ease 1;
-      animation-delay: 5s;
-      animation-fill-mode: forwards;
-    }
   #stage.flash_animation{
     #page-1::before{
       animation: bgColorFlash .25s ease 1;
