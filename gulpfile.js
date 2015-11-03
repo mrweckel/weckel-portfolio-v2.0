@@ -161,7 +161,7 @@ gulp.task('init', function(cb) {
 gulp.task('watch', function() {
   gulp.watch('dev/stylesheets/*.scss', ['render-styles',browserSync.reload]);
   gulp.watch('dev/javascripts/*.js', ['render-scripts',browserSync.reload]);
-  gulp.watch('dev/*.html', ['compile-html',browserSync.reload]);
+  gulp.watch('dev/*.jade', ['compile-html',browserSync.reload]);
 });
 
 // ---- DEPLOYMENT ---- //
