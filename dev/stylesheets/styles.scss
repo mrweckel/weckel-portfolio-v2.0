@@ -103,8 +103,8 @@ body{
     }
   }
     #logo_container{
-      height: 170px;
-      width: 120px;
+      height: 200px;
+      width: 200px;
       position: absolute;
       left: 0;
       right: 0;
@@ -119,42 +119,9 @@ body{
         height: 100%;
         width: 100%;
       }
-        .logos{
-          height: 125px;
-          width: 25px;
-          position: absolute;
-          transform-origin: center;
-          top: 37.5px;
-          left: 0;
-          right: 0;
-          margin: 0 auto;
-          &:after{
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: -30px;
-            left: 40px;
-            background-color: $color-pink;
-          }
-          &:before{
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: -30px;
-            left: -40px;
-            background-color: $color-pink;
-          }
-        }
         #logo{
-          background-color: $color-pink;
-          &:after{
-          	background-color: $color-pink;
-          }
-          &:before{
-          	background-color: $color-pink;
-          }
+          height: 200px;
+          width: 200px;
         }
         #logo_clone{
           background-color: #fff;
