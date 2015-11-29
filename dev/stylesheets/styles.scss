@@ -1,5 +1,7 @@
 @import 'partials/colors';
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@import 'partials/fonts.scss';
+@import 'reset.scss';
+
 
 
 @keyframes bounce {
@@ -36,13 +38,57 @@
   100%{transform: scale(1.7);}
 }
 
+@keyframes menuTopBarMove{
+  0%{transform: translate3d(0,0,0);}
+  50%{transform: translate3d(0,55px,0);}
+  100%{transform: translate3d(0,55px,0) rotate(45deg);}
+}
+
+@keyframes menuBottomBarMove{
+  0%{transform: translate3d(0,0,0);}
+  50%{transform: translate3d(0,-55px,0);}
+  100%{transform: translate3d(0,-55px,0) rotate(-45deg);}
+}
+
+body{
+  font-family: $font-primary;
+  color: #fff;
+  font-size: 20px;
+}
+
 #stage{
 	height: 100%;
 	width: 100%;
   position: absolute;
-  font-family: 'Source Sans Pro', sans-serif;
   overflow: hidden;
-	// position: relative;
+  font-family: $font-primary;
+}
+  #home_icon{
+    height: 60px;
+    width:  60px;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    z-index: 9999;
+    overflow: visible;
+    opacity: .25;
+  }
+  #menu_container{
+    position: absolute;
+    height: 100%;
+    width: 300px;
+    left: 0;
+    background-color: $light-blue;
+    transform: translate3d(-100%,0,0);
+    transition: all .3s ease;
+    #menu_heading{
+      font-size: 1.2em;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      text-align: center;
+    }
+  }
   #page-1{
     height: 100%;
     width: 100%;
@@ -55,69 +101,31 @@
       background-color: $color-pink;
       opacity: 0;
     }
+  }
     #logo_container{
-      height: 170px;
-      width: 120px;
+      height: 200px;
+      width: 200px;
       position: absolute;
       left: 0;
       right: 0;
       margin: 0 auto;
       top: 50%;
       transform: translateY(-60%);
+    }
       .transition{
-        transition: all .1s ease;
+        transition: all .2s ease;
       }
       #logo_mover{
         height: 100%;
         width: 100%;
       }
-        .logos{
-          height: 125px;
-          width: 25px;
-          position: absolute;
-          transform-origin: center;
-          top: 37.5px;
-          left: 0;
-          right: 0;
-          margin: 0 auto;
-          &:after{
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: -30px;
-            left: 40px;
-            background-color: $color-pink;
-          }
-          &:before{
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: -30px;
-            left: -40px;
-            background-color: $color-pink;
-          }
-        }
         #logo{
-          background-color: $color-pink;
-          &:after{
-          	background-color: $color-pink;
-          }
-          &:before{
-          	background-color: $color-pink;
-          }
+          height: 200px;
+          width: 200px;
         }
-        #logo_clone{
-          background-color: #fff;
-          opacity: 0;
-          &:after{
-            background-color: #fff;
+          #logo_svg{
+            fill: #EC008C;
           }
-          &:before{
-            background-color: #fff;
-          }
-        }
       #button{
         height: 150px;
         width: 150px;
@@ -202,50 +210,36 @@
 
         }
       }
-      &.morph-up{
-        #logo_mover{
-          transform: translate3d(0%,-200%,0);
-        }
-      }
-      &.morph-right{
-        #logo_mover{
-          transform: translate3d(-400%,0%,0);
-        }
-      }
-      &.morph-left{
-        #logo_mover{
-          transform: translate3d(400%,0%,0);
-        }
-      }
-      &.morph-down{
-        #logo_mover{
-          transform: translate3d(0%,200%,0);
-        }
+  #stage.flash_animation{
+    #page-1::before{
+      animation: bgColorFlash .25s ease 1;
+    }
+    #page-1 #logo_container{
+      #logo_clone{
+        opacity: 1;
       }
     }
-    #contact{
-      font-size: 14px;
-      color: black;
-      position: absolute;
-      bottom: 50px;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      width: 145px;
-      opacity: 0;
-      animation: slide 1s ease 1;
-      animation-delay: 5s;
-      animation-fill-mode: forwards;
+  }
+  #stage.menu_active{
+    #menu_icon{
+      .menu_bar{
+        fill: #fff;
+      }
+      #menu_bar-1{
+        // transform: rotate(45deg) translate3d(38px,45px,0);
+        animation: menuTopBarMove 1s ease 1;
+        animation-fill-mode: forwards;
+      }
+      #menu_bar-2{
+        opacity: 0;
+      }
+      #menu_bar-3{
+        animation: menuBottomBarMove 1s ease 1;
+        animation-fill-mode: forwards;
+      }
     }
-    &.flash_animation{
-      &:before{
-        animation: bgColorFlash .25s ease 1;
-      }
-      #logo_container{
-        #logo_clone{
-          opacity: 1;
-        }
-      }
+    #menu_container{
+      transform: translate3d(0,0,0);
     }
   }
   &.page_active-1{
@@ -262,4 +256,3 @@
 
     }
   }
-}

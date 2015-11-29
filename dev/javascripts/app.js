@@ -5,49 +5,39 @@ document.addEventListener('DOMContentLoaded', function() {
     var doc = document,
         win = window,
         body = document.body,
-        stage = doc.querySelector('#stage'),
-        logo = doc.querySelector('#logo_container'),
-        button = doc.querySelector('#button'),
+        logoPath = doc.querySelector('#logo_svg'),
         logoSize = logo.getBoundingClientRect(),
-        xPos = 0,
-        yPos = 0;
+        homepage = doc.querySelector('#page-1');
 
-    //Sets the different class names for the transforms and caches a random value
-    var classes = ['circle', 'up', 'right', 'left', 'down'],
-        rand = classes[Math.floor(Math.random() * classes.length)];
+        //margins on each side of logo
+    var horizontalMargin = win.innerWidth,
+        horizontalPercent = 0;
+
+    var verticalMargin = logoSize.top,
+        verticalPercent = 0;
+
 
     win.addEventListener('resize', function() {
+      //homepage logo
         logoSize = logo.getBoundingClientRect();
-        console.log(logo.getBoundingClientRect());
+        horizontalMargin = logoSize.left;
     });
 
-
-    doc.addEventListener('mousemove', function(e) {
-       addMorph(e.clientX, e.clientY);
+    homepage.addEventListener('mousemove', function(e) {
+       horizontalPercent = Math.floor(e.clientX/(horizontalMargin* 0.5) * 100);
+       verticalPercent = Math.floor(e.clientY/verticalMargin) * 100;
+       logoPath.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
     }, false);
 
 
     doc.addEventListener('mousedown', function(e) {
-        console.log(e.srcElement.id);
-        if (e.srcElement === button) {
-            button.classList.add("button_down");
-        } else {
-            stage.className = 'flash_animation';
-            setTimeout(function() {
-                stage.className = '';
-            }, 250);
-        }
     }, false);
 
     doc.addEventListener('mouseup', function(e) {
-        if (e.srcElement === button){
-            button.classList.remove("button_down");
-            stage.className = "page_active-2";
-        }
     }, false);
 
-
-    stage.addEventListener('touchstart',handleStart, false);
+    //mobile
+    homepage.addEventListener('touchstart',handleStart, false);
     stage.addEventListener('touchend', handleEnd, false);
     stage.addEventListener('touchmove', handleMove, false);
 
@@ -57,27 +47,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleEnd (e) {
     	e.preventDefault();
-    	console.log(e);
-        logo.className = 'ground_zero';
     }
 
     function handleMove (e) {
-    	console.log(e.touches[0].clientX, e.touches[0].clientY);
-    	addMorph(e.touches[0].clientX, e.touches[0].clientY);
+    console.log(e.touches[0].clientX);
+      horizontalPercent = Math.floor(e.touches[0].clientX/(horizontalMargin*0.5) * 100);
+      verticalPercent = Math.floor(e.clientY/verticalMargin) * 100;
+      logoPath.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
     }
-
-    function addMorph (xPos, yPos) {
-    	if (xPos <= logoSize.right &&
-            xPos >= logoSize.left &&
-            yPos >= logoSize.top &&
-            yPos <= logoSize.bottom) {
-    				xPos = 0;
-            logo.className = 'morph-' + rand;
-      } else {
-          logo.className = 'ground_zero_delay';
-          rand = classes[Math.floor(Math.random() * classes.length)];
-      }
-    }
-
 
 }, false);

@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     del = require('del'),
     jshint = require('gulp-jshint'),
+    jade = require('gulp-jade'),
     sass = require('gulp-sass'),
     uglify = require('gulp-uglify'),
     minimist = require('minimist'),
@@ -23,8 +24,9 @@ var gulp = require('gulp'),
 //Compile html
 gulp.task('compile-html', function(){
   console.log('...getting you that sweet sweet HTML');
-  return gulp.src('dev/*.html')
-  .pipe(gulp.dest('staging/'));
+    return gulp.src('dev/*.jade')
+   .pipe(jade({}))
+   .pipe(gulp.dest('staging/'));
 });
 
 gulp.task('copy-html', function(){
@@ -159,7 +161,7 @@ gulp.task('init', function(cb) {
 gulp.task('watch', function() {
   gulp.watch('dev/stylesheets/*.scss', ['render-styles',browserSync.reload]);
   gulp.watch('dev/javascripts/*.js', ['render-scripts',browserSync.reload]);
-  gulp.watch('dev/*.html', ['compile-html',browserSync.reload]);
+  gulp.watch('dev/*.jade', ['compile-html',browserSync.reload]);
 });
 
 // ---- DEPLOYMENT ---- //
