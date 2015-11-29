@@ -63,31 +63,15 @@ body{
   overflow: hidden;
   font-family: $font-primary;
 }
-  #menu_icon{
-    height: 40px;
-    width:  50px;
+  #home_icon{
+    height: 60px;
+    width:  60px;
     position: absolute;
     top: 15px;
-    left: 15px;
+    left: 10px;
     z-index: 9999;
     overflow: visible;
-    .menu_bar{
-      width: 100%;
-      fill: $light-blue;
-      pointer-events: none;
-    }
-    #menu_bar-1{
-      transform-origin: center;
-      transition: all .3s ease;
-    }
-    #menu_bar-2{
-      transform-origin: center;
-      transition: all .3s ease;
-    }
-    #menu_bar-3{
-      transform-origin: center;
-      transition: all .3s ease;
-    }
+    opacity: .25;
   }
   #menu_container{
     position: absolute;
@@ -139,16 +123,9 @@ body{
           height: 200px;
           width: 200px;
         }
-        #logo_clone{
-          background-color: #fff;
-          opacity: 0;
-          &:after{
-            background-color: #fff;
+          #logo_svg{
+            fill: #EC008C;
           }
-          &:before{
-            background-color: #fff;
-          }
-        }
       #button{
         height: 150px;
         width: 150px;

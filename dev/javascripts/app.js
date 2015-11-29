@@ -6,48 +6,51 @@ document.addEventListener('DOMContentLoaded', function() {
         win = window,
         body = document.body,
         stage = doc.querySelector('#stage'),
-        logo = doc.querySelector('#logo_container'),
+        logoPath = doc.querySelector('#logo_svg'),
         button = doc.querySelector('#button'),
         logoSize = logo.getBoundingClientRect(),
         xPos = 0,
-        yPos = 0;
+        yPos = 0
 
-    //Sets the different class names for the transforms and caches a random value
+        //margins on each side of logo
+    var horizontalMargin = win.innerWidth,
+        horizontalPercent = 0;
+
+    var verticalMargin = logoSize.top,
+        verticalPercent = 0;
+
 
     win.addEventListener('resize', function() {
         logoSize = logo.getBoundingClientRect();
+        horizontalMargin = logoSize.left;
+        var diff = horizontalMargin - 323;
+
     });
 
-    // doc.addEventListener('mousemove', function(e) {
-    //    addMorph(e.clientX, e.clientY);
-    // }, false);
+    doc.addEventListener('mousemove', function(e) {
+       horizontalPercent = Math.floor(e.clientX/(horizontalMargin*.5) * 100);
+       verticalPercent = Math.floor(e.clientY/verticalMargin) * 100;
+
+       console.log(e.clientX, e.clientY);
+       console.log(verticalMargin);
+       console.log(horizontalPercent);
+       logoPath.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
+    }, false);
 
 
-    // doc.addEventListener('mousedown', function(e) {
-    //     console.log(e.srcElement.id);
-    //     if(e.srcElement === button) {
-    //         button.classList.add("button_down");
-    //         }
-    //     if(e.srcElement.id === ('page-1')){
-    //         stage.classList.add('flash_animation');
-    //         setTimeout(function() {
-    //             stage.classList.remove('flash_animation');
-    //         }, 250);
-    //     }
+    doc.addEventListener('mousedown', function(e) {
 
-    //     if(e.srcElement.id === 'menu_icon'){
-    //         stage.classList.toggle('menu_active')
-    //     }
-    // }, false);
+      console.log("hello");
+    }, false);
 
-    // doc.addEventListener('mouseup', function(e) {
-    //     if (e.srcElement === button){
-    //         button.classList.remove("button_down");
-    //         stage.className = "page_active-2";
-    //     }
-    // }, false);
+    doc.addEventListener('mouseup', function(e) {
+        if (e.srcElement === button){
+            button.classList.remove("button_down");
+            stage.className = "page_active-2";
+        }
+    }, false);
 
-
+    //mobile
     stage.addEventListener('touchstart',handleStart, false);
     stage.addEventListener('touchend', handleEnd, false);
     stage.addEventListener('touchmove', handleMove, false);
@@ -65,19 +68,5 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleMove (e) {
     	addMorph(e.touches[0].clientX, e.touches[0].clientY);
     }
-
-    // function addMorph (xPos, yPos) {
-    // 	if (xPos <= logoSize.right &&
-    //         xPos >= logoSize.left &&
-    //         yPos >= logoSize.top &&
-    //         yPos <= logoSize.bottom) {
-    // 				xPos = 0;
-    //         logo.className = 'morph-circle';
-    //   } else {
-    //       logo.className = 'ground_zero_delay';
-    //   }
-    // }
-
-    TweenLite.to("#logo_svg", 1, {morphSVG:"#circle"});
 
 }, false);
