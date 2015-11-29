@@ -2,42 +2,6 @@
 @import 'partials/fonts.scss';
 @import 'reset.scss';
 
-
-
-@keyframes bounce {
-  from{transform: translateY(-700%) scale(1)}
-  to{transform: translateY(-700%) scale(1.1)}
-}
-
-@keyframes slide {
-  from{transform: translateX(-500%); opacity: 0;}
-  to{transform: translateX(0); opacity: 1;}
-}
-
-@keyframes bgColorFlash {
-  0%{opacity: 0}
-  5%{opacity: 1}
-  60%{opacity: 1}
-  100%{opacity: 0}
-}
-
-@keyframes getAttention {
-  0%  {transform:  translate3d(0,-60%, 0);}
-  5%  {transform:  translate3d(0,-60%, 0);}
-  10% {transform:  translate3d(0,-80%, 0);}
-  13% {transform:  translate3d(0,-60%, 0);}
-  16% {transform:  translate3d(0,-76%, 0);}
-  19% {transform:  translate3d(0,-60%, 0);}
-  22% {transform:  translate3d(0,-68%, 0);}
-  25% {transform:  translate3d(0,-60%, 0);}
-  100%{transform:  translate3d(0,-60%, 0);}
-}
-
-@keyframes buttonPulsing {
-  0%  {transform:   scale(1.3);}
-  100%{transform: scale(1.7);}
-}
-
 @keyframes menuTopBarMove{
   0%{transform: translate3d(0,0,0);}
   50%{transform: translate3d(0,55px,0);}
@@ -54,24 +18,25 @@ body{
   font-family: $font-primary;
   color: #fff;
   font-size: 20px;
+  transition: all .3s ease;
 }
 
 #stage{
 	height: 100%;
 	width: 100%;
   position: absolute;
-  overflow: hidden;
   font-family: $font-primary;
 }
   #home_icon{
     height: 60px;
     width:  60px;
-    position: absolute;
+    position: fixed;
     top: 15px;
     left: 10px;
     z-index: 9999;
     overflow: visible;
     opacity: .25;
+
   }
   #menu_container{
     position: absolute;
@@ -89,18 +54,31 @@ body{
       text-align: center;
     }
   }
-  #page-1{
+  .page{
     height: 100%;
     width: 100%;
-    transition: all 3s ease-out;
-    &:before{
-      content: '';
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      background-color: $color-pink;
-      opacity: 0;
-    }
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    transition: all .5s ease;
+    scroll-behavior: smooth;
+  }
+  .page:target{
+    transition: all .3s ease;
+  }
+  #nav_arrow{
+    height: 80px;
+    width: 120px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  #page-1{
+    background-color: transparent;
+  }
+  #page-2{
+    background-color: #000;
   }
     #logo_container{
       height: 200px;
@@ -126,133 +104,4 @@ body{
           #logo_svg{
             fill: #EC008C;
           }
-      #button{
-        height: 150px;
-        width: 150px;
-        // background-color: $color-red;
-        background: linear-gradient(to bottom, rgba(255,255,255,.4)0%, rgba(255,255,255,0)20%, rgba(0,0,0,.2)100%), $color-red;
-        border-radius: 50%;
-        position: absolute;
-        top: 10px;
-        left: -15px;
-        transform: scale(0);
-        z-index: 99;
-        &:before{
-          content: '';
-          position: absolute;
-          background: linear-gradient(to top, rgba(0,0,0,.2)0%, rgba(255, 255, 255, .5) 100%);
-          height: 90%;
-          width: 90%;
-          left: 5%;
-          top: 5%;
-          border-radius: 50%;
-          z-index: 99;
-        }
-        &:after{
-          content: '';
-          position: absolute;
-          background: $color-red;
-          height: 85%;
-          width: 90%;
-          left: 0;
-          right: 0;
-          margin: 0 auto;
-          bottom: 7%;
-          border-radius: 50%;
-          z-index: 99;
-        }
-        #button_pulse{
-          height: 100%;
-          width: 100%;
-          pointer-events: none;
-          z-index: -1;
-          opacity: 0;
-          transition: all 1.5s ease;
-          &:before{
-            content: '';
-            position: absolute;
-            border: 7px solid rgba(243,8,8,.7);
-            height: 100%;
-            width: 100%;
-            left: 0;
-            top: 0;
-            opacity: 1;
-            border-radius: 50%;
-            box-sizing: border-box;
-          }
-        }
-        &:hover{
-          #button_pulse{
-            opacity: 1;
-            animation: buttonPulsing 1s ease infinite alternate;
-          }
-        }
-      }
-      &.ground_zero{
-          animation: getAttention 5s ease-out infinite;
-      }
-      &.ground_zero_delay{
-          animation: getAttention 5s ease-out 1s infinite;
-      }
-      &.morph-circle{
-        #logo_mover{
-          opacity: 0;
-          transform: scale(0);
-        }
-        #button{
-          opacity: 1;
-          transform: scale(1);
-          &.button_down{
-            &:after{
-              transform: scale(1.1,1.15);
-            }
-          }
 
-        }
-      }
-  #stage.flash_animation{
-    #page-1::before{
-      animation: bgColorFlash .25s ease 1;
-    }
-    #page-1 #logo_container{
-      #logo_clone{
-        opacity: 1;
-      }
-    }
-  }
-  #stage.menu_active{
-    #menu_icon{
-      .menu_bar{
-        fill: #fff;
-      }
-      #menu_bar-1{
-        // transform: rotate(45deg) translate3d(38px,45px,0);
-        animation: menuTopBarMove 1s ease 1;
-        animation-fill-mode: forwards;
-      }
-      #menu_bar-2{
-        opacity: 0;
-      }
-      #menu_bar-3{
-        animation: menuBottomBarMove 1s ease 1;
-        animation-fill-mode: forwards;
-      }
-    }
-    #menu_container{
-      transform: translate3d(0,0,0);
-    }
-  }
-  &.page_active-1{
-    #page-1{
-      transform: scale(1);
-    }
-  }
-  &.page_active-2{
-    #page-1{
-      transform: scale(0);
-      opacity: 0;
-    }
-    #page-2{
-
-    }
-  }

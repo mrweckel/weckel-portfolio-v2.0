@@ -168,8 +168,8 @@ gulp.task('watch', function() {
 
 
 gulp.task('deploy', ['build-dist'], function() {
-  var options = { headers: {'Cache-Control': 'max-age=315360000, no-transform, public'} }
-  console.log(aws.key);
+  var options = { headers: {'Cache-Control': 'max-age=315360000, no-transform, public'} };
+  console.log(aws);
   gulp.src('./dist/**', {read: false})
       .pipe(s3(aws, options))
 });
