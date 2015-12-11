@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         logoPath = doc.querySelector('#logo_svg'),
         logoSize = logo.getBoundingClientRect(),
         homepage = doc.querySelector('#page-1'),
-        screenHeight = win.innerHeight;
+        screenHeight = win.innerHeight,
+        originalScreenPosition = 0;
 
         //margins on each side of logo
     var horizontalMargin = win.innerWidth,
@@ -42,18 +43,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
 
     doc.addEventListener('mouseup', function(e) {
-        console.log(e.target);
+        console.log(e.target.classList[0]);
 
-        if(e.target.id === "nav_arrow"){
+        if(e.target.classList[0] === "arrow"){
             console.log("hello");
-            scrollToElement(250, win.innerHeight);
+            scrollToElement(250, win.innerHeight, 80);
             stage.className = "page_active-2";
         }
 
         if(e.target.id === "home_icon"){
             buildingBackground.style.opacity = "0";
             TweenMax.to(homeIconPath,1, {morphSVG: {shape: filmPath, shapeIndex:1}});
-            homeIconPath.style.f
         }
     }, false);
 
@@ -78,16 +78,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
   //Element scroll Functionality
-  function scrollToElement(scrollDuration, elementPos) {
-    var scrollStep = elementPos / (scrollDuration / 15);
+  function scrollToElement(scrollDuration, currentScreenPos, travelDist) {
+
+    console.log('??');
+
+    var scrollStep = (currentScreenPos + travelDist / (scrollDuration / 15));
 
     var scrollInterval = setInterval(function(){
-          if(window.scrollY < elementPos){
-            window.scrollBy( 0, scrollStep )
+          if(window.scrollY < currentScreenPos){
+            window.scrollBy( 0, scrollStep );
           } else {
-            clearInterval(scrollInterval)
+            clearInterval(scrollInterval);
           }
-        },15);    }
+        },15);
+    }
 
 
 }, false);

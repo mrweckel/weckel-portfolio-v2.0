@@ -36,7 +36,9 @@ body{
     z-index: 9999;
     overflow: visible;
     opacity: .25;
-
+  }
+  #film_icon{
+    display: none;
   }
   #menu_container{
     position: absolute;
@@ -61,11 +63,12 @@ body{
     border-bottom: 1px solid rgba(0,0,0,0.5);
     transition: all .5s ease;
     scroll-behavior: smooth;
+    position: relative;
   }
   .page:target{
     transition: all .3s ease;
   }
-  #nav_arrow{
+  .arrow{
     height: 80px;
     width: 120px;
     position: absolute;
@@ -73,6 +76,12 @@ body{
     left: 0;
     right: 0;
     margin: 0 auto;
+  }
+  #nav_arrow-1 path{
+    stroke: #000;
+  }
+  #nav_arrow-2 path{
+    stroke: #fff;
   }
   #page-1{
     background-color: transparent;
