@@ -86,9 +86,6 @@ body{
   #page-1{
     background-color: transparent;
   }
-  #page-2{
-    background-color: #000;
-  }
     #logo_container{
       height: 200px;
       width: 200px;
@@ -114,3 +111,101 @@ body{
             fill: #EC008C;
           }
 
+//Page 2
+  #page-2{
+    background-color: #000;
+  }
+    #about{
+      padding: 100px;
+      text-align: center;
+      letter-spacing: .5px;
+    }
+    #zoetrope_container{
+      position: absolute;
+      height: 500px;
+      width: 100%;
+      top: 50%;
+      transform: translate3d(0,-50%,0);
+      // background-color: rgba(255,255,255,.5);
+      perspective: 1000px;
+    }
+      #zoetrope_carousel{
+        height:100%;
+        width: 100%;
+        position: absolute;
+        transform-style: preserve-3d;
+        transition: all 1s ease;
+        transform: rotateY(-60deg);
+      }
+        .zoetrope_item{
+          display: block;
+          height: 226px;
+          width: 400px;
+          box-sizing: border-box;
+          border: 2px solid #fff;
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin: 0 auto;
+          top: 50%;
+          transform: translate3d(0,-50%,0);
+        }
+        #zoetrope_item-1{
+           transform: rotateY(0deg) translateX(0) translateY(-50%) translateZ(400px);
+          background-color: rgba(255,0,0,0.5);
+        }
+        #zoetrope_item-2{
+           transform: rotateY(60deg) translateX(0) translateY(-50%) translateZ(400px);
+          background-color: purple;
+        }
+        #zoetrope_item-3{
+           transform: rotateY(120deg) translateX(0) translateY(-50%) translateZ(400px);
+          background-color: yellow;
+        }
+        #zoetrope_item-4{
+           transform: rotateY(180deg) translateX(0) translateY(-50%) translateZ(400px);
+          background-color: orange;
+        }
+        #zoetrope_item-5{
+           transform: rotateY(240deg) translateX(0) translateY(-50%) translateZ(400px);
+          background-color: rgba(0,255,0,0.5);
+        }
+        #zoetrope_item-6{
+           transform: rotateY(300deg) translateX(0) translateY(-50%) translateZ(400px);
+          background-color: rgba(0,255,255,0.5);
+        }
+    .carousel_arrow{
+      position: absolute;
+      top: 50%;
+      transform: translate3d(0,-50%,0);
+      height: 100px;
+      width: 100px;
+      opacity: .75;
+      &:after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translate3d(0,-50%,0);
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+      }
+    }
+    #carousel_arrow-right{
+      right: 1%;
+      &:after{
+        height: 0;
+        border-style: solid;
+        border-width: 25px 0 25px 43.3px;
+        border-color: transparent transparent transparent #fff;
+      }
+    }
+      #carousel_arrow-left{
+        left: 1%;
+        &:after{
+          height: 0;
+          border-style: solid;
+          border-width: 25px 43.3px 25px 0;
+          border-color: transparent #fff transparent transparent;
+        }
+    }

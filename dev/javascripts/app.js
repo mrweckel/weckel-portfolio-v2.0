@@ -45,16 +45,24 @@ document.addEventListener('DOMContentLoaded', function() {
     doc.addEventListener('mouseup', function(e) {
         console.log(e.target.classList[0]);
 
+    //Navigation arrow functionality
         if(e.target.classList[0] === "arrow"){
             console.log("hello");
-            scrollToElement(250, win.innerHeight, 80);
+            scrollToElement(250, win.innerHeight);
             stage.className = "page_active-2";
         }
 
+    //Menu Icon Functionality
         if(e.target.id === "home_icon"){
             buildingBackground.style.opacity = "0";
             TweenMax.to(homeIconPath,1, {morphSVG: {shape: filmPath, shapeIndex:1}});
         }
+
+    //Carousel Arrow
+
+
+
+
     }, false);
 
 
@@ -77,21 +85,16 @@ document.addEventListener('DOMContentLoaded', function() {
       logoPath.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
     }
 
-  //Element scroll Functionality
-  function scrollToElement(scrollDuration, currentScreenPos, travelDist) {
-
-    console.log('??');
-
-    var scrollStep = (currentScreenPos + travelDist / (scrollDuration / 15));
+function scrollToElement(scrollDuration, elementPos) {
+    var scrollStep = elementPos / (scrollDuration / 15);
 
     var scrollInterval = setInterval(function(){
-          if(window.scrollY < currentScreenPos){
+          if(window.scrollY < elementPos){
             window.scrollBy( 0, scrollStep );
           } else {
             clearInterval(scrollInterval);
           }
-        },15);
-    }
+        },15);    }
 
 
 }, false);
