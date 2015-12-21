@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
         screenHeight = win.innerHeight,
         originalScreenPosition = 0;
 
+    var carousel = doc.querySelector('#zoetrope_carousel'),
+        currentCarouselPosition = 0;
+
         //margins on each side of logo
     var horizontalMargin = win.innerWidth,
         horizontalPercent = 0;
@@ -19,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var verticalMargin = logoSize.top,
         verticalPercent = 0;
 
+  //SVG icons
     var buildingBackground = document.querySelector("#building-1"),
         homeIconPath = MorphSVGPlugin.convertToPath(document.querySelector("#building-2")),
         filmPath = "M91.5,161.9H32.2v-55.7h59.3V161.9z M95.8,112.3h77.7v29H95.8 V112.3z M127.5,153.4H95.8v-8h31.7V153.4z M178,111.7l9-5v38.7l-9-3.9V111.7z M32,54.6c0,0,19.2-28.7,41.2-10.5 s18.2,38.6,18.2,38.6H32V54.6z M32,87.2h59.5v14.7H32V87.2z M116.5,107.9h-15.8V97.4h15.8V107.9z M28,101.9l-15,2.5V85.2l15,2 V101.9z";
@@ -45,6 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
     doc.addEventListener('mouseup', function(e) {
         console.log(e.target.classList[0]);
 
+
+
     //Navigation arrow functionality
         if(e.target.classList[0] === "arrow"){
             console.log("hello");
@@ -59,9 +65,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
     //Carousel Arrow
-
-
-
+        if(e.target.id === "carousel_arrow-right"){
+            carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - 60) + "deg)";
+            currentCarouselPosition -= 60;
+        }
+        if(e.target.id === "carousel_arrow-left"){
+            carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + 60) + "deg)";
+            currentCarouselPosition += 60;
+        }
 
     }, false);
 

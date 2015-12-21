@@ -116,9 +116,13 @@ body{
     background-color: #000;
   }
     #about{
-      padding: 100px;
+      padding: 120px;
       text-align: center;
-      letter-spacing: .5px;
+      letter-spacing: 1.5px;
+      font-weight: 300;
+      text-transform: uppercase;
+      font-size: 40px;
+      opacity: .5;
     }
     #zoetrope_container{
       position: absolute;
@@ -135,7 +139,24 @@ body{
         position: absolute;
         transform-style: preserve-3d;
         transition: all 1s ease;
-        transform: rotateY(-60deg);
+        &.active-1{
+          transform: rotateY(0deg);
+        }
+        &.active-2{
+          transform: rotateY(60deg);
+        }
+        &.active-3{
+          transform: rotateY(120deg);
+        }
+        &.active-4{
+          transform: rotateY(180deg);
+        }
+        &.active-5{
+          transform: rotateY(240deg);
+        }
+        &.active-6{
+          transform: rotateY(300deg);
+        }
       }
         .zoetrope_item{
           display: block;
