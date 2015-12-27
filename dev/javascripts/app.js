@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         homepage = doc.querySelector('#page-1'),
         screenHeight = win.innerHeight,
         screenWidth = win.innerWidth,
+        carouselSwipeStart = 0,
         originalScreenPosition = 0,
         mouseDown = 0;
 
@@ -51,17 +52,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     carousel.addEventListener('mousemove', function(e) {
       //Swiping Carousel Desktop
-        if(mouseDown === 1){
-            console.log(e.clientX);
-            carousel.style.webkitTransform = "rotateY(" + e.clientX + "deg)";
+        var r = /\d+/;
+        if(mouseDown === 1 && e.clientX < carouselSwipeStart){
+            carousel.style.webkitTransform = "rotateY(-" + e.clientX/15 + "deg)";
+            console.log(carousel.style.webkitTransform.match(r)[0]);
+        }
+        if(mouseDown === 1 && e.clientX > carouselSwipeStart){
+            carousel.style.webkitTransform = "rotateY(" + e.clientX/15 + "deg)";
+            console.log(carousel.style.webkitTransform.match(r)[0]);
         }
 
     }, false);
 
     doc.addEventListener('mousedown', function(e) {
         mouseDown = 1;
-        sections = screenWidth/degrees;
-        console.log(sections);
+        carouselSwipeStart = e.clientX;
     }, false);
 
     doc.addEventListener('mouseup', function(e) {
