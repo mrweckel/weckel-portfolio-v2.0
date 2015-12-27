@@ -55,14 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
       //Swiping Carousel Desktop
         var r = /\d+/;
         if(mouseDown === 1 && e.clientX < carouselSwipeStart){
-            carousel.style.webkitTransform = "rotateY(-" + (e.clientX/100 + currentCarouselPosition) + "deg)";
-            console.log(e.clientX/10, Number(carousel.style.webkitTransform.match(r)[0]));
+            carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - e.clientX/10) + "deg)";
         }
         if(mouseDown === 1 && e.clientX > carouselSwipeStart){
-            carousel.style.webkitTransform = "rotateY(" + (e.clientX/100 + Number(carousel.style.webkitTransform.match(r)[0])) + "deg)";
-
+            carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + e.clientX/10) + "deg)";
         }
-
     }, false);
 
     doc.addEventListener('mousedown', function(e) {
@@ -86,18 +83,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
       //Carousel Arrow
         if(e.target.id === "carousel_arrow-right"){
-            carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - 60) + "deg)";
-            currentCarouselPosition -= 60;
+            carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + 60) + "deg)";
+            movePanelRight();
         }
         if(e.target.id === "carousel_arrow-left"){
-            carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + 60) + "deg)";
-            currentCarouselPosition += 60;
+            carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - 60) + "deg)";
+            movePanelLeft();
         }
 
-      //Do not delete
+      //Carousel functionality
         mouseDown = 0;
 
+        if(e.clientX - carouselSwipeStart < -100 && e.clientX < carouselSwipeStart){
+            movePanelLeft();
+            carousel.style.webkitTransform = "rotateY(" + currentCarouselPosition + "deg)";
+            console.log("Minus = " + (carouselSwipeStart - e.clientX));
+        } else {
+            carousel.style.webkitTransform = "rotateY(" + currentCarouselPosition + "deg)";
+        }
+
+        if(carouselSwipeStart + e.clientX > 100 && e.clientX > carouselSwipeStart){
+            movePanelRight();
+            carousel.style.webkitTransform = "rotateY(" + currentCarouselPosition + "deg)";
+            console.log("Plus = " + currentCarouselPosition + e.clientX);
+        } else {
+            carousel.style.webkitTransform = "rotateY(" + currentCarouselPosition + "deg)";
+        }
+
     }, false);
+
+    function movePanelRight(){
+        currentCarouselPosition += 60;
+    }
+
+    function movePanelLeft(){
+        currentCarouselPosition -= 60;
+    }
 
     carousel.addEventListener('ondrag', function(e) {
         console.log(e);
