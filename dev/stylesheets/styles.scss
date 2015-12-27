@@ -139,6 +139,7 @@ body{
         position: absolute;
         transform-style: preserve-3d;
         transition: all 1s ease;
+        transform: rotateY(0deg);
         &.active-1{
           transform: rotateY(0deg);
         }

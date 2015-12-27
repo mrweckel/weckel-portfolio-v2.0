@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentCarouselPosition = 0,
         degrees = 60,
         sections = 0;
+    carousel.style.webkitTransform = "rotateY(0deg)";
 
         //margins on each side of logo
     var horizontalMargin = screenWidth,
@@ -54,12 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
       //Swiping Carousel Desktop
         var r = /\d+/;
         if(mouseDown === 1 && e.clientX < carouselSwipeStart){
-            carousel.style.webkitTransform = "rotateY(-" + e.clientX/15 + "deg)";
-            console.log(carousel.style.webkitTransform.match(r)[0]);
+            carousel.style.webkitTransform = "rotateY(-" + (e.clientX/100 + currentCarouselPosition) + "deg)";
+            console.log(e.clientX/10, Number(carousel.style.webkitTransform.match(r)[0]));
         }
         if(mouseDown === 1 && e.clientX > carouselSwipeStart){
-            carousel.style.webkitTransform = "rotateY(" + e.clientX/15 + "deg)";
-            console.log(carousel.style.webkitTransform.match(r)[0]);
+            carousel.style.webkitTransform = "rotateY(" + (e.clientX/100 + Number(carousel.style.webkitTransform.match(r)[0])) + "deg)";
+
         }
 
     }, false);
