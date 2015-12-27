@@ -140,23 +140,23 @@ body{
         transform-style: preserve-3d;
         transition: all 1s ease;
         transform: rotateY(0deg);
-        &.active-1{
-          transform: rotateY(0deg);
+        &.active-1 #zoetrope_item-1:after{
+          opacity: 0;
         }
-        &.active-2{
-          transform: rotateY(60deg);
+        &.active-2 #zoetrope_item-2:after{
+          opacity: 0;
         }
-        &.active-3{
-          transform: rotateY(120deg);
+        &.active-3 #zoetrope_item-3:after{
+          opacity: 0;
         }
-        &.active-4{
-          transform: rotateY(180deg);
+        &.active-4 #zoetrope_item-4:after{
+          opacity: 0;
         }
-        &.active-5{
-          transform: rotateY(240deg);
+        &.active-5 #zoetrope_item-5:after{
+          opacity: 0;
         }
-        &.active-6{
-          transform: rotateY(300deg);
+        &.active-6 #zoetrope_item-6:after{
+          opacity: 0;
         }
       }
         .zoetrope_item{
@@ -171,30 +171,70 @@ body{
           margin: 0 auto;
           top: 50%;
           transform: translate3d(0,-50%,0);
+          z-index: 999;
+          &:after{
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: rgba(0,0,0,.8);
+            opacity: 1;
+            transition: 1.25s opacity ease-out;
+          }
+          .zoetrope_item_inner{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            backface-visibility: hidden;
+            }
         }
         #zoetrope_item-1{
-           transform: rotateY(0deg) translateX(0) translateY(-50%) translateZ(400px);
+          transform: rotateY(0deg) translateX(0) translateY(-50%) translateZ(400px);
           background-color: rgba(255,0,0,0.5);
+          .zoetrope_item_inner{
+            background-image: url('/imgs/bg-slide-1.jpg');
+          }
         }
         #zoetrope_item-2{
-           transform: rotateY(60deg) translateX(0) translateY(-50%) translateZ(400px);
-          background-color: purple;
+          transform: rotateY(60deg) translateX(0) translateY(-50%) translateZ(400px);
+          .zoetrope_item_inner{
+            background-image: url('/imgs/bg-slide-2.jpg');
+          }
         }
         #zoetrope_item-3{
-           transform: rotateY(120deg) translateX(0) translateY(-50%) translateZ(400px);
+          transform: rotateY(120deg) translateX(0) translateY(-50%) translateZ(400px);
           background-color: yellow;
+          .zoetrope_item_inner{
+            background-image: url('/imgs/bg-slide-3.jpg');
+          }
         }
         #zoetrope_item-4{
-           transform: rotateY(180deg) translateX(0) translateY(-50%) translateZ(400px);
+          transform: rotateY(180deg) translateX(0) translateY(-50%) translateZ(400px);
           background-color: orange;
+          .zoetrope_item_inner{
+            background-image: url('/imgs/bg-slide-4.jpg');
+          }
         }
         #zoetrope_item-5{
-           transform: rotateY(240deg) translateX(0) translateY(-50%) translateZ(400px);
+          transform: rotateY(240deg) translateX(0) translateY(-50%) translateZ(400px);
           background-color: rgba(0,255,0,0.5);
+          .zoetrope_item_inner{
+            background-image: url('/imgs/bg-slide-5.jpg');
+          }
         }
         #zoetrope_item-6{
-           transform: rotateY(300deg) translateX(0) translateY(-50%) translateZ(400px);
+          transform: rotateY(300deg) translateX(0) translateY(-50%) translateZ(400px);
           background-color: rgba(0,255,255,0.5);
+          .zoetrope_item_inner{
+            background-image: url('/imgs/bg-slide-6.jpg');
+          }
         }
     .carousel_arrow{
       position: absolute;
