@@ -64,10 +64,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         doc.addEventListener('mouseup', function(e) {
           //Navigation arrow functionality
-            if(e.target.classList[0] === "arrow"){
+            if(e.target.id === "nav_arrow-1"){
                 console.log("hello");
                 scrollToElement(250, win.innerHeight);
                 stage.className = "page_active-2";
+            }
+            if(e.target.id === "nav_arrow-2"){
+                console.log("hello");
+                scrollToElement(250, win.innerHeight*2);
+                stage.className = "page_active-3";
             }
 
           //Menu Icon Functionality
@@ -140,12 +145,12 @@ document.addEventListener('DOMContentLoaded', function() {
     stage.addEventListener('touchmove', handleMove, false);
 
     function handleStart (e) {
-    	e.preventDefault();
+    	// e.preventDefault();
         console.log(e);
     }
 
     function handleEnd (e) {
-    	e.preventDefault();
+    	// e.preventDefault();
     }
 
     function handleMove (e) {
