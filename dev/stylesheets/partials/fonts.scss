@@ -1,2 +1,7 @@
-$font-primary: "franklin-gothic-urw-con-sc";
-$font-secondary: "fira-sans-2";
+// @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300,100|Source+Sans+Pro:200,300,400);
+
+$font-primary: "Source Sans Pro", sans-serif;
+$font-secondary: "Roboto Slab", serif;
+// $font-primary: "franklin-gothic-urw-con-sc";
+// $font-secondary: "fira-sans-2";

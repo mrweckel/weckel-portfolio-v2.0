@@ -92,7 +92,7 @@ gulp.task('copy-imgs', function(){
 gulp.task('imgs-to-dist', function(){
   console.log('...moving imgs to dist');
   return gulp.src('staging/imgs/**')
-  .pipe(gulp.dest('dist/'));
+  .pipe(gulp.dest('dist/imgs/'));
 });
 
 //----BUILD----//

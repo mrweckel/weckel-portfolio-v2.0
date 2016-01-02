@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
         screenWidth = win.innerWidth,
         carouselSwipeStart = 0,
         originalScreenPosition = 0,
-        mouseDown = 0;
+        mouseDown = 0,
+        videos = doc.getElementsByClassName("zoetrope_video");
+
+    console.log(videos);
 
     var carousel = doc.querySelector('#zoetrope_carousel'),
         currentCarouselPosition = 0,
@@ -68,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log("hello");
                 scrollToElement(250, win.innerHeight);
                 stage.className = "page_active-2";
+                playVideo(videos,1);
             }
             if(e.target.id === "nav_arrow-2"){
                 console.log("hello");
@@ -120,19 +124,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function movePanelRight(){
             currentCarouselPosition += 60;
+            var lastClass = activeClass;
             activeClass > 1 ? activeClass -= 1 : activeClass = 6;
             updateClass(carousel, activeClass);
+            playVideo(videos, activeClass);
+            console.log("last class = " + lastClass)
+            stopVideo(videos, lastClass);
         }
 
         function movePanelLeft(){
             currentCarouselPosition -= 60;
+            var lastClass = activeClass;
             activeClass < 6 ? activeClass += 1 : activeClass = 1;
             updateClass(carousel, activeClass);
+            playVideo(videos, activeClass);
+            stopVideo(videos, lastClass);
         }
 
         function updateClass(ele,activeNum){
             ele.className = "active-" + activeNum;
         }
+
+        function playVideo(videoArr, num){
+            videoArr[num-1].play();
+        }
+
+        function stopVideo(videoArr, num){
+            videoArr[num-1].pause();
+        }
+
 
     //SVG icons
         var buildingBackground = document.querySelector("#building-1"),

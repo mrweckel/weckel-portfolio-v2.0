@@ -15,17 +15,16 @@
 }
 
 body{
-  font-family: $font-primary, sans-serif;
   color: #fff;
   font-size: 20px;
   transition: all .3s ease;
+  font-family: $font-primary, sans-serif;
 }
 
 #stage{
 	height: 100%;
 	width: 100%;
   position: absolute;
-  font-family: $font-secondary, sans-serif;
 }
   #home_icon{
     height: 60px;
@@ -102,6 +101,7 @@ body{
       #logo_mover{
         height: 100%;
         width: 100%;
+       // transform: rotate3d(0, 1, 0, 205deg);
       }
         #logo{
           height: 200px;
@@ -116,13 +116,12 @@ body{
     background-color: #000;
   }
     #about{
-      padding: 120px;
+      padding: 194px;
       text-align: center;
       letter-spacing: 1.5px;
       font-weight: 300;
       text-transform: uppercase;
-      font-size: 40px;
-      opacity: .5;
+      opacity: 1;
     }
     #zoetrope_container{
       position: absolute;
@@ -143,79 +142,227 @@ body{
         transform: rotateY(0deg);
         &.active-1{
           #zoetrope_item-1{
+            &:before{
+              opacity: 0;
+            }
             &:after{
               opacity: 0;
             }
-            &:hover{
-              .zoetrope_item_overlay{
+            .zoetrope_item_overlay{
+              opacity: 1;
+              transform: scale(1);
+              .zoetrope_overlay_title{
                 opacity: 1;
                 transform: scale(1);
               }
+            }
+              .zoetrope_overlay_roles{
+                opacity: 1;
+              }
+          }
+          #zoetrope_item-2{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
+            }
+          }
+          #zoetrope_item-6{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
             }
           }
         }
         &.active-2{
           #zoetrope_item-2{
+            &:before{
+              opacity: 0;
+            }
             &:after{
               opacity: 0;
             }
-            &:hover{
-              .zoetrope_item_overlay{
+            .zoetrope_item_overlay{
+              opacity: 1;
+              transform: scale(1);
+              .zoetrope_overlay_title{
                 opacity: 1;
                 transform: scale(1);
               }
+                .zoetrope_overlay_roles{
+                  opacity: 1;
+                }
+            }
+          }
+          #zoetrope_item-1{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
+            }
+          }
+          #zoetrope_item-3{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
             }
           }
         }
         &.active-3{
           #zoetrope_item-3{
+            &:before{
+              opacity: 0;
+            }
             &:after{
               opacity: 0;
             }
-            &:hover{
-              .zoetrope_item_overlay{
+            .zoetrope_item_overlay{
+              opacity: 1;
+              transform: scale(1);
+            }
+            .zoetrope_item_overlay{
+              opacity: 1;
+              transform: scale(1);
+              .zoetrope_overlay_title{
                 opacity: 1;
                 transform: scale(1);
               }
+              .zoetrope_overlay_roles{
+                opacity: 1;
+              }
+            }
+          }
+          #zoetrope_item-2{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
+            }
+          }
+          #zoetrope_item-4{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
             }
           }
         }
         &.active-4{
           #zoetrope_item-4{
+            &:before{
+              opacity: 0;
+            }
             &:after{
               opacity: 0;
             }
-            &:hover{
-              .zoetrope_item_overlay{
+            .zoetrope_item_overlay{
+              opacity: 1;
+              transform: scale(1);
+              .zoetrope_overlay_title{
                 opacity: 1;
                 transform: scale(1);
               }
+              .zoetrope_overlay_roles{
+                opacity: 1;
+              }
+            }
+          }
+          #zoetrope_item-3{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
+            }
+          }
+          #zoetrope_item-5{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
             }
           }
         }
         &.active-5{
           #zoetrope_item-5{
+            &:before{
+              opacity: 0;
+            }
             &:after{
               opacity: 0;
             }
-            &:hover{
-              .zoetrope_item_overlay{
+            .zoetrope_item_overlay{
+              opacity: 1;
+              transform: scale(1);
+              .zoetrope_overlay_title{
                 opacity: 1;
                 transform: scale(1);
               }
+              .zoetrope_overlay_roles{
+                opacity: 1;
+              }
+            }
+          }
+          #zoetrope_item-4{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
+            }
+          }
+          #zoetrope_item-6{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
             }
           }
         }
         &.active-6{
           #zoetrope_item-6{
+            &:before{
+              opacity: 0;
+            }
             &:after{
               opacity: 0;
             }
-            &:hover{
-              .zoetrope_item_overlay{
+            .zoetrope_item_overlay{
+              opacity: 1;
+              transform: scale(1);
+              .zoetrope_overlay_title{
                 opacity: 1;
                 transform: scale(1);
               }
+              .zoetrope_overlay_roles{
+                opacity: 1;
+              }
+            }
+          }
+          #zoetrope_item-5{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
+            }
+          }
+          #zoetrope_item-1{
+            &:before{
+              opacity: 0;
+            }
+            &:after{
+              opacity: .8;
             }
           }
         }
@@ -224,8 +371,7 @@ body{
           display: block;
           height: 226px;
           width: 400px;
-          box-sizing: border-box;
-          border: 2px solid #fff;
+          border: 1px solid rgba(255,255,255,1);
           position: absolute;
           left: 0;
           right: 0;
@@ -233,6 +379,18 @@ body{
           top: 50%;
           transform: translate3d(0,-50%,0);
           z-index: 999;
+          &:before{
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: rgba(255,255,255,1);
+            opacity: 1;
+            transition: 1.25s opacity ease-out;
+            z-index: 999;
+          }
           &:after{
             content: '';
             position: absolute;
@@ -240,7 +398,7 @@ body{
             width: 100%;
             left: 0;
             top: 0;
-            background-color: rgba(0,0,0,.8);
+            background-color: rgba(0,0,0,1);
             opacity: 1;
             transition: 1.25s opacity ease-out;
           }
@@ -255,29 +413,69 @@ body{
             background-repeat: no-repeat;
             backface-visibility: hidden;
             }
+          .zoetrope_video{
+            height: 226px;
+            width: 400px;
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
           .zoetrope_item_overlay{
             position: absolute;
             height: 100%;
             width: 100%;
             left: 0;
             top: 0;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,.93)0%, rgba(0,0,0,.9)100%);
+            background: radial-gradient(ellipse at center, rgba(0,0,0,.63)0%, rgba(0,0,0,.7)100%);
             opacity: 0;
             transition: all .5s ease;
             transform: scale(.99);
           }
             .zoetrope_overlay_title{
-              font-weight: 100;
+              font-weight: 300;
               text-transform: uppercase;
-              font-size: 15px;
+              font-size: 18px;
               letter-spacing: 2px;
               text-align: center;
               margin-top: 60px;
+              font-family: $font-secondary;
+              transform: scale(.7);
+              opacity: 0;
+              transition: all 2s ease-out;
             }
+            .zoetrope_overlay_roles{
+              text-align: center;
+              font-size: 0;
+              padding: 8px;
+              opacity: 0;
+              transition: all 1s ease;
+              transition-delay: 1.75s;
+            }
+              .zoetrope_overlay_role{
+                font-family: $font-primary;
+                font-size: 8px;
+                letter-spacing: .5px;
+                display: inline-block;
+                text-transform: uppercase;
+                &:first-child{
+                  &:after{
+                    content: '';
+                    display: inline-block;
+                    height: 2px;
+                    width: 2px;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    margin-left: 5px;
+                    margin-bottom: 2.5px;
+                  }
+                }
+                &:last-child{
+                  margin-left: 5px;
+                }
+              }
         }
         #zoetrope_item-1{
           transform: rotateY(0deg) translateX(0) translateY(-50%) translateZ(400px);
-          background-color: rgba(255,0,0,0.5);
           .zoetrope_item_inner{
             background-image: url('/imgs/bg-slide-1.jpg');
           }
@@ -290,28 +488,24 @@ body{
         }
         #zoetrope_item-3{
           transform: rotateY(120deg) translateX(0) translateY(-50%) translateZ(400px);
-          background-color: yellow;
           .zoetrope_item_inner{
             background-image: url('/imgs/bg-slide-3.jpg');
           }
         }
         #zoetrope_item-4{
           transform: rotateY(180deg) translateX(0) translateY(-50%) translateZ(400px);
-          background-color: orange;
           .zoetrope_item_inner{
             background-image: url('/imgs/bg-slide-4.jpg');
           }
         }
         #zoetrope_item-5{
           transform: rotateY(240deg) translateX(0) translateY(-50%) translateZ(400px);
-          background-color: rgba(0,255,0,0.5);
           .zoetrope_item_inner{
             background-image: url('/imgs/bg-slide-5.jpg');
           }
         }
         #zoetrope_item-6{
           transform: rotateY(300deg) translateX(0) translateY(-50%) translateZ(400px);
-          background-color: rgba(0,255,255,0.5);
           .zoetrope_item_inner{
             background-image: url('/imgs/bg-slide-6.jpg');
           }
