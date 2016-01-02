@@ -2,16 +2,11 @@
 @import 'partials/fonts.scss';
 @import 'reset.scss';
 
-@keyframes menuTopBarMove{
-  0%{transform: translate3d(0,0,0);}
-  50%{transform: translate3d(0,55px,0);}
-  100%{transform: translate3d(0,55px,0) rotate(45deg);}
-}
-
-@keyframes menuBottomBarMove{
-  0%{transform: translate3d(0,0,0);}
-  50%{transform: translate3d(0,-55px,0);}
-  100%{transform: translate3d(0,-55px,0) rotate(-45deg);}
+//Mixins
+@mixin playButtonActive{
+  animation: fillPlayButton .7s linear;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
 }
 
 body{
@@ -159,6 +154,9 @@ body{
               .zoetrope_overlay_roles{
                 opacity: 1;
               }
+            .play_button{
+              @include playButtonActive;
+            }
           }
           #zoetrope_item-2{
             &:before{
@@ -195,7 +193,11 @@ body{
                 .zoetrope_overlay_roles{
                   opacity: 1;
                 }
+              .play_button{
+                @include playButtonActive;
+              }
             }
+
           }
           #zoetrope_item-1{
             &:before{
@@ -233,9 +235,12 @@ body{
                 opacity: 1;
                 transform: scale(1);
               }
+            }
               .zoetrope_overlay_roles{
                 opacity: 1;
               }
+            .play_button{
+              @include playButtonActive;
             }
           }
           #zoetrope_item-2{
@@ -272,6 +277,9 @@ body{
               }
               .zoetrope_overlay_roles{
                 opacity: 1;
+              }
+              .play_button{
+                @include playButtonActive;
               }
             }
           }
@@ -310,6 +318,9 @@ body{
               .zoetrope_overlay_roles{
                 opacity: 1;
               }
+              .play_button{
+                @include playButtonActive;
+              }
             }
           }
           #zoetrope_item-4{
@@ -346,6 +357,9 @@ body{
               }
               .zoetrope_overlay_roles{
                 opacity: 1;
+              }
+              .play_button{
+                @include playButtonActive;
               }
             }
           }
@@ -437,7 +451,7 @@ body{
               font-size: 18px;
               letter-spacing: 2px;
               text-align: center;
-              margin-top: 60px;
+              margin-top: 68px;
               font-family: $font-secondary;
               transform: scale(.7);
               opacity: 0;
@@ -473,6 +487,19 @@ body{
                   margin-left: 5px;
                 }
               }
+            .play_button{
+              height: 45px;
+              width: 45px;
+              position: absolute;
+              left: 0;
+              right: 0;
+              margin: 0 auto;
+              top: 55%;
+              stroke-width: 4px;
+              transform: translateX(7px);
+              stroke-dasharray: 455;
+              stroke-dashoffset: 455;
+            }
         }
         #zoetrope_item-1{
           transform: rotateY(0deg) translateX(0) translateY(-50%) translateZ(400px);
@@ -572,3 +599,22 @@ body{
 //     transform: scale(.4) translate3d(0,-100%,0) !important;
 //   }
 // }
+
+
+//Animations
+@keyframes fillPlayButton{
+  to{stroke-dashoffset: 0}
+}
+
+@keyframes menuTopBarMove{
+  0%{transform: translate3d(0,0,0);}
+  50%{transform: translate3d(0,55px,0);}
+  100%{transform: translate3d(0,55px,0) rotate(45deg);}
+}
+
+@keyframes menuBottomBarMove{
+  0%{transform: translate3d(0,0,0);}
+  50%{transform: translate3d(0,-55px,0);}
+  100%{transform: translate3d(0,-55px,0) rotate(-45deg);}
+}
+
