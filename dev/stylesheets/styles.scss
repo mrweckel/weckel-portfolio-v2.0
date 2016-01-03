@@ -4,9 +4,10 @@
 
 //Mixins
 @mixin playButtonActive{
-  animation: fillPlayButton .7s linear;
+  animation: fillPlayButton .25s linear;
   animation-fill-mode: forwards;
-  animation-delay: 2s;
+  animation-delay: 1.5s;
+  opacity: 1;
 }
 
 body{
@@ -455,7 +456,7 @@ body{
               font-family: $font-secondary;
               transform: scale(.7);
               opacity: 0;
-              transition: all 2s ease-out;
+              transition: all 1.5s ease-out;
             }
             .zoetrope_overlay_roles{
               text-align: center;
@@ -463,7 +464,7 @@ body{
               padding: 8px;
               opacity: 0;
               transition: all 1s ease;
-              transition-delay: 1.75s;
+              transition-delay: 1.25s;
             }
               .zoetrope_overlay_role{
                 font-family: $font-primary;
@@ -495,47 +496,38 @@ body{
               right: 0;
               margin: 0 auto;
               top: 55%;
-              stroke-width: 4px;
+              stroke-width: 8px;
               transform: translateX(7px);
               stroke-dasharray: 455;
               stroke-dashoffset: 455;
+              opacity: 0;
+              transition: .2s opacity ease;
+            }
+            .zoetrope_iframe{
+              height: 100%;
+              width: 100%;
+              position: absolute;
+              top: 0;
+              left: 0;
             }
         }
         #zoetrope_item-1{
           transform: rotateY(0deg) translateX(0) translateY(-50%) translateZ(400px);
-          .zoetrope_item_inner{
-            background-image: url('/imgs/bg-slide-1.jpg');
-          }
         }
         #zoetrope_item-2{
           transform: rotateY(60deg) translateX(0) translateY(-50%) translateZ(400px);
-          .zoetrope_item_inner{
-            background-image: url('/imgs/bg-slide-2.jpg');
-          }
         }
         #zoetrope_item-3{
           transform: rotateY(120deg) translateX(0) translateY(-50%) translateZ(400px);
-          .zoetrope_item_inner{
-            background-image: url('/imgs/bg-slide-3.jpg');
-          }
         }
         #zoetrope_item-4{
           transform: rotateY(180deg) translateX(0) translateY(-50%) translateZ(400px);
-          .zoetrope_item_inner{
-            background-image: url('/imgs/bg-slide-4.jpg');
-          }
         }
         #zoetrope_item-5{
           transform: rotateY(240deg) translateX(0) translateY(-50%) translateZ(400px);
-          .zoetrope_item_inner{
-            background-image: url('/imgs/bg-slide-5.jpg');
-          }
         }
         #zoetrope_item-6{
           transform: rotateY(300deg) translateX(0) translateY(-50%) translateZ(400px);
-          .zoetrope_item_inner{
-            background-image: url('/imgs/bg-slide-6.jpg');
-          }
         }
     .carousel_arrow{
       position: absolute;
