@@ -1,2 +1,65 @@
 #page-2.page
-  h1 My Work
+  h1#about Stories
+  #zoetrope_container
+    div#zoetrope_carousel.active-1
+      div.zoetrope_item#zoetrope_item-1
+        div.zoetrope_item_inner
+        video.zoetrope_video#zoetrope_video-1(loop="true")
+          source(src="/imgs/phreaks.mp4" type="video/mp4")
+        div.zoetrope_item_overlay
+          h2.zoetrope_overlay_title Phreaks
+          ul.zoetrope_overlay_roles
+            li.zoetrope_overlay_role Director
+            li.zoetrope_overlay_role Editor
+          include ../extras/play-button.jade
+      div.zoetrope_item#zoetrope_item-2
+        div.zoetrope_item_inner
+        video.zoetrope_video#zoetrope_video-2(loop="true")
+          source(src="/imgs/va_fa_napoli.mp4" type="video/mp4")
+        div.zoetrope_item_overlay
+          h2.zoetrope_overlay_title Va Fa Napoli, Hipster
+          ul.zoetrope_overlay_roles
+            li.zoetrope_overlay_role Director
+            li.zoetrope_overlay_role Writer
+          include ../extras/play-button.jade
+      div.zoetrope_item#zoetrope_item-3
+        div.zoetrope_item_inner
+        video.zoetrope_video#zoetrope_video-3(loop="true")
+          source(src="/imgs/static.mp4" type="video/mp4")
+        div.zoetrope_item_overlay
+          h2.zoetrope_overlay_title Static Music Video
+          ul.zoetrope_overlay_roles
+            li.zoetrope_overlay_role Director
+            li.zoetrope_overlay_role Graphics
+          include ../extras/play-button.jade
+      div.zoetrope_item#zoetrope_item-4
+        div.zoetrope_item_inner
+        video.zoetrope_video#zoetrope_video-4(loop="true")
+          source(src="/imgs/ferrari.mp4" type="video/mp4")
+        div.zoetrope_item_overlay
+          h2.zoetrope_overlay_title Scuderia 120
+          ul.zoetrope_overlay_roles
+            li.zoetrope_overlay_role Editor
+            li.zoetrope_overlay_role Sound Design
+          include ../extras/play-button.jade
+      div.zoetrope_item#zoetrope_item-5
+        div.zoetrope_item_inner
+        video.zoetrope_video#zoetrope_video-5(loop="true")
+          source(src="/imgs/john_breiner.mp4" type="video/mp4")
+        div.zoetrope_item_overlay
+          h2.zoetrope_overlay_title John Breiner: Wall Breaker
+          ul.zoetrope_overlay_roles
+            li.zoetrope_overlay_role Director
+            li.zoetrope_overlay_role Editor
+          include ../extras/play-button.jade
+      div.zoetrope_item#zoetrope_item-6
+        div.zoetrope_item_inner
+        video.zoetrope_video#zoetrope_video-6(loop="true")
+          source(src="/imgs/thats_that.mp4" type="video/mp4")
+        div.zoetrope_item_overlay
+          h2.zoetrope_overlay_title That's That Book Trailer
+          ul.zoetrope_overlay_roles
+            li.zoetrope_overlay_role Editor
+            li.zoetrope_overlay_role Graphic Design
+          include ../extras/play-button.jade
+  include ../extras/arrow-2.jade
