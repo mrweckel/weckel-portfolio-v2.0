@@ -118,6 +118,7 @@ body{
       font-weight: 300;
       text-transform: uppercase;
       opacity: 1;
+      transition: .3s all ease;
     }
     #zoetrope_container{
       position: absolute;
@@ -128,6 +129,7 @@ body{
       // background-color: rgba(255,255,255,.5);
       perspective: 1000px;
       transition: all .5s ease;
+      transform-origin: top;
     }
       #zoetrope_carousel{
         height:100%;
@@ -427,7 +429,7 @@ body{
             background-position: center;
             background-repeat: no-repeat;
             backface-visibility: hidden;
-            }
+          }
           .zoetrope_video{
             height: 226px;
             width: 400px;
@@ -444,7 +446,7 @@ body{
             background: radial-gradient(ellipse at center, rgba(0,0,0,.63)0%, rgba(0,0,0,.7)100%);
             opacity: 0;
             transition: all .5s ease;
-            transform: scale(.99);
+            // transform: scale(.99);
           }
             .zoetrope_overlay_title{
               font-weight: 300;
@@ -511,6 +513,24 @@ body{
               left: 0;
             }
         }
+        #zoetrope_item-1 .zoetrope_item_inner{
+          background-image: url('../imgs/bg-slide-1.jpg');
+        }
+        #zoetrope_item-2 .zoetrope_item_inner{
+          background-image: url('../imgs/bg-slide-2.jpg');
+        }
+        #zoetrope_item-3 .zoetrope_item_inner{
+          background-image: url('../imgs/bg-slide-3.jpg');
+        }
+        #zoetrope_item-4 .zoetrope_item_inner{
+          background-image: url('../imgs/bg-slide-4.jpg');
+        }
+        #zoetrope_item-5 .zoetrope_item_inner{
+          background-image: url('../imgs/bg-slide-5.jpg');
+        }
+        #zoetrope_item-6 .zoetrope_item_inner{
+          background-image: url('../imgs/bg-slide-6.jpg');
+        }
         #zoetrope_item-1{
           transform: rotateY(0deg) translateX(0) translateY(-50%) translateZ(400px);
         }
@@ -529,41 +549,6 @@ body{
         #zoetrope_item-6{
           transform: rotateY(300deg) translateX(0) translateY(-50%) translateZ(400px);
         }
-    .carousel_arrow{
-      position: absolute;
-      top: 50%;
-      transform: translate3d(0,-50%,0);
-      height: 100px;
-      width: 100px;
-      opacity: .75;
-      &:after{
-        content: '';
-        position: absolute;
-        top: 50%;
-        transform: translate3d(0,-50%,0);
-        right: 0;
-        left: 0;
-        margin: 0 auto;
-      }
-    }
-    #carousel_arrow-right{
-      right: 1%;
-      &:after{
-        height: 0;
-        border-style: solid;
-        border-width: 25px 0 25px 43.3px;
-        border-color: transparent transparent transparent #fff;
-      }
-    }
-      #carousel_arrow-left{
-        left: 1%;
-        &:after{
-          height: 0;
-          border-style: solid;
-          border-width: 25px 43.3px 25px 0;
-          border-color: transparent #fff transparent transparent;
-        }
-    }
 
 
 //Media Queries
@@ -580,18 +565,63 @@ body{
   }
 }
 
-// @media screen and (max-width: 665px){
-//   #zoetrope_container{
-//     transform: scale(.5) translate3d(0,-50%,0) !important;
-//   }
-// }
+@media screen and (max-width: 680px){
+  #zoetrope_container{
+    transform: scale(.5) translate3d(0,-50%,0) !important;
+  }
+}
 
-// @media screen and (max-width: 665px){
-//   #zoetrope_container{
-//     transform: scale(.4) translate3d(0,-100%,0) !important;
-//   }
-// }
-
+@media screen and (max-width: 490px){
+  #page-2{
+    height: auto;
+    padding-bottom: 100px;
+  }
+  #about{
+    padding: 127px 0 78px;
+  }
+  #zoetrope_container{
+    transform: none !important;
+    top: 0;
+    position: relative;
+    height: 100%;
+    #zoetrope_carousel{
+      transform: none !important;
+      height: auto;
+      position: relative;
+      .zoetrope_item{
+        position: relative;
+        transform: none !important;
+        top: 0;
+        width: 90%;
+        margin-bottom: 20px;
+        &:after{
+          opacity: 0;
+        }
+        .zoetrope_item_overlay{
+          opacity: 1;
+          .zoetrope_overlay_title{
+            opacity: 1;
+            transform: scale(1);
+          }
+          .zoetrope_overlay_roles{
+            opacity: 1;
+          }
+        }
+        &:before{
+          opacity: 0;
+        }
+        .zoetrope_video{
+          display: none;
+        }
+        .play_button{
+          stroke-dashoffset: 0;
+          animation: none;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
 
 //Animations
 @keyframes fillPlayButton{
@@ -609,4 +639,3 @@ body{
   50%{transform: translate3d(0,-55px,0);}
   100%{transform: translate3d(0,-55px,0) rotate(-45deg);}
 }
-

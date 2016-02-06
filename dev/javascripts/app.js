@@ -86,14 +86,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
           //Carousel Arrow
-            if(e.target.id === "carousel_arrow-right"){
-                carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - 60) + "deg)";
-                movePanelRight();
-            }
-            if(e.target.id === "carousel_arrow-left"){
-                carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + 60) + "deg)";
-                movePanelLeft();
-            }
+            // if(e.target.id === "carousel_arrow-right"){
+            //     carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - 60) + "deg)";
+            //     movePanelRight();
+            // }
+            // if(e.target.id === "carousel_arrow-left"){
+            //     carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + 60) + "deg)";
+            //     movePanelLeft();
+            // }
 
           //Carousel functionality
             mouseDown = 0;
