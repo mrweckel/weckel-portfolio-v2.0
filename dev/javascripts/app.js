@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         logoPath = doc.querySelector('#logo_svg'),
         logoSize = logo.getBoundingClientRect(),
         homepage = doc.querySelector('#page-1'),
+        contactPage = doc.querySelector('#page-3'),
+        bgGradient = doc.querySelector('#contact_background'),
         screenHeight = win.innerHeight,
         screenWidth = win.innerWidth,
         carouselSwipeStart = 0,
@@ -47,6 +49,13 @@ document.addEventListener('DOMContentLoaded', function() {
             horizontalPercent = Math.floor(e.clientX/(horizontalMargin* 0.5) * 100);
             verticalPercent = Math.floor(e.clientY/verticalMargin) * 100;
             logoPath.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
+
+        }, false);
+
+        contactPage.addEventListener('mousemove', function(e) {
+          //move font background gradient
+            bgGradient.style.transform = 'translateX(' + e.clientX + 'px)';
+
 
         }, false);
 

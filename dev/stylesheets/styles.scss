@@ -550,6 +550,32 @@ body{
           transform: rotateY(300deg) translateX(0) translateY(-50%) translateZ(400px);
         }
 
+//Page 3
+  #page-3{
+    #contact_title_container{
+      position: relative;
+      width: 80%;
+      left: 0;
+      right: 0;
+      height: 200px;
+      width: 678px;
+      margin: 100px auto;
+      overflow: hidden;
+      #heading-reach_out{
+        height: 200px;
+        z-index: 9999;
+        position: relative;
+      }
+      #contact_background{
+        position: absolute;
+        height: 100%;
+        width: 400%;
+        background: linear-gradient(to right, #ce0407 1%,#a125c4 27%,#3abc4e 48%,#80b26c 66%,#38af9f 81%,#3eb7ad 100%);
+        left: -200%;
+        top: 0;
+      }
+    }
+  }
 
 //Media Queries
 
