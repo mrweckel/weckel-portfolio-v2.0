@@ -199,5 +199,12 @@ function scrollToElement(scrollDuration, elementPos) {
           }
         },15);    }
 
+//Page 3 functionality
+// var emailCanvas = doc.querySelector('#contact_email_canvas'),
+//     emailCanvasCtx = emailCanvas.getContext('2d');
+
+// var path = new Path2D('M14.3,21.5h4.3l0.4,2.3h0.1c0.7-0.7,1.5-1.4,2.4-1.9c0.8-0.5,1.8-0.8,3-0.8c1.3,0,2.3,0.3,3.1,0.8c0.8,0.5,1.4,1.3,1.9,2.2c0.8-0.8,1.6-1.5,2.5-2.1c0.9-0.6,1.9-0.9,3.1-0.9c1.9,0,3.3,0.6,4.2,1.9c0.9,1.3,1.4,3,1.4,5.3v11.1h-5.3V28.9c0-1.3-0.2-2.2-0.5-2.7c-0.3-0.5-0.9-0.7-1.7-0.7c-0.9,0-1.9,0.6-3.1,1.7v12.1h-5.3V28.9c0-1.3-0.2-2.2-0.5-2.7c-0.3-0.5-0.9-0.7-1.7-0.7c-0.9,0-1.9,0.6-3,1.7v12.1h-5.3V21.5z');
+
+// emailCanvasCtx.stroke(path);
 
 }, false);
