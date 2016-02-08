@@ -55,7 +55,7 @@ body{
     height: 100%;
     width: 100%;
     overflow: hidden;
-    border-bottom: 1px solid rgba(0,0,0,0.5);
+    // border-bottom: 1px solid rgba(0,0,0,0.5);
     transition: all .5s ease;
     scroll-behavior: smooth;
     position: relative;
@@ -79,17 +79,41 @@ body{
     stroke: #fff;
   }
   #page-1{
-    background-color: transparent;
-  }
-    #logo_container{
-      height: 200px;
-      width: 200px;
+    background-color: #000;
+    &:before{
+      content: '';
       position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      background-image: url('../imgs/temp-timelapse-bg-4.jpg');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: .9;
+    }
+  }
+    #homepage_timelapse{
+      position: absolute;
+      min-height: 100%;
+      min-width: 100%;
+      width: auto;
+      height: auto;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      display: none;
+    }
+    #logo_container{
+      height: 150px;
+      width: 150px;
+      position: relative;
       left: 0;
       right: 0;
       margin: 0 auto;
-      top: 50%;
-      transform: translateY(-60%);
+      top: 28%;
+      z-index: 99;
     }
       .transition{
         transition: all .2s ease;
@@ -100,13 +124,36 @@ body{
        // transform: rotate3d(0, 1, 0, 205deg);
       }
         #logo{
-          height: 200px;
-          width: 200px;
+          height: 150px;
+          width: 150px;
         }
           #logo_svg{
             fill: #EC008C;
           }
-
+    #title{
+      text-transform: uppercase;
+      color: #fff;
+      font-size: 130px;
+      letter-spacing: 18px;
+      text-align: center;
+      position: relative;
+      font-weight: 700;
+      top: 28%;
+      width: 566px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+    #subtitle{
+      font-family: $font-secondary;
+      position: relative;
+      text-transform: uppercase;
+      font-size: 18px;
+      letter-spacing: 8px;
+      font-weight: 700;
+      text-align: center;
+      top: 29%;
+    }
 //Page 2
   #page-2{
     background-color: #000;
@@ -122,13 +169,16 @@ body{
     // }
   }
     #about{
-      padding: 194px;
-      text-align: center;
-      letter-spacing: 1.5px;
-      font-weight: 300;
-      text-transform: uppercase;
+      padding: 82px;
       opacity: 1;
       transition: .3s all ease;
+      text-transform: uppercase;
+      color: #fff;
+      font-size: 90px;
+      letter-spacing: 18px;
+      text-align: center;
+      position: relative;
+      font-weight: 700;
     }
     #zoetrope_container{
       position: absolute;
@@ -624,6 +674,12 @@ body{
 }
 
 @media screen and (max-width: 680px){
+  #title{
+    transform: scale3d(.8,.8,.8);
+  }
+  #subtitle{
+    font-size: 10px;
+  }
   #zoetrope_container{
     transform: scale(.5) translate3d(0,-50%,0) !important;
   }
