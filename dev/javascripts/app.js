@@ -46,9 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         homepage.addEventListener('mousemove', function(e) {
           //Logo color
-            horizontalPercent = Math.floor(e.clientX/(horizontalMargin* 0.5) * 100);
+            horizontalPercent = Math.floor(e.clientX/(horizontalMargin* 0.05) * 10);
             verticalPercent = Math.floor(e.clientY/verticalMargin) * 100;
             logoPath.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
+
+            //Timelapse
+
+            var numOfFrames = 150,
+                percent = Math.floor(e.clientX/screenWidth*numOfFrames),
+                increments = 100/numOfFrames,
+                timelapse = doc.getElementById('timelapse_inner');
+
+            console.log(percent*increments);
+
+
+            timelapse.style.transform = "translate3d(" + -(percent*increments) + "%,0,0)";
+
 
         }, false);
 
@@ -137,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
             activeClass > 1 ? activeClass -= 1 : activeClass = 6;
             updateClass(carousel, activeClass);
             playVideo(videos, activeClass);
-            console.log("last class = " + lastClass)
+            console.log("last class = " + lastClass);
             stopVideo(videos, lastClass);
         }
 
