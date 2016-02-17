@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
         win = window,
         body = document.body,
         stage = doc.querySelector('#stage'),
-        logoPath = doc.querySelector('#logo_svg'),
         logoSize = logo.getBoundingClientRect(),
         homepage = doc.querySelector('#page-1'),
         contactPage = doc.querySelector('#page-3'),
@@ -18,17 +17,34 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseDown = 0,
         videos = doc.getElementsByClassName("zoetrope_video");
 
-    console.log(videos);
+    //Logo Variables
+    var LOGO = doc.querySelector('#logo_svg'),
+        HORIZONTAL_MARGIN = screenWidth;
 
+    function changeLogoColor(ele,xPos){
+        var horizontalPercent = Math.floor(xPos/(HORIZONTAL_MARGIN * 0.05) * 10);
+
+        ele.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
+    };
+
+    //Timelapse Variables
+    var NUM_OF_FRAMES = 50,
+        INCREMENTS = 100/NUM_OF_FRAMES,
+        TIMELAPSE = doc.querySelector('#timelapse_inner'),
+        TIMELAPSE_CONTAINER = doc.querySelector('#timelapse_container');
+
+    function timelapseMove(ele,xPos) {
+        var percent = Math.floor(xPos/screenWidth*NUM_OF_FRAMES);
+
+        ele.style.webkitTransform = "translate3d(" + -(percent* INCREMENTS) + "%,0,0)";
+    }
+
+    //Carousel Variables
     var carousel = doc.querySelector('#zoetrope_carousel'),
         currentCarouselPosition = 0,
         degrees = 60,
         activeClass = 1;
     carousel.style.webkitTransform = "rotateY(0deg)";
-
-        //margins on each side of logo
-    var horizontalMargin = screenWidth,
-        horizontalPercent = 0;
 
     var verticalMargin = logoSize.top,
         verticalPercent = 0;
@@ -46,42 +62,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         homepage.addEventListener('mousemove', function(e) {
           //Logo color
-            horizontalPercent = Math.floor(e.clientX/(horizontalMargin* 0.05) * 10);
-            // verticalPercent = Math.floor(e.clientY/verticalMargin) * 100;
-            logoPath.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
+           changeLogoColor(LOGO, e.clientX);
 
             //Timelapse
-
-            var numOfFrames = 50,
-                percent = Math.floor(e.clientX/screenWidth*numOfFrames),
-                increments = 100/numOfFrames,
-                timelapse = doc.getElementById('timelapse_inner'),
-                timelapseContainer = doc.getElementById('timelapse_container');
-
-
-                console.log(percent/100)
-
-            timelapse.style.webkitTransform = "translate3d(" + -(percent*increments) + "%,0,0)";
-
-            timelapseContainer.style.webkitTransform = "scale(" + (1 + percent/1000) + ")";
-
-
-            //TitleMove
-
-            // var title = doc.getElementById('title'),
-            //     subtitle = doc.getElementById('subtitle');
-
-            // title.style.webkitTransform = "translateY(" + -e.clientY/50 +"px)";
-            // subtitle.style.webkitTransform = "translateY(" + -e.clientY/25 +"px)";
-
+            timelapseMove(TIMELAPSE, e.clientX);
+            timelapseMove(TIMELAPSE_CONTAINER, e.clientX);
 
         }, false);
 
         contactPage.addEventListener('mousemove', function(e) {
           //move font background gradient
             bgGradient.style.transform = 'translateX(' + e.clientX + 'px)';
-
-
         }, false);
 
         carousel.addEventListener('mousemove', function(e) {
