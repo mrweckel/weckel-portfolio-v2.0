@@ -98,20 +98,6 @@ body{
     //   background-repeat: no-repeat;
     //   opacity: .9;
     // }
-    &:after{
-      content: '';
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      left: 0;
-      bottom: 0;
-      background-image: url('../imgs/temple-1c.png');
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      opacity: 1;
-      z-index: 9999999;
-    }
   }
     #timelapse_container{
       position: absolute;
@@ -120,6 +106,20 @@ body{
       left: 0;
       right: 0;
       background-color: rgba(255,0,0,0.5);
+      &:after{
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        background-image: url('../imgs/temple-1d.png');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 1;
+        z-index: 9999999;
+      }
       #timelapse_inner{
         position: absolute;
         height: 100%;
@@ -158,7 +158,7 @@ body{
       left: 0;
       right: 0;
       margin: 0 auto;
-      top: 28%;
+      top: 20%;
       z-index: 99;
     }
       .transition{
@@ -184,7 +184,7 @@ body{
       text-align: center;
       position: relative;
       font-weight: 700;
-      top: 28%;
+      top: 23%;
       width: 100%;
     }
     #subtitle{
@@ -195,7 +195,7 @@ body{
       letter-spacing: 8px;
       font-weight: 700;
       text-align: center;
-      top: 29%;
+      top: 24%;
     }
 //Page 2
   #page-2{

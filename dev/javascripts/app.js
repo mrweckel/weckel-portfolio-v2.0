@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         homepage.addEventListener('mousemove', function(e) {
           //Logo color
             horizontalPercent = Math.floor(e.clientX/(horizontalMargin* 0.05) * 10);
-            verticalPercent = Math.floor(e.clientY/verticalMargin) * 100;
+            // verticalPercent = Math.floor(e.clientY/verticalMargin) * 100;
             logoPath.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
 
             //Timelapse
@@ -55,12 +55,24 @@ document.addEventListener('DOMContentLoaded', function() {
             var numOfFrames = 50,
                 percent = Math.floor(e.clientX/screenWidth*numOfFrames),
                 increments = 100/numOfFrames,
-                timelapse = doc.getElementById('timelapse_inner');
+                timelapse = doc.getElementById('timelapse_inner'),
+                timelapseContainer = doc.getElementById('timelapse_container');
 
-            console.log(percent*increments);
+
+                console.log(percent/100)
+
+            timelapse.style.webkitTransform = "translate3d(" + -(percent*increments) + "%,0,0)";
+
+            timelapseContainer.style.webkitTransform = "scale(" + (1 + percent/1000) + ")";
 
 
-            timelapse.style.transform = "translate3d(" + -(percent*increments) + "%,0,0)";
+            //TitleMove
+
+            // var title = doc.getElementById('title'),
+            //     subtitle = doc.getElementById('subtitle');
+
+            // title.style.webkitTransform = "translateY(" + -e.clientY/50 +"px)";
+            // subtitle.style.webkitTransform = "translateY(" + -e.clientY/25 +"px)";
 
 
         }, false);
