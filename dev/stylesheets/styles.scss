@@ -10,7 +10,7 @@
   opacity: 1;
 }
 
-$timelapseReels: 3; //only change this
+$timelapseReels: 1; //only change this
 $timelapseFrames: 50;
 $timelapseContainerWidth: ((100 * $timelapseFrames) * $timelapseReels) + %;
 $timelapseDiff: 100/$timelapseReels;
@@ -98,20 +98,20 @@ body{
     //   background-repeat: no-repeat;
     //   opacity: .9;
     // }
-    // &:after{
-    //   content: '';
-    //   position: absolute;
-    //   height: 100%;
-    //   width: 100%;
-    //   left: 0;
-    //   bottom: 0;
-    //   background-image: url('../imgs/temp-timelapse-bg-4-bottom.png');
-    //   background-position: center;
-    //   background-size: cover;
-    //   background-repeat: no-repeat;
-    //   opacity: 1;
-    //   z-index: 9999999;
-    // }
+    &:after{
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      background-image: url('../imgs/temple-1c.png');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 1;
+      z-index: 9999999;
+    }
   }
     #timelapse_container{
       position: absolute;
@@ -141,14 +141,14 @@ body{
           background-image: url('../imgs/tl-1.jpg');
           left: 0;
         }
-        #timelapse_reel-2{
-          background-image: url('../imgs/tl-2.jpg');
-          left: $timelapseDiff+%;
-        }
-        #timelapse_reel-3{
-          background-image: url('../imgs/tl-3.jpg');
-          left: 2 * $timelapseDiff+%;
-        }
+        // #timelapse_reel-2{
+        //   background-image: url('../imgs/tl-2.jpg');
+        //   left: $timelapseDiff+%;
+        // }
+        // #timelapse_reel-3{
+        //   background-image: url('../imgs/tl-3.jpg');
+        //   left: 2 * $timelapseDiff+%;
+        // }
       }
     }
     #logo_container{

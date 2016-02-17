@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             //Timelapse
 
-            var numOfFrames = 150,
+            var numOfFrames = 50,
                 percent = Math.floor(e.clientX/screenWidth*numOfFrames),
                 increments = 100/numOfFrames,
                 timelapse = doc.getElementById('timelapse_inner');
