@@ -106,20 +106,6 @@ body{
       left: 0;
       right: 0;
       background-color: rgba(255,0,0,0.5);
-      &:after{
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-        background-image: url('../imgs/temple-1d.png');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        opacity: 1;
-        z-index: 9999999;
-      }
       #timelapse_inner{
         position: absolute;
         height: 100%;
@@ -133,7 +119,7 @@ body{
           width: $timelapseDiff+%;
           height: 100%;
           top: 0;
-          background-size: cover;
+          background-size: 100% 100%;
           background-position: left center;
           background-repeat: no-repeat;
         }
@@ -150,6 +136,20 @@ body{
         //   left: 2 * $timelapseDiff+%;
         // }
       }
+    }
+    #timelapse_overlay{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      background-image: url('../imgs/temple-1d.png');
+      background-position: center;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      opacity: 1;
+      z-index: 9999999;
+      pointer-events: none;
     }
     #logo_container{
       height: 150px;
@@ -718,9 +718,9 @@ body{
   }
 }
 
-@media screen and (max-width: 680px){
+@media screen and (max-width: 800px){
   #title{
-    transform: scale3d(.8,.8,.8);
+    font-size: 110px;
   }
   #subtitle{
     font-size: 10px;
@@ -730,7 +730,21 @@ body{
   }
 }
 
+@media screen and (max-width: 620px){
+  #title{
+    font-size: 90px;
+  }
+  #subtitle{
+    letter-spacing: 4px;
+  }
+}
+
 @media screen and (max-width: 490px){
+  #title{
+    font-size: 50px;
+  }
+  #subtitle{
+  }
   #page-2{
     height: auto;
     padding-bottom: 100px;

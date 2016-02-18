@@ -22,21 +22,31 @@ document.addEventListener('DOMContentLoaded', function() {
         HORIZONTAL_MARGIN = screenWidth;
 
     function changeLogoColor(ele,xPos){
-        var horizontalPercent = Math.floor(xPos/(HORIZONTAL_MARGIN * 0.05) * 10);
+        var horizontalPercent = Math.floor(xPos/(HORIZONTAL_MARGIN * 0.5) * 10);
 
-        ele.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
-    };
+        ele.style.fill = "hsl(" + (horizontalPercent + 10) + ",100%,52%)";
+    }
 
     //Timelapse Variables
     var NUM_OF_FRAMES = 50,
         INCREMENTS = 100/NUM_OF_FRAMES,
         TIMELAPSE = doc.querySelector('#timelapse_inner'),
+        TIMELAPSE_OVERLAY = doc.querySelector('#timelapse_overlay'),
         TIMELAPSE_CONTAINER = doc.querySelector('#timelapse_container');
+
+    //Title Variables
+    var TITLE = doc.querySelector('#title'),
+        SUBTITLE = doc.querySelector('#subtitle');
 
     function timelapseMove(ele,xPos) {
         var percent = Math.floor(xPos/screenWidth*NUM_OF_FRAMES);
 
         ele.style.webkitTransform = "translate3d(" + -(percent* INCREMENTS) + "%,0,0)";
+    }
+
+    function timelapseScale(ele, xPos, factor){
+        var percent = (xPos/screenWidth)/factor;
+        ele.style.webkitTransform = "scale(" + (1 + percent) + ")";
     }
 
     //Carousel Variables
@@ -61,12 +71,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         homepage.addEventListener('mousemove', function(e) {
-          //Logo color
+          // Logo color
            changeLogoColor(LOGO, e.clientX);
 
             //Timelapse
             timelapseMove(TIMELAPSE, e.clientX);
-            timelapseMove(TIMELAPSE_CONTAINER, e.clientX);
+            timelapseScale(TIMELAPSE_CONTAINER, e.clientX, 20);
+            timelapseScale(TIMELAPSE_OVERLAY, e.clientX, 20);
 
         }, false);
 
@@ -109,18 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 buildingBackground.style.opacity = "0";
                 TweenMax.to(homeIconPath,1, {morphSVG: {shape: filmPath, shapeIndex:1}});
             }
-
-          //Carousel Arrow
-            // if(e.target.id === "carousel_arrow-right"){
-            //     carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - 60) + "deg)";
-            //     movePanelRight();
-            // }
-            // if(e.target.id === "carousel_arrow-left"){
-            //     carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + 60) + "deg)";
-            //     movePanelLeft();
-            // }
-
-          //Carousel functionality
             mouseDown = 0;
 
             if(e.clientX - carouselSwipeStart < -100 && e.clientX < carouselSwipeStart){
@@ -181,17 +180,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //SVG icons
         var buildingBackground = document.querySelector("#building-1"),
-            homeIconPath = MorphSVGPlugin.convertToPath(document.querySelector("#building-2")),
+            // homeIconPath = MorphSVGPlugin.convertToPath(document.querySelector("#building-2")),
             filmPath = "M91.5,161.9H32.2v-55.7h59.3V161.9z M95.8,112.3h77.7v29H95.8 V112.3z M127.5,153.4H95.8v-8h31.7V153.4z M178,111.7l9-5v38.7l-9-3.9V111.7z M32,54.6c0,0,19.2-28.7,41.2-10.5 s18.2,38.6,18.2,38.6H32V54.6z M32,87.2h59.5v14.7H32V87.2z M116.5,107.9h-15.8V97.4h15.8V107.9z M28,101.9l-15,2.5V85.2l15,2 V101.9z";
 
     //mobile
     homepage.addEventListener('touchstart',handleStart, false);
-    stage.addEventListener('touchend', handleEnd, false);
-    stage.addEventListener('touchmove', handleMove, false);
+    homepage.addEventListener('touchend', handleEnd, false);
+    homepage.addEventListener('touchmove', handleMove, false);
 
     function handleStart (e) {
     	// e.preventDefault();
-        console.log(e);
     }
 
     function handleEnd (e) {
@@ -199,9 +197,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleMove (e) {
-      horizontalPercent = Math.floor(e.touches[0].clientX/(horizontalMargin*0.5) * 100);
-      verticalPercent = Math.floor(e.clientY/verticalMargin) * 100;
-      logoPath.style.fill = "hsl(" + (horizontalPercent+250) + ",100%,52%)";
+
+        changeLogoColor(LOGO,e.touches[0].clientX);
+
+        timelapseMove(TIMELAPSE, e.touches[0].clientX);
+        timelapseScale(TIMELAPSE_CONTAINER, e.touches[0].clientX, 20);
+        timelapseScale(TIMELAPSE_OVERLAY, e.touches[0].clientX, 20);
     }
 
 function scrollToElement(scrollDuration, elementPos) {
