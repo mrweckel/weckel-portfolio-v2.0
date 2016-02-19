@@ -28,8 +28,8 @@ body{
   position: absolute;
 }
   #home_icon{
-    height: 60px;
-    width:  60px;
+    height: 40px;
+    width:  40px;
     position: fixed;
     top: 15px;
     left: 10px;
@@ -127,14 +127,6 @@ body{
           background-image: url('../imgs/tl-1.jpg');
           left: 0;
         }
-        // #timelapse_reel-2{
-        //   background-image: url('../imgs/tl-2.jpg');
-        //   left: $timelapseDiff+%;
-        // }
-        // #timelapse_reel-3{
-        //   background-image: url('../imgs/tl-3.jpg');
-        //   left: 2 * $timelapseDiff+%;
-        // }
       }
     }
     #timelapse_overlay{
@@ -794,6 +786,16 @@ body{
       }
     }
   }
+}
+
+@media screen and (max-width: 420px){
+    #timelapse_reel-1{
+      background-image: url('../imgs/tl-vertical.jpg') !important;
+      background-size: 100% 100%;
+    }
+    #timelapse_overlay{
+      display: none;
+    }
 }
 
 //Animations
