@@ -10,8 +10,8 @@
   opacity: 1;
 }
 
-$timelapseReels: 1; //only change this
-$timelapseFrames: 50;
+$timelapseReels: 2; //only change this
+$timelapseFrames: 25;
 $timelapseContainerWidth: ((100 * $timelapseFrames) * $timelapseReels) + %;
 $timelapseDiff: 100/$timelapseReels;
 
@@ -39,6 +39,14 @@ body{
   }
   #film_icon{
     display: none;
+  }
+  #menu_icon{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 999999;
   }
   #menu_container{
     position: absolute;
@@ -78,7 +86,7 @@ body{
     margin: 0 auto;
   }
   #nav_arrow-1 path{
-    stroke: #000;
+    stroke: #fff;
   }
   #nav_arrow-2 path{
     stroke: #fff;
@@ -119,13 +127,23 @@ body{
           width: $timelapseDiff+%;
           height: 100%;
           top: 0;
-          background-size: 100% 100%;
+          background-size: cover;
           background-position: left center;
           background-repeat: no-repeat;
         }
         #timelapse_reel-1{
-          background-image: url('../imgs/tl-1.jpg');
+          background-image: url('../imgs/tl-1b.jpg');
           left: 0;
+          width: 50%;
+        }
+        #timelapse_reel-2{
+          background-image: url('../imgs/tl-2b.jpg');
+          left: $timelapseDiff + %;
+        }
+      }
+      &.background-switch{
+        #timelapse_inner .timelapse_reel{
+          background-size: 100% 100%;
         }
       }
     }
@@ -137,11 +155,15 @@ body{
       bottom: 0;
       background-image: url('../imgs/temple-1d.png');
       background-position: center;
-      background-size: 100% 100%;
+      background-size: cover;
       background-repeat: no-repeat;
       opacity: 1;
       z-index: 9999999;
       pointer-events: none;
+      display: none;
+    }
+    #timelapse_container.background-switch ~ #timelapse_overlay{
+      background-size: 100% 100%;
     }
     #logo_container{
       height: 150px;
@@ -733,9 +755,11 @@ body{
 
 @media screen and (max-width: 490px){
   #title{
-    font-size: 50px;
+    font-size: 60px;
   }
   #subtitle{
+    letter-spacing: 3px;
+    font-size: 9px;
   }
   #page-2{
     height: auto;
@@ -791,7 +815,7 @@ body{
 @media screen and (max-width: 420px){
     #timelapse_reel-1{
       background-image: url('../imgs/tl-vertical.jpg') !important;
-      background-size: 100% 100%;
+      background-size: 100% 100% !important;
     }
     #timelapse_overlay{
       display: none;

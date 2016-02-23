@@ -17,12 +17,17 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseDown = 0,
         videos = doc.getElementsByClassName("zoetrope_video");
 
+    //Event Listeners
+    body.addEventListener('mouseup', function(e){
+        console.log(e.target);
+    });
+
     //Logo Variables
     var LOGO = doc.querySelector('#logo_svg'),
         HORIZONTAL_MARGIN = screenWidth;
 
     function changeLogoColor(ele,xPos){
-        var horizontalPercent = Math.floor(xPos/(HORIZONTAL_MARGIN * 0.5) * 10);
+        var horizontalPercent = Math.floor(xPos/(HORIZONTAL_MARGIN * 0.25) * 10);
 
         ele.style.fill = "hsl(" + (horizontalPercent + 10) + ",100%,52%)";
     }
@@ -41,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function timelapseMove(ele,xPos) {
         var percent = Math.floor(xPos/screenWidth*NUM_OF_FRAMES);
 
-        ele.style.webkitTransform = "translate3d(" + -(percent* INCREMENTS) + "%,0,0)";
+        ele.style.webkitTransform = "translate3d(" + - Math.max(Math.min((percent* INCREMENTS),98),0) + "%,0,0)";
     }
 
     function timelapseScale(ele, xPos, factor){
@@ -49,11 +54,16 @@ document.addEventListener('DOMContentLoaded', function() {
         ele.style.webkitTransform = "scale(" + (1 + percent) + ")";
     }
 
+    //Menu
+    var MENUPATH = 'M200,40H0V0h200V40z M200,80H0v40h200V80z M200,160H0v40h200V160z',
+        menuIcon = document.getElementById('menu_icon');
+
     //Carousel Variables
     var carousel = doc.querySelector('#zoetrope_carousel'),
         currentCarouselPosition = 0,
         degrees = 60,
         activeClass = 1;
+
     carousel.style.webkitTransform = "rotateY(0deg)";
 
     var verticalMargin = logoSize.top,
@@ -63,11 +73,18 @@ document.addEventListener('DOMContentLoaded', function() {
         win.addEventListener('resize', function() {
           //homepage logo
             logoSize = logo.getBoundingClientRect();
-            horizontalMargin = logoSize.left;
 
          //reset
             screenHeight = win.innerHeight;
             screenWidth = win.innerWidth;
+
+        if(screenWidth/screenHeight < 1.6){
+            TIMELAPSE_CONTAINER.classList.add('background-switch');
+        } else {
+        TIMELAPSE_CONTAINER.classList.remove('background-switch');
+        }
+
+        console.log(screenWidth/screenHeight);
         });
 
         homepage.addEventListener('mousemove', function(e) {
