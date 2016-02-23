@@ -814,7 +814,11 @@ body{
 
 @media screen and (max-width: 420px){
     #timelapse_reel-1{
-      background-image: url('../imgs/tl-vertical.jpg') !important;
+      background-image: url('../imgs/tl_vertical-1.jpg') !important;
+      background-size: 100% 100% !important;
+    }
+    #timelapse_reel-2{
+      background-image: url('../imgs/tl_vertical-2.jpg') !important;
       background-size: 100% 100% !important;
     }
     #timelapse_overlay{
