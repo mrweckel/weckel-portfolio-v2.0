@@ -20,12 +20,14 @@ body{
   font-size: 20px;
   transition: all .3s ease;
   font-family: $font-primary, sans-serif;
+  overflow: hidden;
 }
 
 #stage{
 	height: 100%;
 	width: 100%;
   position: absolute;
+  overflow: hidden;
 }
   #home_icon{
     height: 40px;
@@ -183,6 +185,7 @@ body{
       margin: 0 auto;
       top: 20%;
       z-index: 99;
+      transition: all 1s ease;
     }
       .transition{
         transition: all .2s ease;
@@ -223,6 +226,7 @@ body{
 //Page 2
   #page-2{
     background-color: #000;
+    display: none;
     // &:before{
     //   content: '';
     //   position: absolute;
@@ -680,8 +684,8 @@ body{
 
 //Page 3
   #page-3{
-    // background-color: #BE2121;
     background-color: #fff;
+    display: none;
     // &:before{
     //   content: '';
     //   position: absolute;
