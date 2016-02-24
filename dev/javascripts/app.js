@@ -19,7 +19,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //Event Listeners
     body.addEventListener('mouseup', function(e){
-        console.log(e.target);
+
+        switch (e.target.id) {
+            case 'menu_icon':
+                stage.classList.add('menu_active');
+                break;
+            default:
+                break;
+        }
+
     });
 
     //Logo Variables
