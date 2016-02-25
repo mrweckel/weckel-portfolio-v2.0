@@ -6,39 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
         win = window,
         body = document.body,
         stage = doc.querySelector('#stage'),
-        logoSize = logo.getBoundingClientRect(),
         homepage = doc.querySelector('#page-1'),
-        contactPage = doc.querySelector('#page-3'),
-        bgGradient = doc.querySelector('#contact_background'),
         screenHeight = win.innerHeight,
         screenWidth = win.innerWidth,
         carouselSwipeStart = 0,
         originalScreenPosition = 0,
         mouseDown = 0,
         videos = doc.getElementsByClassName("zoetrope_video");
-
-    //Event Listeners
-    body.addEventListener('mouseup', function(e){
-
-        switch (e.target.id) {
-            case 'menu_icon':
-                stage.classList.add('menu_active');
-                break;
-            default:
-                break;
-        }
-
-    });
-
-    //Logo Variables
-    var LOGO = doc.querySelector('#logo_svg'),
-        HORIZONTAL_MARGIN = screenWidth;
-
-    function changeLogoColor(ele,xPos){
-        var horizontalPercent = Math.floor(xPos/(HORIZONTAL_MARGIN * 0.25) * 10);
-
-        ele.style.fill = "hsl(" + (horizontalPercent + 10) + ",100%,52%)";
-    }
 
     //Timelapse Variables
     var NUM_OF_FRAMES = 50,
@@ -47,98 +21,43 @@ document.addEventListener('DOMContentLoaded', function() {
         TIMELAPSE_OVERLAY = doc.querySelector('#timelapse_overlay'),
         TIMELAPSE_CONTAINER = doc.querySelector('#timelapse_container');
 
-    //Title Variables
-    var TITLE = doc.querySelector('#title'),
-        SUBTITLE = doc.querySelector('#subtitle');
+    //Set Background based on current screen ratio
+    setBackgroundProps();
 
-    function timelapseMove(ele,xPos) {
-        var percent = Math.floor(xPos/screenWidth*NUM_OF_FRAMES);
-
-        ele.style.webkitTransform = "translate3d(" + - Math.max(Math.min((percent* INCREMENTS),98),0) + "%,0,0)";
-    }
-
-    function timelapseScale(ele, xPos, factor){
-        var percent = (xPos/screenWidth)/factor;
-        ele.style.webkitTransform = "scale(" + (1 + percent) + ")";
-    }
-
-    //Menu
+    //Menu variables
     var MENUPATH = 'M200,40H0V0h200V40z M200,80H0v40h200V80z M200,160H0v40h200V160z',
         menuIcon = document.getElementById('menu_icon');
 
-    //Carousel Variables
-    var carousel = doc.querySelector('#zoetrope_carousel'),
-        currentCarouselPosition = 0,
-        degrees = 60,
-        activeClass = 1;
+    //Overall Event Listeners
+    body.addEventListener('mouseup', handleMouseUp, false);
+    win.addEventListener('resize', handleResize, false);
 
-    carousel.style.webkitTransform = "rotateY(0deg)";
+    function handleMouseUp(e){
+        console.log(e);
+        switch (e.target.id) {
+            case 'menu_icon':
+                stage.classList.add('menu_active');
+                TweenMax.to(MENUPATH,1, {morphSVG: {shape: filmPath, shapeIndex:1}});
+                break;
 
-    var verticalMargin = logoSize.top,
-        verticalPercent = 0;
-
-    //Event Listeners
-        win.addEventListener('resize', function() {
-          //homepage logo
-            logoSize = logo.getBoundingClientRect();
-
-         //reset
-            screenHeight = win.innerHeight;
-            screenWidth = win.innerWidth;
-
-        if(screenWidth/screenHeight < 1.6){
-            TIMELAPSE_CONTAINER.classList.add('background-switch');
-        } else {
-        TIMELAPSE_CONTAINER.classList.remove('background-switch');
-        }
-
-        console.log(screenWidth/screenHeight);
-        });
-
-        homepage.addEventListener('mousemove', function(e) {
-          // Logo color
-           changeLogoColor(LOGO, e.clientX);
-
-            //Timelapse
-            timelapseMove(TIMELAPSE, e.clientX);
-            timelapseScale(TIMELAPSE_CONTAINER, e.clientX, 20);
-            timelapseScale(TIMELAPSE_OVERLAY, e.clientX, 20);
-
-        }, false);
-
-        contactPage.addEventListener('mousemove', function(e) {
-          //move font background gradient
-            bgGradient.style.transform = 'translateX(' + e.clientX + 'px)';
-        }, false);
-
-        carousel.addEventListener('mousemove', function(e) {
-          //Swiping Carousel Desktop
-            if(mouseDown === 1 && e.clientX < carouselSwipeStart){
-                carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - e.clientX/10) + "deg)";
-            }
-            if(mouseDown === 1 && e.clientX > carouselSwipeStart){
-                carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + e.clientX/10) + "deg)";
-            }
-        }, false);
-
-        doc.addEventListener('mousedown', function(e) {
-            mouseDown = 1;
-            carouselSwipeStart = e.clientX;
-        }, false);
-
-        doc.addEventListener('mouseup', function(e) {
-          //Navigation arrow functionality
-            if(e.target.id === "nav_arrow-1"){
-                console.log("hello");
+            //arrow functionality:
+            case 'nav_arrow-1':
                 scrollToElement(250, win.innerHeight);
                 stage.className = "page_active-2";
                 playVideo(videos,1);
-            }
-            if(e.target.id === "nav_arrow-2"){
-                console.log("hello");
+                break;
+
+            case 'nav_arrow-2':
                 scrollToElement(250, win.innerHeight*2);
                 stage.className = "page_active-3";
-            }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    doc.addEventListener('mouseup', function(e) {
 
           //Menu Icon Functionality
             if(e.target.id === "home_icon"){
@@ -164,6 +83,109 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
         }, false);
+
+    function handleResize(e){
+        setBackgroundProps();
+    }
+
+    //Auto scroll functionality
+    function scrollToElement(scrollDuration, elementPos) {
+        var scrollStep = elementPos / (scrollDuration / 15);
+
+        var scrollInterval = setInterval(function(){
+              if(window.scrollY < elementPos){
+                window.scrollBy( 0, scrollStep );
+              } else {
+                clearInterval(scrollInterval);
+              }
+            },15);
+    }
+
+    //Homepage Event Listeners
+    homepage.addEventListener('mousemove', handleMouseMove, false);
+
+    function handleMouseMove(e){
+        // Logo color
+        changeLogoColor(LOGO, e.clientX);
+
+        //Timelapse
+        timelapseMove(TIMELAPSE, e.clientX);
+        timelapseScale(TIMELAPSE_CONTAINER, e.clientX, 20);
+        timelapseScale(TIMELAPSE_OVERLAY, e.clientX, 20);
+    }
+
+
+    //Logo Variables
+    var LOGO = doc.querySelector('#logo_svg'),
+        HORIZONTAL_MARGIN = screenWidth;
+
+    function changeLogoColor(ele,xPos){
+        var horizontalPercent = Math.floor(xPos/(HORIZONTAL_MARGIN * 0.25) * 10);
+
+        ele.style.fill = "hsl(" + (horizontalPercent + 10) + ",100%,52%)";
+    }
+
+
+
+    //Title Variables
+    var TITLE = doc.querySelector('#title'),
+        SUBTITLE = doc.querySelector('#subtitle');
+
+    function timelapseMove(ele,xPos) {
+        var percent = Math.floor(xPos/screenWidth*NUM_OF_FRAMES);
+
+        ele.style.webkitTransform = "translate3d(" + - Math.max(Math.min((percent* INCREMENTS),98),0) + "%,0,0)";
+    }
+
+    function timelapseScale(ele, xPos, factor){
+        var percent = (xPos/screenWidth)/factor;
+        ele.style.webkitTransform = "scale(" + (1 + percent) + ")";
+    }
+
+    //Menu
+
+
+
+
+
+
+    //Carousel Variables
+    var carousel = doc.querySelector('#zoetrope_carousel'),
+        currentCarouselPosition = 0,
+        degrees = 60,
+        activeClass = 1;
+
+    carousel.style.webkitTransform = "rotateY(0deg)";
+
+    function setBackgroundProps () {
+        screenHeight = win.innerHeight;
+        screenWidth  = win.innerWidth;
+
+        if(screenWidth/screenHeight < 1.6){
+            TIMELAPSE_CONTAINER.classList.add('background-switch');
+        } else {
+        TIMELAPSE_CONTAINER.classList.remove('background-switch');
+        }
+    }
+    //Event Listeners
+
+
+        carousel.addEventListener('mousemove', function(e) {
+          //Swiping Carousel Desktop
+            if(mouseDown === 1 && e.clientX < carouselSwipeStart){
+                carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - e.clientX/10) + "deg)";
+            }
+            if(mouseDown === 1 && e.clientX > carouselSwipeStart){
+                carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + e.clientX/10) + "deg)";
+            }
+        }, false);
+
+        doc.addEventListener('mousedown', function(e) {
+            mouseDown = 1;
+            carouselSwipeStart = e.clientX;
+        }, false);
+
+
 
         doc.addEventListener('mouseout', function(e) {
             mouseDown = 0;
@@ -230,23 +252,5 @@ document.addEventListener('DOMContentLoaded', function() {
         timelapseScale(TIMELAPSE_OVERLAY, e.touches[0].clientX, 20);
     }
 
-function scrollToElement(scrollDuration, elementPos) {
-    var scrollStep = elementPos / (scrollDuration / 15);
-
-    var scrollInterval = setInterval(function(){
-          if(window.scrollY < elementPos){
-            window.scrollBy( 0, scrollStep );
-          } else {
-            clearInterval(scrollInterval);
-          }
-        },15);    }
-
-//Page 3 functionality
-// var emailCanvas = doc.querySelector('#contact_email_canvas'),
-//     emailCanvasCtx = emailCanvas.getContext('2d');
-
-// var path = new Path2D('M14.3,21.5h4.3l0.4,2.3h0.1c0.7-0.7,1.5-1.4,2.4-1.9c0.8-0.5,1.8-0.8,3-0.8c1.3,0,2.3,0.3,3.1,0.8c0.8,0.5,1.4,1.3,1.9,2.2c0.8-0.8,1.6-1.5,2.5-2.1c0.9-0.6,1.9-0.9,3.1-0.9c1.9,0,3.3,0.6,4.2,1.9c0.9,1.3,1.4,3,1.4,5.3v11.1h-5.3V28.9c0-1.3-0.2-2.2-0.5-2.7c-0.3-0.5-0.9-0.7-1.7-0.7c-0.9,0-1.9,0.6-3.1,1.7v12.1h-5.3V28.9c0-1.3-0.2-2.2-0.5-2.7c-0.3-0.5-0.9-0.7-1.7-0.7c-0.9,0-1.9,0.6-3,1.7v12.1h-5.3V21.5z');
-
-// emailCanvasCtx.stroke(path);
 
 }, false);
