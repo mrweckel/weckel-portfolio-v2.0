@@ -14,6 +14,33 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseDown = 0,
         videos = doc.getElementsByClassName("zoetrope_video");
 
+    // Loading Checks
+    function getBgUrl(el) {
+        var bg = win.getComputedStyle(el,null).backgroundImage;
+        return bg.replace(/url\(['"]?(.*?)['"]?\)/i, "$1");
+    }
+
+    function checkImagesLoaded(arr){
+        arr.forEach(function(bgImg){
+            console.log('hello');
+            var image = document.createElement('img');
+                image.src = getBgUrl(document.getElementById(bgImg));
+                console.log(image);
+                image.onload = function () {
+                    console.log('Loaded');
+                }
+        });
+    }
+
+    var bgImgElements = ['timelapse_reel-1','timelapse_reel-2']
+
+    checkImagesLoaded(bgImgElements);
+
+    //Initial Title Animation
+    setTimeout(function(){
+        stage.classList.add('title_animate')
+    }, 2000);
+
     //Timelapse Variables
     var NUM_OF_FRAMES = 50,
         INCREMENTS = 100/NUM_OF_FRAMES,
@@ -33,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     win.addEventListener('resize', handleResize, false);
 
     function handleMouseUp(e){
-        console.log(e);
+
         switch (e.target.id) {
             case 'menu_icon':
                 stage.classList.add('menu_active');
