@@ -1,0 +1,278 @@
+@import 'fonts';
+
+@mixin letterTransform ($rotX, $rotY, $rotZ, $transX, $transY, $transZ, $sec, $easeProp){
+  transform: rotateX($rotX) rotateY($rotY) rotateZ($rotZ) translate3d($transX, $transY, $transZ);
+  transition: all $sec $easeProp;
+}
+
+
+
+#title{
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 130px;
+  letter-spacing: 18px;
+  text-align: center;
+  position: relative;
+  font-weight: 700;
+  top: 23%;
+  width: 100%;
+  display: none;
+}
+#subtitle{
+  font-family: $font-secondary;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 8px;
+  font-weight: 700;
+  text-align: center;
+  top: 24%;
+  display: none;
+}
+#title_letters{
+  fill: #fff;
+  position: absolute;
+  top: 39%;
+  width: 600px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  overflow: visible;
+  .letter_slice{
+    stroke: #fff;
+    stroke-width: 1px;
+    opacity: 0;
+    transform-origin: center;
+  }
+  #letter-w .letter_slice{
+    &:nth-child(1){
+      @include letterTransform (200deg, 0, 0, -10px, -10px, 0, .5s, ease-in);
+    }
+    &:nth-child(2){
+      @include letterTransform (0, 0, 0, -230px, -10px, 0, .5s, ease-in);
+    }
+    &:nth-child(3){
+      @include letterTransform (0, 0, 250deg, -530px, -10px, 0, .4s, ease-in);
+    }
+    &:nth-child(4){
+      @include letterTransform (0, 0, 200deg, 0px, 250px, 0, .2s, ease-in);
+    }
+     &:nth-child(5){
+      @include letterTransform (100deg, 0, 0, 0px, 600px, 0, .3s, ease-in);
+    }
+    &:nth-child(6){
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .5s, ease-in);
+    }
+    &:nth-child(7){
+      @include letterTransform (0, 0, 250deg, 0px, 0px, 0, .2s, ease-in);
+    }
+    &:nth-child(8){
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .3s, ease-in);
+    }
+    &:nth-child(9){
+      @include letterTransform (0, 0, 0, -200px, 0, 0, .6s, ease-in);
+    }
+    &:nth-child(10){
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .5s, ease-in);
+    }
+    &:nth-child(11){
+      @include letterTransform (200deg, 0, 0, -10px, 010px, 0, .5s, ease-in);
+    }
+    &:nth-child(12){
+      @include letterTransform (0, 0, 0, 1000px, 200px, 0, .5s, ease-in);
+    }
+    &:nth-child(13){
+      @include letterTransform (0, 0, 250deg, -340px, -200px, 0, .4s, ease-in);
+    }
+    &:nth-child(14){
+      @include letterTransform (0, 0, 200deg, -1000px, 430px, 0, .2s, ease-in);
+    }
+     &:nth-child(15){
+      @include letterTransform (100deg, 0, 0, 320px, -340px, 0, .3s, ease-in);
+    }
+    &:nth-child(16){
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .5s, ease-in);
+    }
+     &:nth-child(17){
+      @include letterTransform (0, 0, 150deg, -150px, -150px, 0, .2s, ease-in);
+    }
+    &:nth-child(18){
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .5s, ease-in);
+    }
+    &:nth-child(19){
+      transform: rotateZ(200deg) translate3d(-120px, -1000px, 0);
+      transition: all .6s ease-in;
+    }
+    &:nth-child(20){
+      transform: translate3d(-150px, 150px, 0);
+      transition: all .5s ease-in;
+    }
+    &:nth-child(21){
+      transform: rotateX(200deg) translate3d(-10px, -10px, 0);
+      transition: all .5s ease-in;
+    }
+    &:nth-child(22){
+      transform: rotateX(200deg) translate3d(-10px, -10px, 0);
+      transition: all .5s ease-in;
+    }
+    &:nth-child(23){
+      transform: rotateX(200deg) translate3d(-10px, -10px, 0);
+      transition: all .5s ease-in;
+    }
+  }
+  #letter-e-1 .letter_slice{
+    transition-delay: .4s !important;
+    &:nth-child(1){
+      @include letterTransform (100deg, -20deg, 0, 1000px, 400px, 0, .5s, ease-in);
+    }
+    &:nth-child(2){
+      @include letterTransform (100deg, -20deg, 0, -150px, 400px, 0, .5s, ease-in);
+    }
+    &:nth-child(3){
+      @include letterTransform (100deg, -20deg, 0, -300px, -400px, 0, .5s, ease-in);
+    }
+    &:nth-child(4){
+      @include letterTransform (100deg, -20deg, 0, 200px, 400px, 0, .5s, ease-in);
+    }
+    &:nth-child(5){
+      @include letterTransform (100deg, -20deg, 0,-350px, -400px, 0, .4s, ease-in);
+    }
+    &:nth-child(6){
+      @include letterTransform (100deg, -20deg, 0,-600px, 600px, 0, .6s, ease-in);
+    }
+    &:nth-child(7){
+      @include letterTransform (100deg, -20deg, 0, -400px, 0, 0, .3s, ease-in);
+    }
+    &:nth-child(8){
+      @include letterTransform (100deg, -20deg, 0, 400px, 0, 0, .2s, ease-in);
+    }
+    &:nth-child(9){
+      @include letterTransform (100deg, -20deg, 0,500px, -400px, 0, .6s, ease-in);
+    }
+    &:nth-child(10){
+      @include letterTransform (100deg, -20deg, 0,120px, 400px, 0, .6s, ease-in);
+    }
+  }
+  #letter-c .letter_slice{
+    transition-delay: .8s !important;
+    &:nth-child(1){
+      @include letterTransform (100deg, -20deg, 0, 0, 400px, 0, .2s, ease-in);
+    }
+    &:nth-child(2){
+      @include letterTransform (0deg, -20deg, 0, -150px, 400px, 0, .2s, ease-in);
+    }
+    &:nth-child(3){
+      @include letterTransform (-30deg, -20deg, 0, -300px, -400px, 0, .2s, ease-in);
+    }
+    &:nth-child(4){
+      @include letterTransform (-300deg, -20deg, 0, 200px, 400px, 0, .2s, ease-in);
+    }
+    &:nth-child(5){
+      @include letterTransform (230deg, -20deg, 0, -350px, -400px, 0, .4s, linear);
+    }
+    &:nth-child(6){
+      @include letterTransform (0deg, -20deg, 0, -600px, 600px, 0, .6s, linear);
+    }
+    &:nth-child(7){
+      @include letterTransform (0deg, -20deg, 0, -400px, 0, 0, .3s, linear);
+    }
+    &:nth-child(8){
+      @include letterTransform (327deg, -20deg, 0, 400px, 0, 0, .2s, linear);
+    }
+    &:nth-child(9){
+      @include letterTransform (-102deg, -20deg, 0, -400px, 0, 0, .2s, linear);
+    }
+    &:nth-child(10){
+      @include letterTransform (128deg, -20deg, 0, 400px, 0, 0, .2s, linear);
+    }
+    &:nth-child(11){
+      @include letterTransform (100deg, -20deg, 0, 400px, 0, 0, .2s, linear);
+    }
+  }
+  #letter-k .letter_slice{
+     transition-delay: 1.1s !important;
+    &:nth-child(1){
+      @include letterTransform (100deg, -200deg, 0, 1000px, 400px, 0, .5s, ease-in);
+    }
+    &:nth-child(2){
+      @include letterTransform (230deg, -200deg, 0, -1250px, 300px, 0, .5s, ease-in);
+    }
+    &:nth-child(3){
+      @include letterTransform (180deg, -200deg, 0, -300px, -1000px, 0, .5s, ease-in);
+    }
+    &:nth-child(4){
+      @include letterTransform (100deg, -200deg, 0, 200px, 250px, 0, .5s, ease-in);
+    }
+    &:nth-child(5){
+      @include letterTransform (100deg, -200deg, 0,-350px, -1400px, 0, .4s, ease-in);
+    }
+    &:nth-child(6){
+      @include letterTransform (100deg, -200deg, 0,-600px, 1200px, 0, .6s, ease-in);
+    }
+    &:nth-child(7){
+      @include letterTransform (100deg, -20deg, 0, -400px, 0, 0, .3s, ease-in);
+    }
+    &:nth-child(8){
+      @include letterTransform (100deg, -20deg, 0, 800px, 0, 0, .2s, ease-in);
+    }
+    &:nth-child(9){
+      @include letterTransform (100deg, -20deg, 0,500px, -800px, 0, .6s, ease-in);
+    }
+    &:nth-child(10){
+      @include letterTransform (100deg, -20deg, 0,120px, 620px, 0, .6s, ease-in);
+    }
+    &:nth-child(11){
+      @include letterTransform (100deg, -20deg, 0,-1120px, 450px, 0, .6s, ease-in);
+    }
+    &:nth-child(12){
+      @include letterTransform (100deg, 200deg, 150deg, 0, 0, 0, .3s, ease-in);
+    }
+    &:nth-child(13){
+      @include letterTransform (100deg, -20deg, 0,-820px, 660px, 0, .6s, ease-in);
+    }
+    &:nth-child(14){
+      @include letterTransform (100deg, -200deg, 300deg, 0, 0, 0, .2s, ease-in);
+    }
+  }
+  #letter-e-2 .letter_slice{
+    transition-delay: 1.4s !important;
+    &:nth-child(1){
+      @include letterTransform (100deg, -20deg, 0, 1000px, 400px, 0, .5s, ease-in);
+    }
+    &:nth-child(2){
+      @include letterTransform (100deg, -20deg, 0, -150px, 400px, 0, .5s, ease-in);
+    }
+    &:nth-child(3){
+      @include letterTransform (100deg, -20deg, 0, -300px, -400px, 0, .5s, ease-in);
+    }
+    &:nth-child(4){
+      @include letterTransform (100deg, -20deg, 0, 200px, 400px, 0, .5s, ease-in);
+    }
+    &:nth-child(5){
+      @include letterTransform (100deg, -20deg, 0,-350px, -400px, 0, .4s, ease-in);
+    }
+    &:nth-child(6){
+      @include letterTransform (100deg, -20deg, 0,-600px, 600px, 0, .6s, ease-in);
+    }
+    &:nth-child(7){
+      @include letterTransform (100deg, -20deg, 0, -400px, 0, 0, .3s, ease-in);
+    }
+    &:nth-child(8){
+      @include letterTransform (100deg, -20deg, 0, 400px, 0, 0, .2s, ease-in);
+    }
+    &:nth-child(9){
+      @include letterTransform (100deg, -20deg, 0,500px, -400px, 0, .6s, ease-in);
+    }
+    &:nth-child(10){
+      @include letterTransform (100deg, -20deg, 0,120px, 400px, 0, .6s, ease-in);
+    }
+  }
+  #letter-l .letter_slice{
+    opacity: 0 !important;
+  }
+}
+#stage.title_animate #title_letters .letter_slice{
+  transform: rotate(0);
+  opacity: 1;
+}
