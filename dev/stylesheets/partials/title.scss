@@ -46,11 +46,12 @@
     transform-origin: center;
   }
   #letter-w .letter_slice{
+    animation-delay: .9s;
     &:nth-child(1){
-      @include letterTransform (200deg, 0, 0, -10px, -10px, 0, .5s, ease-in);
+      @include letterTransform (200deg, 0, 0, -10px, -10px, 0, .3s, ease-in);
     }
     &:nth-child(2){
-      @include letterTransform (0, 0, 0, -230px, -10px, 0, .5s, ease-in);
+      @include letterTransform (0, 0, 0, -230px, -10px, 0, .3s, ease-in);
     }
     &:nth-child(3){
       @include letterTransform (0, 0, 250deg, -530px, -10px, 0, .4s, ease-in);
@@ -62,7 +63,7 @@
       @include letterTransform (100deg, 0, 0, 0px, 600px, 0, .3s, ease-in);
     }
     &:nth-child(6){
-      @include letterTransform (0, 0, 0, -150px, 150px, 0, .5s, ease-in);
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .3s, ease-in);
     }
     &:nth-child(7){
       @include letterTransform (0, 0, 250deg, 0px, 0px, 0, .2s, ease-in);
@@ -74,13 +75,13 @@
       @include letterTransform (0, 0, 0, -200px, 0, 0, .6s, ease-in);
     }
     &:nth-child(10){
-      @include letterTransform (0, 0, 0, -150px, 150px, 0, .5s, ease-in);
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .3s, ease-in);
     }
     &:nth-child(11){
-      @include letterTransform (200deg, 0, 0, -10px, 010px, 0, .5s, ease-in);
+      @include letterTransform (200deg, 0, 0, -10px, 010px, 0, .3s, ease-in);
     }
     &:nth-child(12){
-      @include letterTransform (0, 0, 0, 1000px, 200px, 0, .5s, ease-in);
+      @include letterTransform (0, 0, 0, 1000px, 200px, 0, .3s, ease-in);
     }
     &:nth-child(13){
       @include letterTransform (0, 0, 250deg, -340px, -200px, 0, .4s, ease-in);
@@ -92,48 +93,43 @@
       @include letterTransform (100deg, 0, 0, 320px, -340px, 0, .3s, ease-in);
     }
     &:nth-child(16){
-      @include letterTransform (0, 0, 0, -150px, 150px, 0, .5s, ease-in);
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .3s, ease-in);
     }
      &:nth-child(17){
       @include letterTransform (0, 0, 150deg, -150px, -150px, 0, .2s, ease-in);
     }
     &:nth-child(18){
-      @include letterTransform (0, 0, 0, -150px, 150px, 0, .5s, ease-in);
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .3s, ease-in);
     }
     &:nth-child(19){
-      transform: rotateZ(200deg) translate3d(-120px, -1000px, 0);
-      transition: all .6s ease-in;
+      @include letterTransform (0, 0, 200deg, -120px, -1000px, 0, .4s, ease-in);
     }
     &:nth-child(20){
-      transform: translate3d(-150px, 150px, 0);
-      transition: all .5s ease-in;
+      @include letterTransform (0, 0, 0, -150px, -150px, 0, .15s, ease-in);
     }
     &:nth-child(21){
-      transform: rotateX(200deg) translate3d(-10px, -10px, 0);
-      transition: all .5s ease-in;
+      @include letterTransform (200deg, 0, 0, -10px, -10px, 0, .2s, ease-in);
     }
     &:nth-child(22){
-      transform: rotateX(200deg) translate3d(-10px, -10px, 0);
-      transition: all .5s ease-in;
+      @include letterTransform (200deg, 0, 0, -10px, -10px, 0, .2s, ease-in);
     }
     &:nth-child(23){
-      transform: rotateX(200deg) translate3d(-10px, -10px, 0);
-      transition: all .5s ease-in;
+      @include letterTransform (200deg, 0, 0, -10px, -10px, 0, .3s, ease-in);
     }
   }
   #letter-e-1 .letter_slice{
     transition-delay: .4s !important;
     &:nth-child(1){
-      @include letterTransform (100deg, -20deg, 0, 1000px, 400px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -20deg, 0, 1000px, 400px, 0, .3s, ease-in);
     }
     &:nth-child(2){
-      @include letterTransform (100deg, -20deg, 0, -150px, 400px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -20deg, 0, -150px, 400px, 0, .3s, ease-in);
     }
     &:nth-child(3){
-      @include letterTransform (100deg, -20deg, 0, -300px, -400px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -20deg, 0, -300px, -400px, 0, .3s, ease-in);
     }
     &:nth-child(4){
-      @include letterTransform (100deg, -20deg, 0, 200px, 400px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -20deg, 0, 200px, 400px, 0, .3s, ease-in);
     }
     &:nth-child(5){
       @include letterTransform (100deg, -20deg, 0,-350px, -400px, 0, .4s, ease-in);
@@ -155,7 +151,7 @@
     }
   }
   #letter-c .letter_slice{
-    transition-delay: .8s !important;
+    transition-delay: .3s !important;
     &:nth-child(1){
       @include letterTransform (100deg, -20deg, 0, 0, 400px, 0, .2s, ease-in);
     }
@@ -191,18 +187,18 @@
     }
   }
   #letter-k .letter_slice{
-     transition-delay: 1.1s !important;
+     transition-delay: .5s !important;
     &:nth-child(1){
-      @include letterTransform (100deg, -200deg, 0, 1000px, 400px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -200deg, 0, 1000px, 400px, 0, .3s, ease-in);
     }
     &:nth-child(2){
-      @include letterTransform (230deg, -200deg, 0, -1250px, 300px, 0, .5s, ease-in);
+      @include letterTransform (230deg, -200deg, 0, -1250px, 300px, 0, .3s, ease-in);
     }
     &:nth-child(3){
-      @include letterTransform (180deg, -200deg, 0, -300px, -1000px, 0, .5s, ease-in);
+      @include letterTransform (180deg, -200deg, 0, -300px, -1000px, 0, .3s, ease-in);
     }
     &:nth-child(4){
-      @include letterTransform (100deg, -200deg, 0, 200px, 250px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -200deg, 0, 200px, 250px, 0, .3s, ease-in);
     }
     &:nth-child(5){
       @include letterTransform (100deg, -200deg, 0,-350px, -1400px, 0, .4s, ease-in);
@@ -236,18 +232,18 @@
     }
   }
   #letter-e-2 .letter_slice{
-    transition-delay: 1.4s !important;
+    transition-delay: .2s !important;
     &:nth-child(1){
-      @include letterTransform (100deg, -20deg, 0, 1000px, 400px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -20deg, 0, 1000px, 400px, 0, .3s, ease-in);
     }
     &:nth-child(2){
-      @include letterTransform (100deg, -20deg, 0, -150px, 400px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -20deg, 0, -150px, 400px, 0, .3s, ease-in);
     }
     &:nth-child(3){
-      @include letterTransform (100deg, -20deg, 0, -300px, -400px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -20deg, 0, -300px, -400px, 0, .3s, ease-in);
     }
     &:nth-child(4){
-      @include letterTransform (100deg, -20deg, 0, 200px, 400px, 0, .5s, ease-in);
+      @include letterTransform (100deg, -20deg, 0, 200px, 400px, 0, .3s, ease-in);
     }
     &:nth-child(5){
       @include letterTransform (100deg, -20deg, 0,-350px, -400px, 0, .4s, ease-in);
@@ -269,7 +265,33 @@
     }
   }
   #letter-l .letter_slice{
-    opacity: 0 !important;
+        &:nth-child(1){
+      @include letterTransform (200deg, 0, 0, -10px, -10px, 0, .3s, ease-in);
+    }
+    &:nth-child(2){
+      @include letterTransform (0, 0, 0, -230px, -10px, 0, .3s, ease-in);
+    }
+    &:nth-child(3){
+      @include letterTransform (0, 0, 250deg, -530px, -10px, 0, .4s, ease-in);
+    }
+    &:nth-child(4){
+      @include letterTransform (0, 0, 200deg, 0px, 250px, 0, .2s, ease-in);
+    }
+     &:nth-child(5){
+      @include letterTransform (100deg, 0, 0, 0px, 600px, 0, .3s, ease-in);
+    }
+    &:nth-child(6){
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .3s, ease-in);
+    }
+    &:nth-child(7){
+      @include letterTransform (0, 0, 250deg, 0px, 0px, 0, .2s, ease-in);
+    }
+    &:nth-child(8){
+      @include letterTransform (0, 0, 0, -150px, 150px, 0, .3s, ease-in);
+    }
+    &:nth-child(9){
+      @include letterTransform (300deg, 0, 0, 0px, 0, 0, .6s, ease-in);
+    }
   }
 }
 #stage.title_animate #title_letters .letter_slice{
