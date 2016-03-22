@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         switch (e.target.id) {
             case 'menu_icon':
                 stage.classList.add('menu_active');
+                stage.classList.remove('title_animate');
                 TweenMax.to(MENUPATH,1, {morphSVG: {shape: filmPath, shapeIndex:1}});
                 break;
 
