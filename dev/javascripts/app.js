@@ -14,31 +14,30 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseDown = 0,
         videos = doc.getElementsByClassName("zoetrope_video");
 
+
     // Loading Checks
-    function getBgUrl(el) {
-        var bg = win.getComputedStyle(el,null).backgroundImage;
-        return bg.replace(/url\(['"]?(.*?)['"]?\)/i, "$1");
-    }
+        function getBgUrl(el) {
+            var bg = win.getComputedStyle(el,null).backgroundImage;
+            return bg.replace(/url\(['"]?(.*?)['"]?\)/i, "$1");
+        }
 
-    function checkImagesLoaded(arr){
-        arr.forEach(function(bgImg){
-            console.log('hello');
-            var image = document.createElement('img');
-                image.src = getBgUrl(document.getElementById(bgImg));
-                console.log(image);
-                image.onload = function () {
-                    console.log('Loaded');
-                }
-        });
-    }
+        function checkImagesLoaded(arr){
+            arr.forEach(function(bgImg){
+                var image = document.createElement('img');
+                    image.src = getBgUrl(document.getElementById(bgImg));
+                    image.onload = function () {
+                        console.log('Loaded');
+                    };
+            });
+        }
 
-    var bgImgElements = ['timelapse_reel-1','timelapse_reel-2']
+        var bgImgElements = ['timelapse_reel-1','timelapse_reel-2'];
 
-    checkImagesLoaded(bgImgElements);
+        checkImagesLoaded(bgImgElements);
 
     //Initial Title Animation
     setTimeout(function(){
-        stage.classList.add('title_animate')
+        stage.classList.add('title_animate');
     }, 2000);
 
     //Timelapse Variables
@@ -172,11 +171,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //Menu
 
-
-
-
-
-
     //Carousel Variables
     var carousel = doc.querySelector('#zoetrope_carousel'),
         currentCarouselPosition = 0,
@@ -196,8 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     //Event Listeners
-
-
         carousel.addEventListener('mousemove', function(e) {
           //Swiping Carousel Desktop
             if(mouseDown === 1 && e.clientX < carouselSwipeStart){
@@ -218,39 +210,6 @@ document.addEventListener('DOMContentLoaded', function() {
         doc.addEventListener('mouseout', function(e) {
             mouseDown = 0;
         }, false);
-
-    //custom functions
-
-        function movePanelRight(){
-            currentCarouselPosition += 60;
-            var lastClass = activeClass;
-            activeClass > 1 ? activeClass -= 1 : activeClass = 6;
-            updateClass(carousel, activeClass);
-            playVideo(videos, activeClass);
-            console.log("last class = " + lastClass);
-            stopVideo(videos, lastClass);
-        }
-
-        function movePanelLeft(){
-            currentCarouselPosition -= 60;
-            var lastClass = activeClass;
-            activeClass < 6 ? activeClass += 1 : activeClass = 1;
-            updateClass(carousel, activeClass);
-            playVideo(videos, activeClass);
-            stopVideo(videos, lastClass);
-        }
-
-        function updateClass(ele,activeNum){
-            ele.className = "active-" + activeNum;
-        }
-
-        function playVideo(videoArr, num){
-            videoArr[num-1].play();
-        }
-
-        function stopVideo(videoArr, num){
-            videoArr[num-1].pause();
-        }
 
 
     //SVG icons

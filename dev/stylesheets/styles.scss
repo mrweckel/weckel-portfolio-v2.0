@@ -74,15 +74,14 @@ body{
       opacity: 0;
       transition: 1s opacity ease-in;
       transition-delay: 1.5s;
-      font-family: $font-secondary;
       #menu_heading{
-        font-size: 2.5em;
+        font-size: 2.4em;
         letter-spacing: 1px;
         text-transform: uppercase;
         position: relative;
         text-align: center;
-        font-weight: bold;
         margin-bottom: 8px;
+        font-weight: 300;
       }
       #menu_subheading{
         font-size: .8em;
@@ -90,7 +89,16 @@ body{
         text-transform: uppercase;
         position: relative;
         text-align: center;
+        font-family: $font-secondary;
       }
+    }
+    #menu_contact{
+      text-align: center;
+      text-transform: uppercase;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10%;
     }
     .nav_option{
       display: none;
