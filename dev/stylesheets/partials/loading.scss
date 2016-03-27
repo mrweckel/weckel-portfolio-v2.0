@@ -1,0 +1,84 @@
+#loading_container{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 99999;
+  }
+    #outline{
+      fill: #fff;
+      stroke: #fff;
+      display: none;
+    }
+    #bg-fill{
+      fill: #000;
+      transform: translateY(100%);
+      transition: all 1s ease;
+      transition-delay: 2s;
+      display: none;
+    }
+    #loading_shadow{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: 0 auto;
+      #shadow{
+        stroke-dasharray: 760;
+        stroke-dashoffset: -760;
+        transition: all 1.5s ease-in;
+        transition-delay: 1s;
+      }
+    }
+    #loading_ball{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: 0 auto;
+      #ball{
+        animation: bounce .5s ease-out infinite alternate;
+      }
+      #circle{
+        stroke-dasharray: 360;
+        stroke-dashoffset: -360;
+        fill: #fff;
+        transition: all 1s ease;
+        transition-delay: 1s;
+      }
+    }
+      #highlight{
+        // display: none;
+        stroke: #000;
+        stroke-dasharray: 360;
+        stroke-dashoffset: -360;
+        transition: all .75s ease-in;
+        transition-delay: 1.5s;
+      }
+
+
+//Animation Active
+#stage.start_loading_animation #loading_container {
+  #bg-fill{
+    transform: translateY(0);
+  }
+  #shadow{
+    stroke-dashoffset: 0;
+  }
+  #circle{
+    stroke-dashoffset: 0;
+  }
+  #highlight{
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes bounce{
+  100%{transform: translateY(-100%)}
+}

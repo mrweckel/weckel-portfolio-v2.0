@@ -1,5 +1,6 @@
 @import 'partials/colors';
 @import 'partials/fonts';
+@import 'partials/loading';
 @import 'partials/title';
 @import 'reset.scss';
 
@@ -142,19 +143,6 @@ body{
   }
   #page-1{
     background-color: #000;
-    // &:before{
-    //   content: '';
-    //   position: absolute;
-    //   height: 100%;
-    //   width: 100%;
-    //   left: 0;
-    //   top: 0;
-    //   background-image: url('../imgs/temp-timelapse-bg-4.jpg');
-    //   background-position: center;
-    //   background-size: cover;
-    //   background-repeat: no-repeat;
-    //   opacity: .9;
-    // }
   }
     #timelapse_container{
       position: absolute;
@@ -168,8 +156,6 @@ body{
         width: $timelapseContainerWidth;
         top: 0;
         left: 0;
-        // transform: translateX(-(2*$timelapseDiff)+%);
-        // transform: translateX(-99%);
         .timelapse_reel{
           position: absolute;
           width: $timelapseDiff+%;
@@ -230,7 +216,6 @@ body{
       #logo_mover{
         height: 100%;
         width: 100%;
-       // transform: rotate3d(0, 1, 0, 205deg);
       }
         #logo{
           height: 100%;
@@ -886,3 +871,4 @@ body{
   60%{transform: translate3d(-2%,-47%,0);}
   100%{transform: translate3d(2%,-51%,0);}
 }
+

@@ -9,11 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
         homepage = doc.querySelector('#page-1'),
         screenHeight = win.innerHeight,
         screenWidth = win.innerWidth,
-        carouselSwipeStart = 0,
         originalScreenPosition = 0,
         mouseDown = 0,
         videos = doc.getElementsByClassName("zoetrope_video");
 
+    //Loading Animation
+        stage.classList.add('start_loading_animation');
 
     // Loading Checks
         function getBgUrl(el) {
@@ -93,22 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             mouseDown = 0;
 
-            if(e.clientX - carouselSwipeStart < -100 && e.clientX < carouselSwipeStart){
-                movePanelLeft();
-                carousel.style.webkitTransform = "rotateY(" + currentCarouselPosition + "deg)";
-                console.log("Minus = " + (carouselSwipeStart - e.clientX));
-            } else {
-                carousel.style.webkitTransform = "rotateY(" + currentCarouselPosition + "deg)";
-            }
-
-            if(carouselSwipeStart + e.clientX > 100 && e.clientX > carouselSwipeStart){
-                movePanelRight();
-                carousel.style.webkitTransform = "rotateY(" + currentCarouselPosition + "deg)";
-                console.log("Plus = " + currentCarouselPosition + e.clientX);
-            } else {
-                carousel.style.webkitTransform = "rotateY(" + currentCarouselPosition + "deg)";
-            }
-
         }, false);
 
     function handleResize(e){
@@ -169,16 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ele.style.webkitTransform = "scale(" + (1 + percent) + ")";
     }
 
-    //Menu
-
-    //Carousel Variables
-    var carousel = doc.querySelector('#zoetrope_carousel'),
-        currentCarouselPosition = 0,
-        degrees = 60,
-        activeClass = 1;
-
-    carousel.style.webkitTransform = "rotateY(0deg)";
-
     function setBackgroundProps () {
         screenHeight = win.innerHeight;
         screenWidth  = win.innerWidth;
@@ -190,22 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     //Event Listeners
-        carousel.addEventListener('mousemove', function(e) {
-          //Swiping Carousel Desktop
-            if(mouseDown === 1 && e.clientX < carouselSwipeStart){
-                carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition - e.clientX/10) + "deg)";
-            }
-            if(mouseDown === 1 && e.clientX > carouselSwipeStart){
-                carousel.style.webkitTransform = "rotateY(" + (currentCarouselPosition + e.clientX/10) + "deg)";
-            }
-        }, false);
-
-        doc.addEventListener('mousedown', function(e) {
-            mouseDown = 1;
-            carouselSwipeStart = e.clientX;
-        }, false);
-
-
 
         doc.addEventListener('mouseout', function(e) {
             mouseDown = 0;
