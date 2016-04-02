@@ -22,24 +22,48 @@ document.addEventListener('DOMContentLoaded', function() {
             return bg.replace(/url\(['"]?(.*?)['"]?\)/i, "$1");
         }
 
-        function checkImagesLoaded(arr){
-            arr.forEach(function(bgImg){
+        function checkImagesLoaded(arr,cb){
+
+            var lastElement = arr.length - 1,
+                timePassed = false,
+                imgsLoaded = false;
+
+            setTimeout(
+                function(){
+                    timePassed = true;
+                    if(imgsLoaded === true){
+                        return cb();
+                    }
+            }, 5000);
+
+            arr.forEach(function(bgImg,index){
                 var image = document.createElement('img');
                     image.src = getBgUrl(document.getElementById(bgImg));
                     image.onload = function () {
-                        console.log('Loaded');
+                        if(index === lastElement){
+                            imgsLoaded = true;
+                            console.log(imgsLoaded);
+                            if(timePassed === true){
+                                return cb();
+                            }
+                        }
                     };
             });
         }
 
         var bgImgElements = ['timelapse_reel-1','timelapse_reel-2'];
 
-        checkImagesLoaded(bgImgElements);
+        checkImagesLoaded(bgImgElements,removeLoadingContainer);
+
 
     //Initial Title Animation
-    setTimeout(function(){
-        stage.classList.add('title_animate');
-    }, 2000);
+        function removeLoadingContainer(){
+            stage.classList.remove('container_loading_active');
+                stage.classList.remove('start_loading_animation');
+                setTimeout(function(){
+                    stage.classList.add('title_animate');
+                }, 1000);
+        }
 
     //Timelapse Variables
     var NUM_OF_FRAMES = 50,
@@ -123,7 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
         //Timelapse
         timelapseMove(TIMELAPSE, e.clientX);
         timelapseScale(TIMELAPSE_CONTAINER, e.clientX, 20);
-        timelapseScale(TIMELAPSE_OVERLAY, e.clientX, 20);
     }
 
 
@@ -195,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         timelapseMove(TIMELAPSE, e.touches[0].clientX);
         timelapseScale(TIMELAPSE_CONTAINER, e.touches[0].clientX, 20);
-        timelapseScale(TIMELAPSE_OVERLAY, e.touches[0].clientX, 20);
     }
 
 
