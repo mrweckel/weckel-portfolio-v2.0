@@ -22,10 +22,16 @@ html{
 body{
   height: 100%;
   color: #fff;
+  background-color: #1B1B1B;
   font-size: 20px;
   transition: all .3s ease;
   font-family: $font-primary, sans-serif;
   overflow: hidden;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.clickable{
+  cursor: pointer;
 }
 
 #stage{
@@ -47,15 +53,39 @@ body{
   #film_icon{
     display: none;
   }
-  #menu_icon{
-    height: 30px;
-    width: 30px;
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    z-index: 999999;
-    path{
+  #menu_icon_container{
+      height: 90px;
+      width: 90px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 999999;
+      transform: translateZ(500px);
+    #menu_icon{
+      position: absolute;
+      height: 33%;
+      width: 33%;
+      top: 30px;
+      left: 30px;
       pointer-events: none;
+    }
+  }
+  #close_button_container{
+      height: 90px;
+      width: 90px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 999999;
+      transform: translateZ(500px);
+      pointer-events: none;
+    #close_button{
+      position: absolute;
+      height: 33%;
+      width: 33%;
+      top: 30px;
+      left: 30px;
+      display: none;
     }
   }
   #menu_container{
@@ -108,6 +138,15 @@ body{
       display: none;
     }
   }
+
+  #stage.menu_active {
+    #menu_icon_container{
+      pointer-events: none;
+    }
+    #close_button_container{
+      pointer-events: auto;
+    }
+  }
   #stage.menu_active #menu_container{
     opacity: 1;
     pointer-events: all;
@@ -115,6 +154,7 @@ body{
     #menu_titles{
       opacity: 1;
     }
+
   }
 
   .page{
@@ -172,12 +212,10 @@ body{
           background-image: url('../imgs/tl-1b.jpg');
           left: 0;
           width: 50%;
-          transform: translateZ(300px);
         }
         #timelapse_reel-2{
           background-image: url('../imgs/tl-2b.jpg');
           left: $timelapseDiff + %;
-          transform: translateZ(300px);
         }
       }
       &.background-switch{
@@ -270,475 +308,6 @@ body{
       animation: videoContainerHover 2s ease-in-out infinite alternate;
 
     }
-      #zoetrope_carousel{
-        height:100%;
-        width: 100%;
-        position: absolute;
-        transform-style: preserve-3d;
-        transition: all 1s ease;
-        transform: rotateY(0deg);
-        &.active-1{
-          #zoetrope_item-1{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: 0;
-            }
-            .zoetrope_item_overlay{
-              opacity: 1;
-              transform: scale(1);
-              .zoetrope_overlay_title{
-                opacity: 1;
-                transform: scale(1);
-              }
-            }
-              .zoetrope_overlay_roles{
-                opacity: 1;
-              }
-            .play_button{
-              @include playButtonActive;
-            }
-          }
-          #zoetrope_item-2{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-          #zoetrope_item-6{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-        }
-        &.active-2{
-          #zoetrope_item-2{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: 0;
-            }
-            .zoetrope_item_overlay{
-              opacity: 1;
-              transform: scale(1);
-              .zoetrope_overlay_title{
-                opacity: 1;
-                transform: scale(1);
-              }
-                .zoetrope_overlay_roles{
-                  opacity: 1;
-                }
-              .play_button{
-                @include playButtonActive;
-              }
-            }
-
-          }
-          #zoetrope_item-1{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-          #zoetrope_item-3{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-        }
-        &.active-3{
-          #zoetrope_item-3{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: 0;
-            }
-            .zoetrope_item_overlay{
-              opacity: 1;
-              transform: scale(1);
-            }
-            .zoetrope_item_overlay{
-              opacity: 1;
-              transform: scale(1);
-              .zoetrope_overlay_title{
-                opacity: 1;
-                transform: scale(1);
-              }
-            }
-              .zoetrope_overlay_roles{
-                opacity: 1;
-              }
-            .play_button{
-              @include playButtonActive;
-            }
-          }
-          #zoetrope_item-2{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-          #zoetrope_item-4{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-        }
-        &.active-4{
-          #zoetrope_item-4{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: 0;
-            }
-            .zoetrope_item_overlay{
-              opacity: 1;
-              transform: scale(1);
-              .zoetrope_overlay_title{
-                opacity: 1;
-                transform: scale(1);
-              }
-              .zoetrope_overlay_roles{
-                opacity: 1;
-              }
-              .play_button{
-                @include playButtonActive;
-              }
-            }
-          }
-          #zoetrope_item-3{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-          #zoetrope_item-5{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-        }
-        &.active-5{
-          #zoetrope_item-5{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: 0;
-            }
-            .zoetrope_item_overlay{
-              opacity: 1;
-              transform: scale(1);
-              .zoetrope_overlay_title{
-                opacity: 1;
-                transform: scale(1);
-              }
-              .zoetrope_overlay_roles{
-                opacity: 1;
-              }
-              .play_button{
-                @include playButtonActive;
-              }
-            }
-          }
-          #zoetrope_item-4{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-          #zoetrope_item-6{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-        }
-        &.active-6{
-          #zoetrope_item-6{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: 0;
-            }
-            .zoetrope_item_overlay{
-              opacity: 1;
-              transform: scale(1);
-              .zoetrope_overlay_title{
-                opacity: 1;
-                transform: scale(1);
-              }
-              .zoetrope_overlay_roles{
-                opacity: 1;
-              }
-              .play_button{
-                @include playButtonActive;
-              }
-            }
-          }
-          #zoetrope_item-5{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-          #zoetrope_item-1{
-            &:before{
-              opacity: 0;
-            }
-            &:after{
-              opacity: .8;
-            }
-          }
-        }
-      }
-        .zoetrope_item{
-          display: block;
-          height: 226px;
-          width: 400px;
-          border: 1px solid rgba(255,255,255,1);
-          position: absolute;
-          left: 0;
-          right: 0;
-          margin: 0 auto;
-          top: 50%;
-          transform: translate3d(0,-50%,0);
-          z-index: 999;
-          &:before{
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            left: 0;
-            top: 0;
-            background-color: rgba(255,255,255,1);
-            opacity: 1;
-            transition: 1.25s opacity ease-out;
-            z-index: 999;
-          }
-          &:after{
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            left: 0;
-            top: 0;
-            background-color: rgba(0,0,0,1);
-            opacity: 1;
-            transition: 1.25s opacity ease-out;
-          }
-          .zoetrope_item_inner{
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            left: 0;
-            top: 0;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            backface-visibility: hidden;
-          }
-          .zoetrope_video{
-            height: 226px;
-            width: 400px;
-            position: absolute;
-            left: 0;
-            top: 0;
-          }
-          .zoetrope_item_overlay{
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            left: 0;
-            top: 0;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,.63)0%, rgba(0,0,0,.7)100%);
-            opacity: 0;
-            transition: all .5s ease;
-            // transform: scale(.99);
-          }
-            .zoetrope_overlay_title{
-              font-weight: 300;
-              text-transform: uppercase;
-              font-size: 18px;
-              letter-spacing: 2px;
-              text-align: center;
-              margin-top: 68px;
-              font-family: $font-secondary;
-              transform: scale(.7);
-              opacity: 0;
-              transition: all 1.5s ease-out;
-            }
-            .zoetrope_overlay_roles{
-              text-align: center;
-              font-size: 0;
-              padding: 8px;
-              opacity: 0;
-              transition: all 1s ease;
-              transition-delay: 1.25s;
-            }
-              .zoetrope_overlay_role{
-                font-family: $font-primary;
-                font-size: 8px;
-                letter-spacing: .5px;
-                display: inline-block;
-                text-transform: uppercase;
-                &:first-child{
-                  &:after{
-                    content: '';
-                    display: inline-block;
-                    height: 2px;
-                    width: 2px;
-                    border-radius: 50%;
-                    background-color: #fff;
-                    margin-left: 5px;
-                    margin-bottom: 2.5px;
-                  }
-                }
-                &:last-child{
-                  margin-left: 5px;
-                }
-              }
-            .play_button{
-              height: 45px;
-              width: 45px;
-              position: absolute;
-              left: 0;
-              right: 0;
-              margin: 0 auto;
-              top: 55%;
-              stroke-width: 8px;
-              transform: translateX(7px);
-              stroke-dasharray: 455;
-              stroke-dashoffset: 455;
-              opacity: 0;
-              transition: .2s opacity ease;
-            }
-            .zoetrope_iframe{
-              height: 100%;
-              width: 100%;
-              position: absolute;
-              top: 0;
-              left: 0;
-            }
-        }
-        #zoetrope_item-1 .zoetrope_item_inner{
-          background-image: url('../imgs/bg-slide-1.jpg');
-        }
-        #zoetrope_item-2 .zoetrope_item_inner{
-          background-image: url('../imgs/bg-slide-2.jpg');
-        }
-        #zoetrope_item-3 .zoetrope_item_inner{
-          background-image: url('../imgs/bg-slide-3.jpg');
-        }
-        #zoetrope_item-4 .zoetrope_item_inner{
-          background-image: url('../imgs/bg-slide-4.jpg');
-        }
-        #zoetrope_item-5 .zoetrope_item_inner{
-          background-image: url('../imgs/bg-slide-5.jpg');
-        }
-        #zoetrope_item-6 .zoetrope_item_inner{
-          background-image: url('../imgs/bg-slide-6.jpg');
-        }
-        #zoetrope_item-1{
-          transform: rotateY(0deg) translateX(0) translateY(-50%) translateZ(400px);
-        }
-        #zoetrope_item-2{
-          transform: rotateY(60deg) translateX(0) translateY(-50%) translateZ(400px);
-        }
-        #zoetrope_item-3{
-          transform: rotateY(120deg) translateX(0) translateY(-50%) translateZ(400px);
-        }
-        #zoetrope_item-4{
-          transform: rotateY(180deg) translateX(0) translateY(-50%) translateZ(400px);
-        }
-        #zoetrope_item-5{
-          transform: rotateY(240deg) translateX(0) translateY(-50%) translateZ(400px);
-        }
-        #zoetrope_item-6{
-          transform: rotateY(300deg) translateX(0) translateY(-50%) translateZ(400px);
-        }
-
-//Page 3
-  #page-3{
-    background-color: #fff;
-    display: none;
-    // &:before{
-    //   content: '';
-    //   position: absolute;
-    //   height: 96%;
-    //   width: 97%;
-    //   top: 2%;
-    //   left: 1.5%;
-    //   background-color: white;
-    //   box-shadow: 0 0 5px 5px rgba(155,155,155,0.2);
-    // }
-    #contact_title_container{
-      position: relative;
-      width: 80%;
-      left: 0;
-      right: 0;
-      height: 200px;
-      width: 678px;
-      margin: 100px auto;
-      overflow: hidden;
-      #heading-reach_out{
-        height: 200px;
-        z-index: 9999;
-        position: relative;
-      }
-      #contact_background{
-        position: absolute;
-        height: 100%;
-        width: 400%;
-        background: linear-gradient(to left, #FF7005 1%, #FF6557 33%, #FF3A22 66%, #D42A1D 100%);
-        left: -300%;
-        top: 0;
-      }
-    }
-    #contact_email_container{
-      width: 678px;
-      height: 200px;
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      border: 1px solid #000;
-    }
-
-  }
-
-
 
 /* Media Queries */
 
@@ -849,6 +418,13 @@ body{
     }
     #title_letters{
       opacity: 0;
+    }
+
+    //menu
+    #menu_container{
+      #menu_heading{
+        font-size: 1em;
+      }
     }
 }
 

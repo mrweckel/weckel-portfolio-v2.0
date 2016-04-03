@@ -76,8 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
     setBackgroundProps();
 
     //Menu variables
-    var MENUPATH = 'M200,40H0V0h200V40z M200,80H0v40h200V80z M200,160H0v40h200V160z',
-        menuIcon = document.getElementById('menu_icon');
+    var closeButton = document.getElementById('close_button_path').getAttribute('d'),
+        menuIcon = document.getElementById('menu_icon_path'),
+        menuIconPath = menuIcon.getAttribute('d');
 
     //Overall Event Listeners
     body.addEventListener('mouseup', handleMouseUp, false);
@@ -85,11 +86,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleMouseUp(e){
 
+        console.log("You tapped " + e.target.id);
+
         switch (e.target.id) {
-            case 'menu_icon':
+
+            case 'menu_icon_container':
                 stage.classList.add('menu_active');
                 stage.classList.remove('title_animate');
-                TweenMax.to(MENUPATH,1, {morphSVG: {shape: filmPath, shapeIndex:1}});
+                TweenMax.to(menuIcon,1, {morphSVG: {shape: closeButton, shapeIndex:5}});
+                break;
+
+            case 'close_button_container':
+                stage.classList.remove('menu_active');
+                stage.classList.add('title_animate');
+                TweenMax.to(menuIcon,1, {morphSVG: {shape: menuIconPath, shapeIndex:5}});
                 break;
 
             //arrow functionality:
@@ -200,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
             filmPath = "M91.5,161.9H32.2v-55.7h59.3V161.9z M95.8,112.3h77.7v29H95.8 V112.3z M127.5,153.4H95.8v-8h31.7V153.4z M178,111.7l9-5v38.7l-9-3.9V111.7z M32,54.6c0,0,19.2-28.7,41.2-10.5 s18.2,38.6,18.2,38.6H32V54.6z M32,87.2h59.5v14.7H32V87.2z M116.5,107.9h-15.8V97.4h15.8V107.9z M28,101.9l-15,2.5V85.2l15,2 V101.9z";
 
     //mobile
+
     homepage.addEventListener('touchstart',handleStart, false);
     homepage.addEventListener('touchend', handleEnd, false);
     homepage.addEventListener('touchmove', handleMove, false);
