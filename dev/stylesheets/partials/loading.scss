@@ -12,7 +12,7 @@
   #loading_inner{
     height: 300px;
     width: 200px;
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 0;
     right: 0;
@@ -80,6 +80,18 @@
         transition-delay: 1.5s;
         opacity: .6;
       }
+    #loading_words{
+      color: #000;
+      position: relative;
+      opacity: .7;
+      font-size: .8em;
+      letter-spacing: 1px;
+      position: relative;
+      text-transform: uppercase;
+      animation: wordFade 1s ease infinite alternate;
+      text-align: center;
+      top: -7%;
+    }
 
 
 //Animation Active
@@ -101,6 +113,10 @@
   #highlight{
     stroke-dashoffset: 0;
   }
+}
+
+@keyframes wordFade{
+  100%{opacity: 0;}
 }
 
 @keyframes bounce{

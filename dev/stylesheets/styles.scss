@@ -16,8 +16,11 @@ $timelapseReels: 2; //only change this
 $timelapseFrames: 25;
 $timelapseContainerWidth: ((100 * $timelapseFrames) * $timelapseReels) + %;
 $timelapseDiff: 100/$timelapseReels;
-
+html{
+  height: 100%;
+}
 body{
+  height: 100%;
   color: #fff;
   font-size: 20px;
   transition: all .3s ease;
@@ -26,8 +29,8 @@ body{
 }
 
 #stage{
-	height: 100%;
-	width: 100%;
+  height: 100%;
+  width: 100%;
   position: absolute;
   overflow: hidden;
 }
@@ -151,7 +154,7 @@ body{
       left: 0;
       right: 0;
       #timelapse_inner{
-        position: absolute;
+        position: relative;
         height: 100%;
         width: $timelapseContainerWidth;
         top: 0;
@@ -169,10 +172,12 @@ body{
           background-image: url('../imgs/tl-1b.jpg');
           left: 0;
           width: 50%;
+          transform: translateZ(300px);
         }
         #timelapse_reel-2{
           background-image: url('../imgs/tl-2b.jpg');
           left: $timelapseDiff + %;
+          transform: translateZ(300px);
         }
       }
       &.background-switch{

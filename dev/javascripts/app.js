@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if(imgsLoaded === true){
                         return cb();
                     }
-            }, 5000);
+            }, 6000);
 
             arr.forEach(function(bgImg,index){
                 var image = document.createElement('img');
@@ -169,12 +169,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function timelapseMove(ele,xPos) {
         var percent = Math.floor(xPos/screenWidth*NUM_OF_FRAMES);
 
-        ele.style.webkitTransform = "translate3d(" + - Math.max(Math.min((percent* INCREMENTS),98),0) + "%,0,0)";
+        ele.style.webkitTransform = "translate3d(" + - Math.max(Math.min((percent* INCREMENTS),98),0) + "%,0,200px)";
     }
 
     function timelapseScale(ele, xPos, factor){
         var percent = (xPos/screenWidth)/factor;
-        ele.style.webkitTransform = "scale(" + (1 + percent) + ")";
+        ele.style.webkitTransform = "scale(" + (1 + percent) + ") translateZ(250px)";
     }
 
     function setBackgroundProps () {
