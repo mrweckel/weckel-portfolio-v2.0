@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         screenWidth = win.innerWidth,
         originalScreenPosition = 0,
         mouseDown = 0,
-        videos = doc.getElementsByClassName("zoetrope_video");
+        mobileDevice = false;
 
     //Loading Animation
         stage.classList.add('start_loading_animation');
@@ -210,6 +210,30 @@ document.addEventListener('DOMContentLoaded', function() {
             filmPath = "M91.5,161.9H32.2v-55.7h59.3V161.9z M95.8,112.3h77.7v29H95.8 V112.3z M127.5,153.4H95.8v-8h31.7V153.4z M178,111.7l9-5v38.7l-9-3.9V111.7z M32,54.6c0,0,19.2-28.7,41.2-10.5 s18.2,38.6,18.2,38.6H32V54.6z M32,87.2h59.5v14.7H32V87.2z M116.5,107.9h-15.8V97.4h15.8V107.9z M28,101.9l-15,2.5V85.2l15,2 V101.9z";
 
     //mobile
+
+    //Check for mobile
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+
+    mobileDevice = isMobile.any() ?  true : false;
 
     homepage.addEventListener('touchstart',handleStart, false);
     homepage.addEventListener('touchend', handleEnd, false);

@@ -1,3 +1,5 @@
+@import 'colors';
+
 #loading_container{
   position: absolute;
   height: 100%;
@@ -120,6 +122,33 @@
     stroke-dashoffset: 0;
   }
 }
+
+@media screen and (max-width: 435px){
+  #stage.container_loading_active{
+    #loading_container{
+      background-color: $bg-black;
+    }
+      #loading_inner{
+        display: none;
+        #ball{
+        animation-play-state: paused;
+        }
+        #shadow{
+          animation-play-state: paused;
+        }
+      }
+    #loading_words{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-200%);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      color: #fff;
+    }
+  }
+}
+
 
 @keyframes wordFade{
   100%{opacity: 0;}
