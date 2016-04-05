@@ -133,6 +133,7 @@ body{
       left: 0;
       right: 0;
       bottom: 10%;
+      letter-spacing: 5px;
     }
     .nav_option{
       display: none;
@@ -422,8 +423,17 @@ body{
 
     //menu
     #menu_container{
-      #menu_heading{
-        font-size: 1em;
+      #menu_titles{
+        #menu_heading{
+          font-size: 1em;
+        }
+        #menu_subheading{
+          font-size: .5em;
+          letter-spacing: .5px;
+        }
+      }
+      #menu_contact{
+        font-size: 0.6em;
       }
     }
 }

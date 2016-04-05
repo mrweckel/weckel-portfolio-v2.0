@@ -6,9 +6,9 @@
   width: 100%;
   top: 0;
   left: 0;
-  background-color: #fff;
-  z-index: 99999;
-  transform: translateY(-100%);
+  background-color: #0D0D0D;
+  z-index: 9999999999;
+  transform: translate3d(0, -100%, 200px);
   transition: all 1s ease;
   }
   #loading_inner{
@@ -21,18 +21,6 @@
     margin: 0 auto;
     transform: translateY(-50%);
   }
-    #outline{
-      fill: #fff;
-      stroke: #fff;
-      display: none;
-    }
-    #bg-fill{
-      fill: #000;
-      transform: translateY(100%);
-      transition: all 1s ease;
-      transition-delay: 2s;
-      display: none;
-    }
     #loading_shadow{
       position: absolute;
       height: 200px;
@@ -69,7 +57,7 @@
       #circle{
         stroke-dasharray: 360;
         stroke-dashoffset: -360;
-        fill: #fff;
+        fill: #0F53A4;
         transition: all .75s ease-in;
         transition-delay: 1s;
       }
@@ -82,10 +70,10 @@
         stroke-dashoffset: -360;
         transition: all .75s ease-in;
         transition-delay: 1.5s;
-        opacity: .6;
+        opacity: .9;
       }
     #loading_words{
-      color: #000;
+      color: #fff;
       position: relative;
       opacity: .7;
       font-size: .8em;
@@ -106,7 +94,7 @@
 }
 #stage.start_loading_animation #loading_container {
   #bg-fill{
-    transform: translateY(0);
+    transform: translate3d(0,0,200px);
   }
   #ball{
     animation-play-state: running;
@@ -124,7 +112,7 @@
 }
 
 @media screen and (max-width: 435px){
-  #stage.container_loading_active{
+  #stage{
     #loading_container{
       background-color: $bg-black;
     }
