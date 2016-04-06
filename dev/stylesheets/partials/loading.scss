@@ -10,6 +10,7 @@
   z-index: 9999999999;
   transform: translate3d(0, -100%, 200px);
   transition: all 1s ease;
+  display: none; //temp
   }
   #loading_inner{
     height: 300px;
@@ -111,31 +112,27 @@
   }
 }
 
-@media screen and (max-width: 435px){
-  #stage{
-    #loading_container{
-      background-color: $bg-black;
+#stage.mobile_device{
+  #loading_inner{
+    display: none;
+    #ball{
+    animation-play-state: paused;
     }
-      #loading_inner{
-        display: none;
-        #ball{
-        animation-play-state: paused;
-        }
-        #shadow{
-          animation-play-state: paused;
-        }
-      }
-    #loading_words{
-      position: absolute;
-      top: 50%;
-      transform: translateY(-200%);
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      color: #fff;
+    #shadow{
+      animation-play-state: paused;
     }
   }
+  #loading_words{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    color: #fff;
+  }
 }
+
 
 
 @keyframes wordFade{

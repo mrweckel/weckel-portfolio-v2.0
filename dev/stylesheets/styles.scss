@@ -94,8 +94,8 @@ body{
     width: 100%;
     left: 0;
     background: radial-gradient(ellipse at center, rgba(0,0,0,.75) 0%, rgba(0,0,0,1) 100%);
-    transform: scale(10);
-    transition: all 2s ease;
+    transform: scale(1.3);
+    transition: all 1s ease;
     opacity: 0;
     z-index: 9999;
     pointer-events: none;
@@ -106,8 +106,6 @@ body{
       right: 0;
       margin: 0 auto;
       opacity: 0;
-      transition: 1s opacity ease-in;
-      transition-delay: 1.5s;
       #menu_heading{
         font-size: 2.4em;
         letter-spacing: 1px;
@@ -152,8 +150,17 @@ body{
     opacity: 1;
     pointer-events: all;
     transform: scale(1);
+    transition: all 1.5s ease-in;
     #menu_titles{
+      transition: 1s opacity ease-in;
+      transition-delay: 1s;
       opacity: 1;
+      #menu_heading{
+        transition: all .3s ease;
+      }
+      #menu_subheading{
+        transition: all .3s ease;
+      }
     }
 
   }
@@ -225,23 +232,47 @@ body{
         }
       }
     }
-    #timelapse_overlay{
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      left: 0;
-      bottom: 0;
-      background-image: url('../imgs/temple-1d.png');
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      opacity: 1;
-      z-index: 9999999;
-      pointer-events: none;
-      display: none;
-    }
     #timelapse_container.background-switch ~ #timelapse_overlay{
       background-size: 100% 100%;
+    }
+    #scrub_hotspot{
+      height: 100px;
+      width: 100px;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      #scrub_hotspot_inner{
+        height: 100%;
+        width: 100%;
+        &:before{
+          content: '';
+          position: absolute;
+          height: 60px;
+          width: 60px;
+          border-radius: 50%;
+          border: 3px solid rgba(255,255,255,.5);
+          left: 0;
+          right: 0;
+          margin: 0 auto;
+          top: 20px;
+          box-sizing: border-box;
+        }
+        &:after{
+          content: '';
+          position: absolute;
+          height: 40px;
+          width: 40px;
+          border-radius: 50%;
+          border: 3px solid rgba(255,255,255,.5);
+          left: 0;
+          right: 0;
+          margin: 0 auto;
+          top: 30px;
+          box-sizing: border-box;
+        }
+      }
     }
     #logo_container{
       height: 150px;
@@ -268,47 +299,12 @@ body{
           #logo_svg{
             fill: #EC008C;
           }
-
-//Page 2
-  #page-2{
-    background-color: #000;
-    display: none;
-    // &:before{
-    //   content: '';
-    //   position: absolute;
-    //   height: 90%;
-    //   width: 90%;
-    //   top: 5%;
-    //   left: 5%;
-    //   background-color: white;
-    //   box-shadow: 0 0 5px 5px rgba(155,155,155,0.2);
-    // }
+/* Mobile Styles */
+#stage.mobile_device{
+  #title_letters{
+    display: none !important;
   }
-    #about{
-      padding: 82px;
-      opacity: 1;
-      transition: .3s all ease;
-      text-transform: uppercase;
-      color: #fff;
-      font-size: 90px;
-      letter-spacing: 18px;
-      text-align: center;
-      position: relative;
-      font-weight: 700;
-    }
-    #zoetrope_container{
-      position: absolute;
-      height: 500px;
-      width: 100%;
-      top: 50%;
-      transform: translate3d(0,-50%,0);
-      // background-color: rgba(255,255,255,.5);
-      perspective: 1000px;
-      transition: all .5s ease;
-      transform-origin: top;
-      animation: videoContainerHover 2s ease-in-out infinite alternate;
-
-    }
+}
 
 /* Media Queries */
 
@@ -333,8 +329,8 @@ body{
 }
 
 @media screen and (max-width: 800px){
-  #zoetrope_container{
-    transform: scale(.5) translate3d(0,-50%,0) !important;
+  #menu_heading, #menu_subheading{
+    // transform: scale(.6);
   }
 }
 
@@ -349,55 +345,7 @@ body{
   #title{
     font-size: 60px;
   }
-  #page-2{
-    height: auto;
-    padding-bottom: 100px;
-  }
-  #about{
-    padding: 127px 0 78px;
-  }
-  #zoetrope_container{
-    transform: none !important;
-    top: 0;
-    position: relative;
-    height: 100%;
-    #zoetrope_carousel{
-      transform: none !important;
-      height: auto;
-      position: relative;
-      .zoetrope_item{
-        position: relative;
-        transform: none !important;
-        top: 0;
-        width: 90%;
-        margin-bottom: 20px;
-        &:after{
-          opacity: 0;
-        }
-        .zoetrope_item_overlay{
-          opacity: 1;
-          .zoetrope_overlay_title{
-            opacity: 1;
-            transform: scale(1);
-          }
-          .zoetrope_overlay_roles{
-            opacity: 1;
-          }
-        }
-        &:before{
-          opacity: 0;
-        }
-        .zoetrope_video{
-          display: none;
-        }
-        .play_button{
-          stroke-dashoffset: 0;
-          animation: none;
-          opacity: 1;
-        }
-      }
-    }
-  }
+
 }
 
 @media screen and (max-width: 420px){

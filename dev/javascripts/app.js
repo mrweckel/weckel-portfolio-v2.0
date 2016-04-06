@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //Loading Animation
         stage.classList.add('start_loading_animation');
 
-    // Loading Checks
+    //Loading Checks
         function getBgUrl(el) {
             var bg = win.getComputedStyle(el,null).backgroundImage;
             return bg.replace(/url\(['"]?(.*?)['"]?\)/i, "$1");
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    mobileDevice = isMobile.any() ?  true : false;
+    mobileDevice = isMobile.any() ?  stage.classList.add('mobile_device') : false;
 
     homepage.addEventListener('touchstart',handleStart, false);
     homepage.addEventListener('touchend', handleEnd, false);
