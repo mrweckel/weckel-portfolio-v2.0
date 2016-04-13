@@ -235,45 +235,79 @@ body{
     #timelapse_container.background-switch ~ #timelapse_overlay{
       background-size: 100% 100%;
     }
-    #scrub_hotspot{
-      height: 100px;
-      width: 100px;
+    #scrub_hotspot_container{
       position: absolute;
-      bottom: 20px;
+      height: 16%;
+      // background-color: rgba(255,0,0,0.5);
+      width: 100%;
+      bottom: 0;
       left: 0;
-      right: 0;
-      margin: 0 auto;
-      #scrub_hotspot_inner{
-        height: 100%;
-        width: 100%;
-        &:before{
-          content: '';
-          position: absolute;
-          height: 60px;
-          width: 60px;
-          border-radius: 50%;
-          border: 3px solid rgba(255,255,255,.5);
-          left: 0;
-          right: 0;
-          margin: 0 auto;
-          top: 20px;
-          box-sizing: border-box;
-        }
-        &:after{
-          content: '';
-          position: absolute;
-          height: 40px;
-          width: 40px;
-          border-radius: 50%;
-          border: 3px solid rgba(255,255,255,.5);
-          left: 0;
-          right: 0;
-          margin: 0 auto;
-          top: 30px;
-          box-sizing: border-box;
-        }
+      &:before{
+        content: '';
+        position: absolute;
+        height: 3px;
+        width: 75%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255,255,255,0.2);
       }
     }
+      #scrub_hotspot{
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        margin: 0;
+        display: none;
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+        // transition: all .3s ease;
+        // background-color: rgba(255,0,0,0.5);
+        #scrub_hotspot_inner{
+          height: 100%;
+          width: 100%;
+          &:before{
+            content: '';
+            position: absolute;
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,.5);
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: 20px;
+            box-sizing: border-box;
+            animation: scrubPulse 2s ease-in infinite;
+          }
+          &:after{
+            content: '';
+            position: absolute;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,.5);
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: 30px;
+            box-sizing: border-box;
+            animation: scrubPulse 2s ease-in infinite;
+            animation-delay: .5s;
+          }
+        }
+        // &.inactive{
+        //   opacity: 0;
+        // }
+        &.active{
+          // transform: translate3d(0, -50%, 0) !important;
+        }
+      }
     #logo_container{
       height: 150px;
       width: 150px;
@@ -348,6 +382,13 @@ body{
 
 }
 
+//mobile
+#stage.mobile_device{
+  #scrub_hotspot{
+    display: block;
+  }
+}
+
 @media screen and (max-width: 420px){
     #logo_container{
       height: 200px;
@@ -409,5 +450,11 @@ body{
   40%{transform: translate3d(-2%,-52%,0);}
   60%{transform: translate3d(-2%,-47%,0);}
   100%{transform: translate3d(2%,-51%,0);}
+}
+
+@keyframes scrubPulse{
+  0%{transform: scale(.5);opacity: 0;}
+  40%{opacity: 1;}
+  100%{transform: scale(1.2); opacity: 0;}
 }
 

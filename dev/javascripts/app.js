@@ -211,6 +211,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //mobile
 
+    //mobile specific variables
+    var hotspot = doc.getElementById('scrub_hotspot');
+
+    console.log(hotspot);
+
     //Check for mobile
     var isMobile = {
         Android: function() {
@@ -245,14 +250,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleEnd (e) {
     	// e.preventDefault();
+
+        returnHotspot(hotspot);
     }
 
     function handleMove (e) {
 
-        changeLogoColor(LOGO,e.touches[0].clientX);
+        var horizontalMove = e.touches[0].clientX;
 
-        timelapseMove(TIMELAPSE, e.touches[0].clientX);
-        timelapseScale(TIMELAPSE_CONTAINER, e.touches[0].clientX, 20);
+        changeLogoColor(LOGO,horizontalMove);
+
+        timelapseMove(TIMELAPSE, horizontalMove);
+        timelapseScale(TIMELAPSE_CONTAINER, horizontalMove, 20);
+
+        scrubHotspotMove(hotspot, horizontalMove);
+
+    }
+
+    function scrubHotspotMove(el, xPos){
+
+        el.className = 'inactive';
+
+        var perc = xPos/screenWidth*100;
+
+        console.log(perc, perc/2);
+
+        el.style.transform = 'translate3d(' + xPos + 'px, -50%, 0)';
+        // if(xPos/screenWidth*100 > 50){
+        //     el.style.transform = 'translateX(' + (perc/2) + '%)';
+        // } else {
+        //     el.style.transform = 'translateX(' + (0 - xPos/2) + '%)';
+        // }
+
+
+    }
+
+    function returnHotspot(el){
+        el.className = 'active';
     }
 
 
