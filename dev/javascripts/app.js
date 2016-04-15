@@ -1,6 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
+'use strict';
 
-    'use strict';
+var Portfolio;
+
+Portfolio = function(){
+
 
     var doc = document,
         win = window,
@@ -212,9 +215,9 @@ document.addEventListener('DOMContentLoaded', function() {
     //mobile
 
     //mobile specific variables
-    var hotspot = doc.getElementById('scrub_hotspot');
+    var hotspotContainer = doc.getElementById('scrub_hotspot_container'),
+        hotspot = doc.getElementById('scrub_hotspot');
 
-    console.log(hotspot);
 
     //Check for mobile
     var isMobile = {
@@ -251,43 +254,39 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleEnd (e) {
     	// e.preventDefault();
 
-        returnHotspot(hotspot);
+        returnHotspot(hotspotContainer);
     }
 
     function handleMove (e) {
 
-        var horizontalMove = e.touches[0].clientX;
+        var horMove = e.touches[0].clientX;
+        var vertMove = e.touches[0].clientY;
 
-        changeLogoColor(LOGO,horizontalMove);
+        changeLogoColor(LOGO,horMove);
 
-        timelapseMove(TIMELAPSE, horizontalMove);
-        timelapseScale(TIMELAPSE_CONTAINER, horizontalMove, 20);
+        timelapseMove(TIMELAPSE, horMove);
+        timelapseScale(TIMELAPSE_CONTAINER, horMove, 20);
 
-        scrubHotspotMove(hotspot, horizontalMove);
-
-    }
-
-    function scrubHotspotMove(el, xPos){
-
-        el.className = 'inactive';
-
-        var perc = xPos/screenWidth*100;
-
-        console.log(perc, perc/2);
-
-        el.style.transform = 'translate3d(' + xPos + 'px, -50%, 0)';
-        // if(xPos/screenWidth*100 > 50){
-        //     el.style.transform = 'translateX(' + (perc/2) + '%)';
-        // } else {
-        //     el.style.transform = 'translateX(' + (0 - xPos/2) + '%)';
-        // }
-
+        scrubHotspotMove(hotspot, hotspotContainer, horMove, vertMove);
 
     }
 
-    function returnHotspot(el){
-        el.className = 'active';
+    function scrubHotspotMove(el, parent, xPos, yPos){
+
+        parent.className = 'inactive';
+
+        var startingX = screenWidth/2;
+
+        if(xPos < startingX){
+          el.style.transform = 'translate3d(' + -(startingX - xPos) + 'px,0px, 0)';
+        } else {
+          el.style.transform = 'translate3d(' + (xPos - startingX) + 'px,0px, 0)';
+        }
+    }
+
+    function returnHotspot(parentEl){
+        parentEl.className = 'active';
     }
 
 
-}, false);
+}

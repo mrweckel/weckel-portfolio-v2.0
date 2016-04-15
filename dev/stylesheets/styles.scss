@@ -238,76 +238,61 @@ body{
     #scrub_hotspot_container{
       position: absolute;
       height: 16%;
-      // background-color: rgba(255,0,0,0.5);
       width: 100%;
       bottom: 0;
       left: 0;
-      &:before{
-        content: '';
-        position: absolute;
-        height: 3px;
-        width: 75%;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(255,255,255,0.2);
-      }
+      transition: opacity 1s;
     }
       #scrub_hotspot{
         height: 100px;
         width: 100px;
         position: absolute;
-        bottom: 20px;
+        bottom: 0px;
         left: 0;
         right: 0;
-        margin: 0;
+        margin: 0 auto;
         display: none;
-        top: 50%;
-        transform: translate3d(0, -50%, 0);
-        // transition: all .3s ease;
-        // background-color: rgba(255,0,0,0.5);
+        top: 0;
         #scrub_hotspot_inner{
           height: 100%;
-          width: 100%;
-          &:before{
-            content: '';
+          width: 100px;
+          .scrub_ring{
             position: absolute;
-            height: 60px;
-            width: 60px;
-            border-radius: 50%;
-            border: 3px solid rgba(255,255,255,.5);
             left: 0;
             right: 0;
             margin: 0 auto;
-            top: 20px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,.5);
             box-sizing: border-box;
             animation: scrubPulse 2s ease-in infinite;
           }
-          &:after{
-            content: '';
-            position: absolute;
+          #scrub_ring-large{
+            height: 60px;
+            width: 60px;
+            top: 20px;
+          }
+          #scrub_ring-small{
             height: 40px;
             width: 40px;
-            border-radius: 50%;
-            border: 3px solid rgba(255,255,255,.5);
-            left: 0;
-            right: 0;
-            margin: 0 auto;
             top: 30px;
-            box-sizing: border-box;
-            animation: scrubPulse 2s ease-in infinite;
             animation-delay: .5s;
           }
         }
-        // &.inactive{
-        //   opacity: 0;
-        // }
-        &.active{
-          // transform: translate3d(0, -50%, 0) !important;
-        }
       }
+    #scrub_hotspot_container.inactive{
+        opacity: 0;
+        #scrub_ring-large{
+        }
+    }
+    #scrub_hotspot_container.active{
+      #scrub_hotspot{
+        transform: translate3d(0, 0, 0) !important;
+        transition: all 1s ease;
+      }
+    }
+
+
+
     #logo_container{
       height: 150px;
       width: 150px;
@@ -387,6 +372,25 @@ body{
   #scrub_hotspot{
     display: block;
   }
+}
+
+@media screen and (max-width: 667px) and (orientation: landscape){
+  #logo_container{
+    transform: translateY(0%);
+  }
+  #scrub_hotspot_container{
+    bottom: 10%;
+  }
+  #title_letters{
+    display: none;
+  }
+  #menu_titles{
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+    #menu_heading{
+      font-size: 1.6em !important;
+    }
 }
 
 @media screen and (max-width: 420px){
