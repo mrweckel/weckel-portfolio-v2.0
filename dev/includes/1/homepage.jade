@@ -1,5 +1,19 @@
 #page-1.page
+  #timelapse_container
+    #timelapse_inner
+      #timelapse_reel-1.timelapse_reel
+      #timelapse_reel-2.timelapse_reel
+  #scrub_hotspot_container
+    #scrub_hotspot
+      #scrub_hotspot_inner
+        #scrub_ring-large.scrub_ring
+        #scrub_ring-small.scrub_ring
   #logo_container
     #logo_mover.transition
       include logo.jade
-  include ../extras/arrow-1.jade
+  include title.jade
+  #loading_container
+    #loading_inner
+      include ../extras/loading-shadow.jade
+      include ../extras/loading-ball.jade
+    #loading_words the show will begin shortly
