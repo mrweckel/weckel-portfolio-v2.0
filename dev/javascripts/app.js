@@ -1,23 +1,38 @@
 'use strict';
 
-var Portfolio;
+var Portfolio = {};
 
-Portfolio = function(){
+Portfolio.Settings = function(){
+    this.doc = document;
+    this.win = window;
+    this.body = this.doc.body;
+    this.screenHeight = this.win.innerHeight;
+    this.screenWidth = this.win.innerWidth;
+    this.stage = document.querySelector('#stage');
+    this.homepage = document.querySelector('#page-1');
+    this.originalScreenPosition = 0;
+    this.mouseDown = 0;
+    this.mobileDevice = false;
+}
+
+Portfolio.Settings.prototype = {
+
+}
 
 
-    var doc = document,
-        win = window,
-        body = document.body,
-        stage = doc.querySelector('#stage'),
-        homepage = doc.querySelector('#page-1'),
-        screenHeight = win.innerHeight,
-        screenWidth = win.innerWidth,
-        originalScreenPosition = 0,
-        mouseDown = 0,
-        mobileDevice = false;
 
-    //Loading Animation
-        stage.classList.add('start_loading_animation');
+
+document.addEventListener('DOMContentLoaded', loadPortfolio, false);
+
+function loadPortfolio(){
+
+    var portfolioSettings = new Portfolio.Settings;
+
+    console.log(portfolioSettings);
+
+
+     //Loading Animation
+    stage.classList.add('start_loading_animation');
 
     //Loading Checks
         function getBgUrl(el) {
@@ -248,11 +263,11 @@ Portfolio = function(){
     homepage.addEventListener('touchmove', handleMove, false);
 
     function handleStart (e) {
-    	// e.preventDefault();
+        // e.preventDefault();
     }
 
     function handleEnd (e) {
-    	// e.preventDefault();
+        // e.preventDefault();
 
         returnHotspot(hotspotContainer);
     }
@@ -287,6 +302,4 @@ Portfolio = function(){
     function returnHotspot(parentEl){
         parentEl.className = 'active';
     }
-
-
 }
