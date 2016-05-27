@@ -2,14 +2,15 @@
 
 var Portfolio = {};
 
-Portfolio.Settings = function(){
+
+// SETTINGS
+Portfolio.Settings = function() {
+
     this.doc = document;
     this.win = window;
     this.body = this.doc.body;
     this.screenHeight = this.win.innerHeight;
     this.screenWidth = this.win.innerWidth;
-    this.stage = document.querySelector('#stage');
-    this.homepage = document.querySelector('#page-1');
     this.originalScreenPosition = 0;
     this.mouseDown = 0;
     this.mobileDevice = false;
@@ -19,6 +20,84 @@ Portfolio.Settings.prototype = {
 
 }
 
+//TIMELAPSE OBJECT
+Portfolio.Timelapse = function() {
+    this.bgImgElements = ['timelapse_reel-1','timelapse_reel-2'];
+    this.numOfFrames = 50;
+    this.increments = 100/this.numOfFrames;
+}
+
+Portfolio.Timelapse.prototype = function() {
+
+}
+
+//VIEW
+Portfolio.View = function(doc) {
+
+    this.stage = doc.querySelector('#stage');
+    this.homepage = doc.querySelector('#page-1');
+    this.timelapseElement = doc.querySelector('#timelapse_inner'),
+    this.timelapseOverlay = doc.querySelector('#timelapse_overlay'),
+    this.timelapseContainer = doc.querySelector('#timelapse_container');
+}
+
+
+//CONTROLLER
+Portfolio.Controller = function() {
+    parent = this;
+}
+
+Portfolio.Controller.prototype = {
+
+    getBgUrl: function(el) {
+        console.log('hello');
+        var bg = window.getComputedStyle(el,null).backgroundImage;
+        return bg.replace(/url\(['"]?(.*?)['"]?\)/i, "$1");
+    },
+
+    checkImagesLoaded: function(arr, cb) {
+
+        var lastElement = arr.length - 1,
+            timePassed = false,
+            imgsLoaded = false;
+
+        //In case images load very quickly, wait a bit before ending opening animation
+        setTimeout(
+            function() {
+                timePassed = true;
+                if (imgsLoaded === true) {
+                    return cb;
+                }
+            }, 6000);
+
+        arr.forEach(function(bgImg, index) {
+            var image = document.createElement('img');
+            image.src = parent.getBgUrl(document.getElementById(bgImg));
+            image.onload = function() {
+                if (index === lastElement) {
+                    imgsLoaded = true;
+                    console.log("imgsLoaded = " + imgsLoaded);
+                    if (timePassed === true) {
+                        return cb;
+                    }
+                }
+            };
+        });
+    },
+
+    killLoadAnimation: function(el) {
+
+        el.classList.remove('container_loading_active');
+        el.classList.remove('start_loading_animation');
+        setTimeout(function(){
+            el.classList.add('title_animate');
+        }, 1000);
+    }
+}
+
+
+
+
 
 
 
@@ -26,69 +105,21 @@ document.addEventListener('DOMContentLoaded', loadPortfolio, false);
 
 function loadPortfolio(){
 
-    var portfolioSettings = new Portfolio.Settings;
+    //Create objects
+    var Settings   = new Portfolio.Settings;
+    var Timelapse  = new Portfolio.Timelapse;
+    var View       = new Portfolio.View(Settings.doc);
+    var Controller = new Portfolio.Controller;
 
-    console.log(portfolioSettings);
+    console.log(Settings,View,Controller);
 
 
-     //Loading Animation
-    stage.classList.add('start_loading_animation');
+     //Add Loading Animation
+    View.stage.classList.add('start_loading_animation');
 
     //Loading Checks
-        function getBgUrl(el) {
-            var bg = win.getComputedStyle(el,null).backgroundImage;
-            return bg.replace(/url\(['"]?(.*?)['"]?\)/i, "$1");
-        }
+    Controller.checkImagesLoaded(Timelapse.bgImgElements,Controller.killLoadAnimation(View.stage));
 
-        function checkImagesLoaded(arr,cb){
-
-            var lastElement = arr.length - 1,
-                timePassed = false,
-                imgsLoaded = false;
-
-            setTimeout(
-                function(){
-                    timePassed = true;
-                    if(imgsLoaded === true){
-                        return cb();
-                    }
-            }, 6000);
-
-            arr.forEach(function(bgImg,index){
-                var image = document.createElement('img');
-                    image.src = getBgUrl(document.getElementById(bgImg));
-                    image.onload = function () {
-                        if(index === lastElement){
-                            imgsLoaded = true;
-                            console.log(imgsLoaded);
-                            if(timePassed === true){
-                                return cb();
-                            }
-                        }
-                    };
-            });
-        }
-
-        var bgImgElements = ['timelapse_reel-1','timelapse_reel-2'];
-
-        checkImagesLoaded(bgImgElements,removeLoadingContainer);
-
-
-    //Initial Title Animation
-        function removeLoadingContainer(){
-            stage.classList.remove('container_loading_active');
-                stage.classList.remove('start_loading_animation');
-                setTimeout(function(){
-                    stage.classList.add('title_animate');
-                }, 1000);
-        }
-
-    //Timelapse Variables
-    var NUM_OF_FRAMES = 50,
-        INCREMENTS = 100/NUM_OF_FRAMES,
-        TIMELAPSE = doc.querySelector('#timelapse_inner'),
-        TIMELAPSE_OVERLAY = doc.querySelector('#timelapse_overlay'),
-        TIMELAPSE_CONTAINER = doc.querySelector('#timelapse_container');
 
     //Set Background based on current screen ratio
     setBackgroundProps();
