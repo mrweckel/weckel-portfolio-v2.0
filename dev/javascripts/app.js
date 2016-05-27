@@ -21,14 +21,33 @@ Portfolio.Settings.prototype = {
 }
 
 //TIMELAPSE OBJECT
-Portfolio.Timelapse = function() {
+Portfolio.Timelapse = function(doc) {
     this.bgImgElements = ['timelapse_reel-1','timelapse_reel-2'];
     this.numOfFrames = 50;
     this.increments = 100/this.numOfFrames;
+    this.bgThreshold = 1.6;
+    this.element = doc.querySelector('#timelapse_inner');
+    this.overlay = doc.querySelector('#timelapse_overlay');
+    this.container = doc.querySelector('#timelapse_container');
 }
 
-Portfolio.Timelapse.prototype = function() {
+Portfolio.Timelapse.prototype = {
 
+    setBackgroundProps: function(screenWidth,screenHeight) {
+
+        if(screenWidth/screenHeight < this.bgThreshold){
+            this.container.classList.add('background-switch');
+        } else {
+            this.container.classList.remove('background-switch');
+        }
+    }
+}
+
+//MENU OBJECT
+Portfolio.Menu = function(){
+    this.closeButton  = document.getElementById('close_button_path').getAttribute('d');
+    this.menuIcon     = document.getElementById('menu_icon_path');
+    this.menuIconPath = this.menuIcon.getAttribute('d');
 }
 
 //VIEW
@@ -36,15 +55,12 @@ Portfolio.View = function(doc) {
 
     this.stage = doc.querySelector('#stage');
     this.homepage = doc.querySelector('#page-1');
-    this.timelapseElement = doc.querySelector('#timelapse_inner'),
-    this.timelapseOverlay = doc.querySelector('#timelapse_overlay'),
-    this.timelapseContainer = doc.querySelector('#timelapse_container');
 }
 
 
 //CONTROLLER
 Portfolio.Controller = function() {
-    parent = this;
+    self = this;
 }
 
 Portfolio.Controller.prototype = {
@@ -72,7 +88,7 @@ Portfolio.Controller.prototype = {
 
         arr.forEach(function(bgImg, index) {
             var image = document.createElement('img');
-            image.src = parent.getBgUrl(document.getElementById(bgImg));
+            image.src = self.getBgUrl(document.getElementById(bgImg));
             image.onload = function() {
                 if (index === lastElement) {
                     imgsLoaded = true;
@@ -92,6 +108,12 @@ Portfolio.Controller.prototype = {
         setTimeout(function(){
             el.classList.add('title_animate');
         }, 1000);
+    },
+
+    handleMouseUp: function(e){
+        console.log("You tapped " + e.target.id, self);
+
+        self.onMouseUp({target: e.target, id: e.target.id});
     }
 }
 
@@ -107,11 +129,10 @@ function loadPortfolio(){
 
     //Create objects
     var Settings   = new Portfolio.Settings;
-    var Timelapse  = new Portfolio.Timelapse;
+    var Timelapse  = new Portfolio.Timelapse(Settings.doc);
+    var Menu       = new Portfolio.Menu;
     var View       = new Portfolio.View(Settings.doc);
     var Controller = new Portfolio.Controller;
-
-    console.log(Settings,View,Controller);
 
 
      //Add Loading Animation
@@ -120,24 +141,18 @@ function loadPortfolio(){
     //Loading Checks
     Controller.checkImagesLoaded(Timelapse.bgImgElements,Controller.killLoadAnimation(View.stage));
 
-
     //Set Background based on current screen ratio
-    setBackgroundProps();
-
-    //Menu variables
-    var closeButton = document.getElementById('close_button_path').getAttribute('d'),
-        menuIcon = document.getElementById('menu_icon_path'),
-        menuIconPath = menuIcon.getAttribute('d');
+    Timelapse.setBackgroundProps(Settings.screenWidth, Settings.screenHeight);
 
     //Overall Event Listeners
-    body.addEventListener('mouseup', handleMouseUp, false);
-    win.addEventListener('resize', handleResize, false);
+    Settings.body.addEventListener('mouseup', Controller.handleMouseUp, false);
+    Settings.win.addEventListener('resize', Controller.handleResize, false);
 
-    function handleMouseUp(e){
+    Controller.onMouseUp = function(args){
 
-        console.log("You tapped " + e.target.id);
+        console.log('omg ' + args.id);
 
-        switch (e.target.id) {
+        switch (args.id) {
 
             case 'menu_icon_container':
                 stage.classList.add('menu_active');
@@ -180,7 +195,7 @@ function loadPortfolio(){
         }, false);
 
     function handleResize(e){
-        setBackgroundProps();
+        Portfolio.Timelapse.setBackgroundProps(settings.screenWidth, settings.screenHeight);
     }
 
     //Auto scroll functionality
@@ -236,16 +251,7 @@ function loadPortfolio(){
         ele.style.webkitTransform = "scale(" + (1 + percent) + ") translateZ(250px)";
     }
 
-    function setBackgroundProps () {
-        screenHeight = win.innerHeight;
-        screenWidth  = win.innerWidth;
 
-        if(screenWidth/screenHeight < 1.6){
-            TIMELAPSE_CONTAINER.classList.add('background-switch');
-        } else {
-        TIMELAPSE_CONTAINER.classList.remove('background-switch');
-        }
-    }
     //Event Listeners
 
         doc.addEventListener('mouseout', function(e) {
