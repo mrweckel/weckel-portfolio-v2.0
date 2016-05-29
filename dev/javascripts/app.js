@@ -18,6 +18,9 @@ Portfolio.Settings = function() {
 
 Portfolio.Settings.prototype = {
 
+    isMobile: function(){
+
+    }
 }
 
 //TIMELAPSE OBJECT
@@ -26,7 +29,7 @@ Portfolio.Timelapse = function(doc) {
     this.numOfFrames = 50;
     this.increments = 100/this.numOfFrames;
     this.bgThreshold = 1.6;
-    this.element = doc.querySelector('#timelapse_inner');
+    this.ele = doc.querySelector('#timelapse_inner');
     this.overlay = doc.querySelector('#timelapse_overlay');
     this.container = doc.querySelector('#timelapse_container');
 }
@@ -55,6 +58,7 @@ Portfolio.View = function(doc) {
 
     this.stage = doc.querySelector('#stage');
     this.homepage = doc.querySelector('#page-1');
+    this.logo = doc.getElementById('logo_svg');
 }
 
 
@@ -110,16 +114,54 @@ Portfolio.Controller.prototype = {
         }, 1000);
     },
 
-    handleMouseUp: function(e){
+    handleMouseUp: function(e) {
         console.log("You tapped " + e.target.id, self);
 
         self.onMouseUp({target: e.target, id: e.target.id});
+    },
+
+    handleResize: function(cb) {
+        return cb();
+    },
+
+    //Auto scroll functionality
+    //Maybe switch to requestAnimationFrame
+    scrollToElement: function(scrollDuration, elementPos) {
+
+        var scrollStep = elementPos / (scrollDuration / 15);
+
+        var scrollInterval = setInterval(function() {
+              if(window.scrollY < elementPos){
+                window.scrollBy( 0, scrollStep );
+              } else {
+                clearInterval(scrollInterval);
+              }
+            },15);
+    },
+
+    handleMouseMove: function(e){
+
+        self.horizontalMove({x: e.clientX});
+    },
+
+    changeLogoColor: function(ele,xPos,horizontalMargin) {
+
+        var horizontalPercent = Math.floor(xPos/(horizontalMargin * 0.25) * 10);
+        ele.style.fill = "hsl(" + (horizontalPercent + 10) + ",100%,52%)";
+    },
+
+    timelapseMove: function(ele, xPos, screenWidth, frames, increments) {
+
+        var percent = Math.floor(xPos/screenWidth*frames);
+        ele.style.webkitTransform = "translate3d(" + - Math.max(Math.min((percent * increments),98),0) + "%,0,200px)";
+    },
+
+    timelapseScale: function(ele, xPos, screenWidth, factor) {
+
+        var percent = (xPos/screenWidth)/factor;
+        ele.style.webkitTransform = "scale(" + (1 + percent) + ") translateZ(250px)";
     }
 }
-
-
-
-
 
 
 
@@ -146,11 +188,13 @@ function loadPortfolio(){
 
     //Overall Event Listeners
     Settings.body.addEventListener('mouseup', Controller.handleMouseUp, false);
-    Settings.win.addEventListener('resize', Controller.handleResize, false);
+    Settings.win.addEventListener('resize', Timelapse.setBackgroundProps(Settings.screenWidth, Settings.screenHeight), false);
+    View.homepage.addEventListener('mousemove', Controller.handleMouseMove, false);
 
+    //Click handling
     Controller.onMouseUp = function(args){
 
-        console.log('omg ' + args.id);
+        console.log(args);
 
         switch (args.id) {
 
@@ -166,103 +210,37 @@ function loadPortfolio(){
                 TweenMax.to(menuIcon,1, {morphSVG: {shape: menuIconPath, shapeIndex:5}});
                 break;
 
+            case 'home_icon':
+                buildingBackground.style.opacity = "0";
+                TweenMax.to(homeIconPath,1, {morphSVG: {shape: filmPath, shapeIndex:1}});
+                break;
+
             //arrow functionality:
             case 'nav_arrow-1':
-                scrollToElement(250, win.innerHeight);
+                Controller.scrollToElement(250, win.innerHeight);
                 stage.className = "page_active-2";
                 playVideo(videos,1);
                 break;
 
             case 'nav_arrow-2':
-                scrollToElement(250, win.innerHeight*2);
+                Controller.scrollToElement(250, win.innerHeight*2);
                 stage.className = "page_active-3";
                 break;
 
             default:
                 break;
         }
+    };
+
+    //Mousemove Handling
+    Controller.horizontalMove = function(args) {
+
+        Controller.changeLogoColor(View.logo, args.x, Settings.screenWidth);
+
+        Controller.timelapseMove(Timelapse.ele, args.x, Settings.screenWidth, Timelapse.numOfFrames, Timelapse.increments);
+
+        Controller.timelapseScale(Timelapse.container, args.x, Settings.screenWidth, 20);
     }
-
-    doc.addEventListener('mouseup', function(e) {
-
-          //Menu Icon Functionality
-            if(e.target.id === "home_icon"){
-                buildingBackground.style.opacity = "0";
-                TweenMax.to(homeIconPath,1, {morphSVG: {shape: filmPath, shapeIndex:1}});
-            }
-            mouseDown = 0;
-
-        }, false);
-
-    function handleResize(e){
-        Portfolio.Timelapse.setBackgroundProps(settings.screenWidth, settings.screenHeight);
-    }
-
-    //Auto scroll functionality
-    function scrollToElement(scrollDuration, elementPos) {
-        var scrollStep = elementPos / (scrollDuration / 15);
-
-        var scrollInterval = setInterval(function(){
-              if(window.scrollY < elementPos){
-                window.scrollBy( 0, scrollStep );
-              } else {
-                clearInterval(scrollInterval);
-              }
-            },15);
-    }
-
-    //Homepage Event Listeners
-    homepage.addEventListener('mousemove', handleMouseMove, false);
-
-    function handleMouseMove(e){
-        // Logo color
-        changeLogoColor(LOGO, e.clientX);
-
-        //Timelapse
-        timelapseMove(TIMELAPSE, e.clientX);
-        timelapseScale(TIMELAPSE_CONTAINER, e.clientX, 20);
-    }
-
-
-    //Logo Variables
-    var LOGO = doc.querySelector('#logo_svg'),
-        HORIZONTAL_MARGIN = screenWidth;
-
-    function changeLogoColor(ele,xPos){
-        var horizontalPercent = Math.floor(xPos/(HORIZONTAL_MARGIN * 0.25) * 10);
-
-        ele.style.fill = "hsl(" + (horizontalPercent + 10) + ",100%,52%)";
-    }
-
-
-
-    //Title Variables
-    var TITLE = doc.querySelector('#title'),
-        SUBTITLE = doc.querySelector('#subtitle');
-
-    function timelapseMove(ele,xPos) {
-        var percent = Math.floor(xPos/screenWidth*NUM_OF_FRAMES);
-
-        ele.style.webkitTransform = "translate3d(" + - Math.max(Math.min((percent* INCREMENTS),98),0) + "%,0,200px)";
-    }
-
-    function timelapseScale(ele, xPos, factor){
-        var percent = (xPos/screenWidth)/factor;
-        ele.style.webkitTransform = "scale(" + (1 + percent) + ") translateZ(250px)";
-    }
-
-
-    //Event Listeners
-
-        doc.addEventListener('mouseout', function(e) {
-            mouseDown = 0;
-        }, false);
-
-
-    //SVG icons
-        var buildingBackground = document.querySelector("#building-1"),
-            // homeIconPath = MorphSVGPlugin.convertToPath(document.querySelector("#building-2")),
-            filmPath = "M91.5,161.9H32.2v-55.7h59.3V161.9z M95.8,112.3h77.7v29H95.8 V112.3z M127.5,153.4H95.8v-8h31.7V153.4z M178,111.7l9-5v38.7l-9-3.9V111.7z M32,54.6c0,0,19.2-28.7,41.2-10.5 s18.2,38.6,18.2,38.6H32V54.6z M32,87.2h59.5v14.7H32V87.2z M116.5,107.9h-15.8V97.4h15.8V107.9z M28,101.9l-15,2.5V85.2l15,2 V101.9z";
 
     //mobile
 
