@@ -1,4 +1,5 @@
 /*jslint browser:true */
+/*jslint node: true */
 'use strict';
 
 var Portfolio = {};
@@ -87,7 +88,6 @@ Portfolio.View = function(doc) {
     this.hotspot = doc.getElementById('scrub_hotspot');
 
 };
-
 
 //CONTROLLER
 Portfolio.Controller = function() {
@@ -259,32 +259,20 @@ function initPortfolio() {
         switch (args.id) {
 
             case 'menu_icon_container':
-                stage.classList.add('menu_active');
-                stage.classList.remove('title_animate');
+                View.stage.classList.add('menu_active');
+                View.stage.classList.remove('title_animate');
                 TweenMax.to(Menu.icon,1, {morphSVG: {shape: Menu.closeButton, shapeIndex:5}});
                 break;
 
             case 'close_button_container':
-                stage.classList.remove('menu_active');
-                stage.classList.add('title_animate');
+                View.stage.classList.remove('menu_active');
+                View.stage.classList.add('title_animate');
                 TweenMax.to(Menu.icon,1, {morphSVG: {shape: Menu.iconPath, shapeIndex:5}});
                 break;
 
             case 'home_icon':
                 buildingBackground.style.opacity = "0";
                 TweenMax.to(homeIconPath,1, {morphSVG: {shape: filmPath, shapeIndex:1}});
-                break;
-
-            //arrow functionality:
-            case 'nav_arrow-1':
-                Controller.scrollToElement(250, win.innerHeight);
-                stage.className = "page_active-2";
-                playVideo(videos,1);
-                break;
-
-            case 'nav_arrow-2':
-                Controller.scrollToElement(250, win.innerHeight*2);
-                stage.className = "page_active-3";
                 break;
 
             default:
