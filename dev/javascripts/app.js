@@ -92,7 +92,7 @@ Portfolio.View = function(doc) {
 //CONTROLLER
 Portfolio.Controller = function() {
 
-    self = this;
+    self = this; // worse line in here. Need to adjust
 };
 
 Portfolio.Controller.prototype = {
