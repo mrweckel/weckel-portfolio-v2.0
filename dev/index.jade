@@ -2,13 +2,11 @@ doctype html
 html(lang="en")
   head
     meta(name='viewport', content='width=device-width, initial-scale=1.0,user-scalable=no')
-    script(try{Typekit.load({ async: true });}catch(e){})
-    script(src="https://use.typekit.net/toe5fzb.js")
     link(rel="stylesheet" href="/stylesheets/styles.css")
-    script(src="js/app.js")
-    script(src="js/loader.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js")
-    script(src="js/MorphSVGPlugin.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js" defer)
+    script(src="js/MorphSVGPlugin.min.js" defer)
+    script(src="js/loader.js" defer)
+    script(src="js/app.js" defer)
     title Weckel Portfolio
   body
     #stage.page_active-1.container_loading_active
