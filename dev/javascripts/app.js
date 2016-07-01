@@ -92,7 +92,6 @@ Portfolio.View = function(doc) {
 //CONTROLLER
 Portfolio.Controller = function() {
 
-    self = this; // worse line in here. Need to adjust
 };
 
 Portfolio.Controller.prototype = {
@@ -109,6 +108,8 @@ Portfolio.Controller.prototype = {
             timePassed = false,
             imgsLoaded = false;
 
+        var that = this;
+
         //In case images load very quickly, wait a bit before ending opening animation
         setTimeout(
             function() {
@@ -121,7 +122,7 @@ Portfolio.Controller.prototype = {
         arr.forEach(function(bgImg, index) {
 
             var image = document.createElement('img');
-            image.src = self.getBgUrl(document.getElementById(bgImg));
+            image.src = that.getBgUrl(document.getElementById(bgImg));
             image.onload = function() {
                 if (index === lastElement) {
                     imgsLoaded = true;
@@ -144,9 +145,7 @@ Portfolio.Controller.prototype = {
 
     handleMouseUp: function(e) {
 
-        console.log("You tapped " + e.target.id, self);
-
-        self.onMouseUp({target: e.target, id: e.target.id});
+        this.onMouseUp({target: e.target, id: e.target.id});
     },
 
     handleResize: function(cb) {
@@ -170,7 +169,7 @@ Portfolio.Controller.prototype = {
 
     handleMouseMove: function(e) {
 
-        self.horizontalMove({x: e.clientX});
+        this.horizontalMove({x: e.clientX});
     },
 
     changeLogoColor: function(ele,xPos,horizontalMargin) {
@@ -247,9 +246,9 @@ function initPortfolio() {
     Timelapse.setBackgroundProps(Settings.screenWidth, Settings.screenHeight);
 
     //Overall Event Listeners
-    Settings.body.addEventListener('mouseup', Controller.handleMouseUp, false);
+    Settings.body.addEventListener('mouseup', Controller.handleMouseUp.bind(Controller), false);
     Settings.win.addEventListener('resize', Timelapse.setBackgroundProps(Settings.screenWidth, Settings.screenHeight), false);
-    View.homepage.addEventListener('mousemove', Controller.handleMouseMove, false);
+    View.homepage.addEventListener('mousemove', Controller.handleMouseMove.bind(Controller), false);
 
     //Click handling
     Controller.onMouseUp = function(args){
